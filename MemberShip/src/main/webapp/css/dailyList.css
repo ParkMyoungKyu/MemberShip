@@ -1,0 +1,69 @@
+.dailyListBox{
+	margin: 0px;
+}
+
+.mainBox{
+	margin: 0px;
+}
+
+.mirisLogo{
+	margin: 50px auto;
+	width: 250px;
+	display: block;
+}
+
+.title {
+	margin: 0 auto 5px;
+	width: 650px;
+}
+
+.search{
+	width:650px;
+	margin: 0 auto;
+}
+
+.gbnSearch{
+	display: inline-block;
+}
+
+.nameSearch{
+	display: inline-block;
+}
+
+.searchDate{
+	display: inline-block;
+}
+
+.searchBtn{
+	float: right;
+}
+
+.memberSum{
+	text-align:center;
+	margin: 35px auto 20px;
+	width: 650px;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+.memberSum th{
+	width: 20%;
+}
+
+.memberSum td{
+	width: 20%;
+}
+
+.memberList{
+	text-align:center;
+	margin: 10px auto;
+	width: 650px;
+	border-collapse: collapse;
+}
+
+.memberList tr td{
+	border: 1px solid #444444;
+}
+.memberList th{
+	border: 1px solid #444444;
+}

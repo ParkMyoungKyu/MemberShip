@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Member" type="com.miris.project.dto.MemberVO"/>
+		<typeAlias alias="DailyWork" type="com.miris.project.dto.DailyWorkVO"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/Member.xml"/>
+		<mapper resource="mapper/DailyWork.xml"/>
+	</mappers>
+	
+</configuration>

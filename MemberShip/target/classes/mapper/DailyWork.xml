@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="DailyWork">
+	<select id="dailySum" parameterType="DailyWork" resultType="DailyWork">
+		SELECT
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '1' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS ONE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '2' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS TWO,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '3' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS THREE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '4' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS FOUR   
+	    FROM d_work
+	    WHERE 1=1
+	    AND TO_CHAR(W_DAY,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+	    AND ROWNUM = 1
+	</select>
+	
+	<select id="dailyNowUpdate" parameterType="DailyWork" resultType="DailyWork">          
+		 MERGE INTO D_WORK A
+		 USING (SELECT 
+			         A.M_ID,
+			         A.W_STATUS,
+			         A.W_DAY,
+			         A.W_TIME,
+			         A.W_NOTICE,
+			         A.P_NAME,
+			         B.M_NAME,
+			         B.M_POSITION
+		        FROM D_WORK A, MEMBER B
+		        WHERE 1=1
+		        AND A.M_ID=B.M_ID
+		        AND TO_CHAR(A.W_DAY,'YYYYMMDD')=TO_CHAR(SYSDATE-1,'YYYYMMDD')
+		     ) B
+		 ON (
+		      A.M_ID = B.M_ID  
+		 AND TO_CHAR(A.W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+		    )
+		 WHEN MATCHED THEN 
+		    UPDATE SET A.W_NOTICE = '매칭된데이터'
+		 WHEN NOT MATCHED THEN
+		    INSERT ( 
+		    		A.M_ID,
+			         A.W_STATUS,
+			         A.W_DAY,
+			         A.W_TIME,
+			         A.W_NOTICE,
+			         A.P_NAME
+		         	)
+		    VALUES (
+			     	 B.M_ID,
+			         B.W_STATUS,
+			         TO_CHAR(SYSDATE,'YYYYMMDD'),
+			         B.W_TIME,
+			         '매칭안된것',
+			         B.P_NAME
+			       )
+	</select>
+	
+	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
+		select a.m_id,
+           a.m_pw,
+           a.m_name,
+           a.d_code,
+           a.m_position,
+           a.m_gubun,
+           a.m_joindate,
+           a.m_leavedate,
+           a.m_notice,
+           c.w_status,
+           c.w_day,
+           c.w_time,
+           c.w_notice,
+           c.p_name,
+           c.p_addr
+          from member a
+    	inner join (
+		   select a.m_id,
+		           a.w_status,
+		           a.w_day,
+		           a.w_time,
+		           a.w_notice,
+		           b.p_name,
+		           b.p_addr
+		          from d_work a
+		    inner join place b
+		    on a.p_name = b.p_name
+		    WHERE 1=1
+		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+	    ) c
+    on a.m_id = c.m_id
+	</select>
+	
+	<select id="dailyDetail" parameterType="DailyWork" resultType="DailyWork">
+		SELECT m_id,
+			   w_status,
+			   w_day,
+			   w_time,
+			   w_notice,
+			   p_name
+		FROM D_WORK
+		WHERE 1=1
+		AND m_id = #{m_id}
+		AND to_char(W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD') 
+	</select>
+</mapper>

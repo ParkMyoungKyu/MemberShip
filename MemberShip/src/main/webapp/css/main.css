@@ -1,0 +1,36 @@
+.mainBox{
+	margin: 0;
+}
+.mainBody{
+	margin: 0;
+	width: 100%;
+}
+.main{
+	text-align: center;
+	margin: 10% 0;
+}
+
+.mirisLogo{
+	margin: 50px auto;
+	width: 250px;
+	display: block;
+	
+}
+.nowName{
+	margin: 0 auto 5px;
+	width: 650px;
+}
+.nowWorking{
+	width: 650px;
+	margin: 0 auto;
+}
+
+.todayName{
+	margin: 50px auto 5px;
+	width: 650px;
+}
+
+.todayWorking{
+	width: 650px;
+	margin: 0 auto;
+}

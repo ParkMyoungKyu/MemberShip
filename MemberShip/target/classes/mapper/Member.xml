@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+	
+	<select id="memeberSession" parameterType="Member" resultType="Member">
+		SELECT a.m_id,
+            a.m_pw,
+            a.m_name,
+            a.d_code,
+            a.m_position,
+            a.m_gubun,
+            a.m_joindate,
+            a.m_leavedate,
+            a.m_notice,
+            b.d_name
+	    FROM member a, dept b
+	    WHERE 1=1
+	    AND a.d_code = b.d_code
+	    AND a.m_id = #{m_id}
+	    AND a.m_pw = #{m_pw}
+	</select>
+	
+	<select id="memberLogin" parameterType="String" resultType="String">
+		SELECT a.m_id,
+	           a.m_pw,
+	           a.m_name,
+	           a.d_code,
+	           a.m_position,
+	           a.m_gubun,
+	           a.m_joindate,
+	           a.m_leavedate,
+	           a.m_notice,
+	           b.d_name
+	    FROM member a, dept b
+	    WHERE 1=1
+	    AND a.d_code = b.d_code
+	    AND a.m_id = #{m_id}
+	    AND a.m_pw = #{m_pw}
+	</select>
+	
+	
+	
+</mapper>
