@@ -39,6 +39,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("dailyDetail",dailyWorkVO);
 	}
 
+	@Override
+	public List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO) {
+		System.out.println("=====================MemberDaoImpl dailyMemberSearch=====================");
+		return session.selectList("dailyMemberSearch",dailyWorkVO);
+	}
+
 	
 
 	

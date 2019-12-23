@@ -15,6 +15,8 @@ public interface MemberDao {
 
 	List<DailyWorkVO> dailyDetail(DailyWorkVO dailyWorkVO);
 
+	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
+
 		
 
 }

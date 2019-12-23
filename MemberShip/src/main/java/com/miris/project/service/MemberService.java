@@ -15,6 +15,8 @@ public interface MemberService {
 
 	List<DailyWorkVO> dailyDetail(DailyWorkVO dailyWorkVO);
 
+	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
+
 	
 	
 }

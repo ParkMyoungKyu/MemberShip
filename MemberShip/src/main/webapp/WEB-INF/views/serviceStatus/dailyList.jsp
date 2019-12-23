@@ -23,7 +23,7 @@ $(function(){
             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
             showMonthAfterYear: true,
 		});
-	$("#startDate").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
+	$("#w_day").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
 });	
 
 </script>
@@ -35,7 +35,7 @@ $(function(){
 	<div class="search">
 		<form action="memberSearch.do">
 			<div class="gbnSearch">
-				구분 : <select class="gubun">
+				구분 : <select class="gubun" name="w_status">
 						<option value="S01" selected="selected">전체</option>
 						<option value="S02">근무</option>
 						<option value="S03">휴가</option>
@@ -43,10 +43,10 @@ $(function(){
 					 </select>
 			</div>
 			<div class="nameSearch">
-				성명 : <input type="text">
+				성명 : <input type="text" name="m_name">
 			</div>
 			<div class="searchDate">
-				날짜 : <input type="text" id="startDate" name="startDate" readonly="readonly" required="required"> 
+				날짜 : <input type="text" id="startDate" name="w_day" readonly="readonly" required="required"> 
 			</div>  
 			<input class="searchBtn" type="submit" value="조회">
 		</form>

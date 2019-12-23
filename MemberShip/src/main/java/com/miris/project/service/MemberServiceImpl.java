@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.dailyDetail(dailyWorkVO);
 	}
 
+	@Override
+	public List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO) {
+		System.out.println("=====================MemberServiceImpl dailyMemberSearch=====================");
+		return memberDao.dailyMemberSearch(dailyWorkVO);
+	}
+
 	
 
 
