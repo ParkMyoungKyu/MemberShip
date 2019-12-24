@@ -102,4 +102,15 @@
 		AND m_id = #{m_id}
 		AND to_char(W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD') 
 	</select>
+	
+	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
+		SELECT m_id,
+			   w_status,
+			   w_day,
+			   w_time,
+			   w_notice,
+			   p_name
+		FROM D_WORK
+		WHERE 1=1		
+	</select>
 </mapper>
