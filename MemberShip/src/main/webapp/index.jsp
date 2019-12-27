@@ -10,7 +10,7 @@
 <body>
 
 	<%
-		response.sendRedirect("loginForm.do");
+		response.sendRedirect("mgrDept.do");
 	%>
 	
 </body>

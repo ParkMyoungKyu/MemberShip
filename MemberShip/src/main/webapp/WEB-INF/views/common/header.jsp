@@ -21,9 +21,9 @@
 			</div>
 			
 			<div class="btnAll">
-				<input class="mbtn" type="button" value="관리자" onclick="location.href = '#';">
-				<input class="btn1" type="button" value="투입현황" onclick="location.href = '#';">
-				<input class="btn2" type="button" value="근무상태" onclick="location.href = 'dailyList.do';">
+				<input class="mbtn" type="button" value="관리자" onclick="location.href = 'mgrDept.do'">
+				<input class="btn1" type="button" value="투입현황" onclick="location.href = 'monthlyList.do'">
+				<input class="btn2" type="button" value="근무상태" onclick="location.href = 'dailyList.do'">
 			</div>
 		</div>
 	</div>
