@@ -36,18 +36,18 @@ $(function(){
 		<form action="memberSearch.do">
 			<div class="gbnSearch">
 				구분 : <select class="gubun" name="w_status">
-						<option value="S01" selected="selected">전체</option>
-						<option value="S02">근무</option>
-						<option value="S03">휴가</option>
-						<option value="S04">출장</option>
+						<option value="0" selected="selected">전체</option>
+						<option value="1">근무</option>
+						<option value="2">휴가</option>
+						<option value="3">출장</option>
 					 </select>
 			</div>
 			<div class="nameSearch">
 				성명 : <input type="text" name="m_name">
 			</div>
-			<div class="searchDate">
-				날짜 : <input type="text" id="startDate" name="w_day" readonly="readonly" required="required"> 
-			</div>  
+			<!-- <div class="searchDate">
+				날짜 : <input type="text" id="w_day" name="w_day" readonly="readonly" required="required"> 
+			</div> -->  
 			<input class="searchBtn" type="submit" value="조회">
 		</form>
 	</div>

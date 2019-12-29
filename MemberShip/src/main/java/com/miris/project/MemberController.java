@@ -66,30 +66,33 @@ public class MemberController {
 
 		System.out.println("선택한 구분 -> " + dailyWorkVO.getW_status());
 		System.out.println("입력한 이름 -> " + dailyWorkVO.getM_name());
-		System.out.println("선택한 날짜 -> " + dailyWorkVO.getW_day());
+		//System.out.println("선택한 날짜 -> " + dailyWorkVO.getW_day());
 		
-		System.out.println("선택한 구분 -> " + request.getParameter("gubun"));
-		System.out.println("입력한 이름 -> " + request.getParameter("name"));
-		System.out.println("선택한 날짜 -> " + request.getParameter("startDate"));
+		System.out.println("선택한 구분 -> " + request.getParameter("w_status"));
+		System.out.println("입력한 이름 -> " + request.getParameter("m_name"));
+		System.out.println("선택한 날짜 -> " + request.getParameter("w_day"));
 		
-		dailyWorkVO.setW_status(request.getParameter("gubun"));
-		dailyWorkVO.setM_name(request.getParameter("name"));
+		dailyWorkVO.setW_status(request.getParameter("w_status"));
+		dailyWorkVO.setM_name(request.getParameter("m_name"));
 		
-		String inputgubun = request.getParameter("gubun");
-		String inputname = request.getParameter("name");
+		String inputgubun = request.getParameter("w_status");
+		String inputname = request.getParameter("m_name");
 		//이름 띄어쓰기 제거
 		String replaceName = inputname.replace(" ", "");
 		
-		if(inputgubun.equals("S01")) {
+		System.out.println("선택한 구분 -> " + inputgubun);
+		System.out.println("입력한 이름 -> " + replaceName);
+		
+		if(inputgubun.equals("0")) {
 			System.out.println("===== '구분 : 전체' =====");
 			dailyWorkVO.setW_status(inputgubun);
-		} else if(inputgubun.equals("S02")) {
+		} else if(inputgubun.equals("1")) {
 			System.out.println("===== '구분 : 근무' =====");
 			dailyWorkVO.setW_status(inputgubun);
-		} else if(inputgubun.equals("S03")) {
+		} else if(inputgubun.equals("2")) {
 			System.out.println("===== '구분 : 휴가' =====");
 			dailyWorkVO.setW_status(inputgubun);
-		} else if(inputgubun.equals("S04")) {
+		} else if(inputgubun.equals("3")) {
 			System.out.println("===== '구분 : 출장' =====");
 			dailyWorkVO.setW_status(inputgubun);
 		}
