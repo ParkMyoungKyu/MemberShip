@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <%@ include file="../common/header.jsp" %>
-<body>
+<body class="monthlyStatusInputBox">
 
 </body>
 <%@ include file="../common/footer.jsp" %>

@@ -23,12 +23,13 @@ $(function(){
             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
             showMonthAfterYear: true,
 		});
-	$("#w_day").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
+	$("#searchDate").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
 });	
 
 </script>
-</head>
 <%@ include file="../common/header.jsp" %>
+</head>
+
 <body class="dailyListBox">
 	<img class="mirisLogo" alt="miris" src="./image/mirisci.png">
 	<div class="title">■ 인력근무현황</div>
@@ -45,9 +46,9 @@ $(function(){
 			<div class="nameSearch">
 				성명 : <input type="text" name="m_name">
 			</div>
-			<!-- <div class="searchDate">
-				날짜 : <input type="text" id="w_day" name="w_day" readonly="readonly" required="required"> 
-			</div> -->  
+			<div class="searchDate">
+				날짜 : <input type="text" id="searchDate" name="searchDate" readonly="readonly" required="required"> 
+			</div>  
 			<input class="searchBtn" type="submit" value="조회">
 		</form>
 	</div>
@@ -56,10 +57,12 @@ $(function(){
 			<th>총인원</th>
 			<th>근무</th>
 			<th>휴가</th>
+			<th>출장</th>
 			<th>기타</th>
 		</tr>
 		<c:forEach var="dailySum" items="${dailySum}">
 			<tr>
+				<td>${dailySum.zero}</td>
 				<td>${dailySum.one}</td>
 				<td>${dailySum.two}</td>
 				<td>${dailySum.three}</td>

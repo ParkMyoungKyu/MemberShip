@@ -12,11 +12,14 @@ public class DailyWorkVO {
     private String w_notice;
     //private String p_name;
     
+    private String searchDate;
+    
     //근무장소
     private String p_name;
     private String p_addr;
     
     //상태별 인원
+    private int zero;
     private int one;
     private int two;
     private int three;
@@ -28,18 +31,6 @@ public class DailyWorkVO {
     
     
     
-	public String getM_name() {
-		return m_name;
-	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
-	}
-	public String getM_position() {
-		return m_position;
-	}
-	public void setM_position(String m_position) {
-		this.m_position = m_position;
-	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -70,6 +61,12 @@ public class DailyWorkVO {
 	public void setW_notice(String w_notice) {
 		this.w_notice = w_notice;
 	}
+	public String getSearchDate() {
+		return searchDate;
+	}
+	public void setSearchDate(String searchDate) {
+		this.searchDate = searchDate;
+	}
 	public String getP_name() {
 		return p_name;
 	}
@@ -81,6 +78,12 @@ public class DailyWorkVO {
 	}
 	public void setP_addr(String p_addr) {
 		this.p_addr = p_addr;
+	}
+	public int getZero() {
+		return zero;
+	}
+	public void setZero(int zero) {
+		this.zero = zero;
 	}
 	public int getOne() {
 		return one;
@@ -106,6 +109,20 @@ public class DailyWorkVO {
 	public void setFour(int four) {
 		this.four = four;
 	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public String getM_position() {
+		return m_position;
+	}
+	public void setM_position(String m_position) {
+		this.m_position = m_position;
+	}
     
     
+    
+    	    
 }

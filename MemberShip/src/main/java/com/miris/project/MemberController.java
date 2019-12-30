@@ -20,7 +20,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	
 	@RequestMapping(value = "main")
 	public String memberSum(DailyWorkVO dailyWorkVO , Model model) {
 		System.out.println("=====================MemberContraller Main=====================");
@@ -66,11 +65,11 @@ public class MemberController {
 
 		System.out.println("선택한 구분 -> " + dailyWorkVO.getW_status());
 		System.out.println("입력한 이름 -> " + dailyWorkVO.getM_name());
-		//System.out.println("선택한 날짜 -> " + dailyWorkVO.getW_day());
+		System.out.println("선택한 날짜 -> " + dailyWorkVO.getSearchDate());
 		
 		System.out.println("선택한 구분 -> " + request.getParameter("w_status"));
 		System.out.println("입력한 이름 -> " + request.getParameter("m_name"));
-		System.out.println("선택한 날짜 -> " + request.getParameter("w_day"));
+		System.out.println("선택한 날짜 -> " + request.getParameter("searchDate"));
 		
 		dailyWorkVO.setW_status(request.getParameter("w_status"));
 		dailyWorkVO.setM_name(request.getParameter("m_name"));

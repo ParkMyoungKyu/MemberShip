@@ -5,6 +5,7 @@
 <mapper namespace="DailyWork">
 	<select id="dailySum" parameterType="DailyWork" resultType="DailyWork">
 		SELECT
+		  (SELECT COUNT(*) FROM D_WORK WHERE to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS ZERO,
 	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '1' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS ONE,
 	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '2' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS TWO,
 	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '3' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS THREE,
@@ -132,7 +133,7 @@
 		    inner join place b
 		    on a.p_name = b.p_name
 		    WHERE 1=1
-		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
 		    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
 	    ) c
     on a.m_id = c.m_id

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <%@ include file="../common/header.jsp" %>
-<body>
+<body class="monthlyListBox">
 	<div>■ 인력 가동률</div>
 	<table>
 		<tr>
