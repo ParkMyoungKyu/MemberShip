@@ -10,8 +10,10 @@
 <body>
 
 	<%
-		response.sendRedirect("mgrDept.do");
+		//response.sendRedirect("mgrDept.do");
+		response.sendRedirect("loginForm.do");
 	%>
+	
 	
 </body>
 </html>
