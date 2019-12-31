@@ -11,7 +11,7 @@
 <%@ include file="../common/header.jsp" %>
 <body class="monthlyListBox">
 	<div>■ 인력 가동률</div>
-	<table>
+	<table border="1">
 		<tr>
 			<td>총인원</td>
 			<td>제외인원</td>
@@ -31,8 +31,8 @@
 			<td>5555</td>
 			<td>5555</td>
 			<td>5555</td>
-			<td>5555</td>
 		</tr>
+
 	</table>
 	<div>■ 월별 인력 투입현황</div>
 	<button>인력등록</button>
@@ -66,18 +66,18 @@
 		 	   </select>
 		 성명 :  <input type="text">
 		 직급 :  <select>
-		 			<option></option>
-		 			<option></option>
-		 			<option></option>
-		 			<option></option>
-		 			<option></option>
-		 			<option></option>
+		 			<option>사원</option>
+		 			<option>대리</option>
+		 			<option>과장</option>
+		 			<option>차장</option>
+		 			<option>부장</option>
+		 			<option>상무</option>
 		 	   </select>
 		 현업무 : <input type="text">
 	  <input type="submit" value="조회">
 	</form>
 	
-	<table>
+	<table border="1">
 		<tr>
 			<td><input type="checkbox"> </td>
 			<td>구분</td>
@@ -99,27 +99,34 @@
 			<td>12월</td>
 			<td>비고</td>
 		</tr>
-		<tr>
-			<td><input type="checkbox"> </td>
-			<td>구분</td>
-			<td><a href="monthlyDetail.do">성명</a></td>
-			<td>직급</td>
-			<td>현 근무지</td>
-			<td>site</td>
-			<td>1월</td>
-			<td>2월</td>
-			<td>3월</td>
-			<td>4월</td>
-			<td>5월</td>
-			<td>6월</td>
-			<td>7월</td>
-			<td>8월</td>
-			<td>9월</td>
-			<td>10월</td>
-			<td>11월</td>
-			<td>12월</td>
-			<td>비고</td>
-		</tr>
+		<c:forEach var="monthlyList" items="${monthlyList}">
+			<tr>
+				<td><input type="checkbox"> </td>
+				<td>
+					<c:choose>
+						<c:when test="${monthlyList.m_gubun == 'G1'}">내부</c:when>
+						<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
+					</c:choose>
+				</td>
+				<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
+				<td>${monthlyList.m_position}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>	
+		</c:forEach>
 	</table>
 </body>
 <%@ include file="../common/footer.jsp" %>

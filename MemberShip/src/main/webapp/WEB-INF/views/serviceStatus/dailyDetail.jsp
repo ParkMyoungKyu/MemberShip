@@ -19,7 +19,7 @@
 		</tr>
 		<c:forEach var="dailyDetail" items="${dailyDetail}">
 		<tr class="tableContent">
-			<td><fmt:formatDate value="${dailyDetail.w_day}" pattern="YYYY-MM-dd"/> </td>
+			<td><fmt:formatDate value="${dailyDetail.w_day}" pattern="yyyy-MM-dd"/> </td>
 			<td>
 				<c:choose>
 					<c:when test="${dailyDetail.w_status == '1'}">근무</c:when>

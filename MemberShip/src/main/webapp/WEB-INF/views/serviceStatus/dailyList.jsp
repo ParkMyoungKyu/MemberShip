@@ -93,7 +93,7 @@ $(function(){
 				</td>
 				<td>${dailyList.p_name}</td>
 				<td>
-					<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="YYYY-MM-dd"/>
+					<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
 					<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
 					<c:choose>
 					<c:when test="${time == '00:00:00'}">미출근</c:when>

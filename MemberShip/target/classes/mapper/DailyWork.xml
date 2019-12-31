@@ -5,14 +5,14 @@
 <mapper namespace="DailyWork">
 	<select id="dailySum" parameterType="DailyWork" resultType="DailyWork">
 		SELECT
-		  (SELECT COUNT(*) FROM D_WORK WHERE to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS ZERO,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '1' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS ONE,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '2' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS TWO,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '3' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS THREE,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '4' and to_char(W_DAY,'YYYYMMDD')= to_char(sysdate,'yyyymmdd')) AS FOUR   
+		  (SELECT COUNT(*) FROM D_WORK WHERE to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ZERO,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '1' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ONE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '2' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS TWO,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '3' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS THREE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '4' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS FOUR   
 	    FROM d_work
 	    WHERE 1=1
-	    AND TO_CHAR(W_DAY,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+	    AND TO_CHAR(W_DAY,'YYYYMMDD')=TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')	      
 	    AND ROWNUM = 1
 	</select>
 	

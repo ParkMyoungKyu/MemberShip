@@ -6,11 +6,13 @@
 	<typeAliases>
 		<typeAlias alias="Member" type="com.miris.project.dto.MemberVO"/>
 		<typeAlias alias="DailyWork" type="com.miris.project.dto.DailyWorkVO"/>
+		<typeAlias alias="MonthlyWork" type="com.miris.project.dto.MonthlyWorkVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/Member.xml"/>
 		<mapper resource="mapper/DailyWork.xml"/>
+		<mapper resource="mapper/MonthlyWork.xml"/>
 	</mappers>
 	
 </configuration>

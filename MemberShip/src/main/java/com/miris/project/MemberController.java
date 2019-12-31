@@ -1,5 +1,6 @@
 package com.miris.project;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,14 @@ public class MemberController {
 	@RequestMapping(value = "main")
 	public String memberSum(DailyWorkVO dailyWorkVO , Model model) {
 		System.out.println("=====================MemberContraller Main=====================");
-		
+     	
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String today = format1.format(date);
+     	dailyWorkVO.setSearchDate(today);
+     	
+     	System.out.println("초기 날짜" + dailyWorkVO.getSearchDate());
+     		
 		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
 		
@@ -35,7 +43,13 @@ public class MemberController {
 	@RequestMapping(value = "dailyList")
 	public String memberList(MemberVO memberVO,DailyWorkVO dailyWorkVO, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
-			
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String today = format1.format(date);
+		
+		dailyWorkVO.setSearchDate(today);
+
 		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
 		List<MemberVO> dailyList = memberService.dailyList(memberVO);
