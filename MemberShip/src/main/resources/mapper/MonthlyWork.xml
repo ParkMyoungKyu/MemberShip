@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="MonthlyWork">
+  	<select id="monthlyList" parameterType="MonthlyWork" resultType="MonthlyWork">
+  		SELECT b.m_id,
+  			   b.m_gubun,
+  			   b.m_name,
+  			   b.m_position 
+  		FROM M_WORK A, member B
+        WHERE 1=1
+        AND A.M_ID = b.m_id
+        and to_char(a.m_year,'yyyy') = to_char(sysdate,'yyyy')
+        and to_char(a.m_month,'MM') = TO_CHAR(SYSDATE,'MM')
+  	</select>
+  	
+  	<select id="monthlyDetail" parameterType="MonthlyWork" resultType="MonthlyWork">
+  		select a.m_gubun,
+             a.d_code,
+             a.m_name,
+             a.m_position,
+             a.m_notice,
+             b.m_month,
+             b.m_work,
+             b.m_except,
+             b.m_notice
+	      from MEMBER A, M_WORK B
+	      where 1=1
+	      and a.m_id=b.m_id
+	      and a.m_name = #{m_name}
+	      and to_char(b.m_year,'yyyy') = to_char(sysdate,'yyyy')
+	      and to_char(b.m_month,'MM') > (TO_CHAR(SYSDATE,'MM')-12)
+	      order by b.m_year,b.m_month
+  	</select>
+  </mapper>
