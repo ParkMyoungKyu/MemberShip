@@ -6,37 +6,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/monthlyList.css" type="text/css">
 <title>Insert title here</title>
 </head>
-<%@ include file="../common/header.jsp" %>
+<%-- <%@ include file="../common/header.jsp" %> --%>
 <body class="monthlyListBox">
-	<div>■ 인력 가동률</div>
-	<table border="1">
-		<tr>
-			<td>총인원</td>
-			<td>제외인원</td>
-			<td>가동 가능 인원</td>
-			<td>투입인력1</td>
-			<td>투입인력2</td>
-			<td>대기인력</td>
-			<td>가동율1</td>
-			<td>가동율2</td>
-		</tr>
-		<tr>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-			<td>5555</td>
-		</tr>
-
-	</table>
+	<div class="monthlySumTable">
+		<div>■ 인력 가동률</div>
+		<table class="monthlySum">
+			<tr class="monthlySum-rowheader">
+				<th>총인원</th>
+				<th>제외인원</th>
+				<th>가동가능인원</th>
+				<th>투입인력1</th>
+				<th>투입인력2</th>
+				<th>대기인력</th>
+				<th>가동율1</th>
+				<th>가동율2</th>
+			</tr>
+			<tr class="monthlySum-row">
+				<td>제외인원 + 가동가능인원</td>
+				<td>5555</td>
+				<td>5555</td>
+				<td>5555</td>
+				<td>5555</td>
+				<td>5555</td>
+				<td>투입인력1/가동가능인원</td>
+				<td>(투입인력1+투입인력2)/가동가능인원</td>
+			</tr>
+		</table>
+	</div>
+	<div class="monthlyListTable">
 	<div>■ 월별 인력 투입현황</div>
-	<button>인력등록</button>
-	<button>현황등록</button>
+	<button onclick="window.open('monthlyStatusInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
+	<button onclick="window.open('monthlyWorkInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">현황등록</button>
 	<button>일괄복사</button>
 	<form action="monthlySearch.do">
 		기준년도 : <select>
@@ -77,57 +80,58 @@
 	  <input type="submit" value="조회">
 	</form>
 	
-	<table border="1">
-		<tr>
-			<td><input type="checkbox"> </td>
-			<td>구분</td>
-			<td>성명</td>
-			<td>직급</td>
-			<td>현 근무지</td>
-			<td>site</td>
-			<td>1월</td>
-			<td>2월</td>
-			<td>3월</td>
-			<td>4월</td>
-			<td>5월</td>
-			<td>6월</td>
-			<td>7월</td>
-			<td>8월</td>
-			<td>9월</td>
-			<td>10월</td>
-			<td>11월</td>
-			<td>12월</td>
-			<td>비고</td>
-		</tr>
-		<c:forEach var="monthlyList" items="${monthlyList}">
-			<tr>
-				<td><input type="checkbox"> </td>
-				<td>
-					<c:choose>
-						<c:when test="${monthlyList.m_gubun == 'G1'}">내부</c:when>
-						<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
-					</c:choose>
-				</td>
-				<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
-				<td>${monthlyList.m_position}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>	
-		</c:forEach>
-	</table>
+		<table class="monthlyList">
+			<tr class="monthlyList-rowheader">
+				<th><input type="checkbox"> </th>
+				<th>구분</th>
+				<th>성명</th>
+				<th>직급</th>
+				<th>현 근무지</th>
+				<th>site</th>
+				<th>1월</th>
+				<th>2월</th>
+				<th>3월</th>
+				<th>4월</th>
+				<th>5월</th>
+				<th>6월</th>
+				<th>7월</th>
+				<th>8월</th>
+				<th>9월</th>
+				<th>10월</th>
+				<th>11월</th>
+				<th>12월</th>
+				<th>비고</th>
+			</tr>
+			<c:forEach var="monthlyList" items="${monthlyList}">
+				<tr class="monthlyList-row">
+					<td><input type="checkbox"> </td>
+					<td>
+						<c:choose>
+							<c:when test="${monthlyList.m_gubun == 'G1'}">내부</c:when>
+							<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
+						</c:choose>
+					</td>
+					<td>1<a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">${monthlyList.m_name}</a></td>
+					<td>${monthlyList.m_position}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>	
+			</c:forEach>
+		</table>
+	</div>
 </body>
-<%@ include file="../common/footer.jsp" %>
+<%-- <%@ include file="../common/footer.jsp" %> --%>
 </html>

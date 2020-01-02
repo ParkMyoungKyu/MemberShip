@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/monthlyDetail.css" type="text/css">
 <title>Insert title here</title>
 </head>
 <body class="monthlyDetailBox">
@@ -47,5 +48,8 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<div class="closeBtn">
+		<input class="closeBtnBox" type="button" value="닫기" onclick="window.close()">
+	</div>
 </body>
 </html>

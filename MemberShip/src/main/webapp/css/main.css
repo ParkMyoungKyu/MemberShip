@@ -2,27 +2,74 @@
 	margin: 0;
 }
 .mainBody{
-	margin: 0;
-	width: 100%;
+	width: 650px;
+    margin: 0 auto;
 }
-.main{
-	text-align: center;
-	margin: 10% 0;
+
+.mainMonthlyTable {
+  width: 650px;
+/*   min-height: 100vh;
+  padding: 33px 30px; */
 }
 
 .mirisLogo{
 	margin: 50px auto;
 	width: 250px;
 	display: block;
-	
 }
+
 .nowName{
 	margin: 0 auto 5px;
 	width: 650px;
 }
 .nowWorking{
-	width: 650px;
-	margin: 0 auto;
+	width: 100%;
+ 	display: table;
+  	margin: 0;
+  	border-radius: 5px;
+  	overflow: hidden;
+}
+.nowWorking-rowheader {
+  color: #ffffff;
+  background: #6c7ae0;
+}
+
+.nowWorking-rowheader th {
+  font-family: Poppins-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+.nowWorking-row {
+  display: table-row;
+  background: #fff;
+}
+
+.nowWorking-row td {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.nowWorking-row:hover {
+  background-color: #ececff;
+  cursor: pointer;
+}
+
+.mainTodayTable {
+  width: 650px;
+/*   min-height: 100vh;
+  padding: 33px 30px; */
 }
 
 .todayName{
@@ -31,6 +78,45 @@
 }
 
 .todayWorking{
-	width: 650px;
-	margin: 0 auto;
+	width: 100%;
+ 	display: table;
+  	margin: 0;
+  	border-radius: 5px;
+  	overflow: hidden;
+}
+.todayWorking-rowheader {
+  color: #ffffff;
+  background: #6c7ae0;
+}
+
+.todayWorking-rowheader th {
+  font-family: Poppins-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+.todayWorking-row {
+  display: table-row;
+  background: #fff;
+}
+
+.todayWorking-row td {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.todayWorking-row:hover {
+  background-color: #ececff;
+  cursor: pointer;
 }

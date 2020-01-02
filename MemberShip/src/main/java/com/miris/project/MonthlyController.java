@@ -20,9 +20,9 @@ public class MonthlyController {
 	private String monthlyList(MonthlyWorkVO monthlyWorkVO,Model model) {
 		System.out.println("====================MonthlyContraller monthlyList=====================");
 		
-		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
-		
-		model.addAttribute("monthlyList",monthlyList);
+//		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
+//		
+//		model.addAttribute("monthlyList",monthlyList);
 		
 		return "inputStatus/monthlyList";
 	}
@@ -37,5 +37,19 @@ public class MonthlyController {
 		model.addAttribute("monthlyDetail",monthlyDetail);
 		
 		return "inputStatus/monthlyDetail";
+	}
+	
+	@RequestMapping(value = "monthlyStatusInput")
+	private String monthlyStatusInput(MonthlyWorkVO monthlyWorkVO, Model model){
+		System.out.println("====================MonthlyContraller monthlyStatusInput=====================");
+		
+		return "inputStatus/monthlyStatusInput";
+	}
+	
+	@RequestMapping(value = "monthlyWorkInput")
+	private String monthlyWorkInput(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyWorkInput=====================");
+		
+		return "inputStatus/monthlyWorkInput";
 	}
 }

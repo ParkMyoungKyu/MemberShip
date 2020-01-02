@@ -1,64 +1,23 @@
-.dailyListBox{
-	margin: 0px;
-	height: 500px;
-}
-
-.mainBox{
-	margin: 0px;
-}
-
-.mirisLogo{
-	margin: 50px auto;
-	width: 250px;
-	display: block;
-}
-
-.title {
-	margin: 0 auto 5px;
-	width: 650px;
-}
-
-.search{
-	width:650px;
-	margin: 0 auto;
-}
-
-.gbnSearch{
-	display: inline-block;
-}
-
-.nameSearch{
-	display: inline-block;
-}
-
-.searchDate{
-	display: inline-block;
-}
-
-.searchBtn{
-	float: right;
-}
-
-.memberSumTable{
+.monthlySumTable {
   width: 650px;
-/*   min-height: 100vh;
+  /* min-height: 100vh;
   padding: 33px 30px; */
 }
 
-.memberSum {
+.monthlySum {
   width: 100%;
   display: table;
   margin: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
-.memberSum-rowheader {
+.monthlySum-rowheader {
   color: #ffffff;
   background: #6c7ae0;
 }
 
-.memberSum-rowheader th {
+.monthlySum-rowheader th {
   font-family: Poppins-Regular;
   font-size: 18px;
   color: #fff;
@@ -68,12 +27,12 @@
   padding-top: 19px;
   padding-bottom: 19px;
 }
-.memberSum-row {
+.monthlySum-row {
   display: table-row;
   background: #fff;
 }
 
-.memberSum-row th {
+.monthlySum-row td {
   font-family: Poppins-Regular;
   font-size: 15px;
   color: #666666;
@@ -85,27 +44,33 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
+.monthlySum-row:hover {
+  background-color: #ececff;
+  cursor: pointer;
+}
 
-.memberListTable{
+
+
+.monthlyListTable {
   width: 650px;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
 
-.memberList {
+.monthlyList {
   width: 100%;
   display: table;
   margin: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
-.memberList-rowheader {
+.monthlyList-rowheader {
   color: #ffffff;
   background: #6c7ae0;
 }
 
-.memberList-rowheader th {
+.monthlyList-rowheader th {
   font-family: Poppins-Regular;
   font-size: 18px;
   color: #fff;
@@ -115,12 +80,12 @@
   padding-top: 19px;
   padding-bottom: 19px;
 }
-.memberList-row {
+.monthlyList-row {
   display: table-row;
   background: #fff;
 }
 
-.memberList-row th {
+.monthlyList-row td {
   font-family: Poppins-Regular;
   font-size: 15px;
   color: #666666;
@@ -132,7 +97,7 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
-.memberList-row:hover {
+.monthlyList-row:hover {
   background-color: #ececff;
   cursor: pointer;
 }

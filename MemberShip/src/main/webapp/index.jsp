@@ -9,8 +9,8 @@
 <body>
 
 	<%
-		//response.sendRedirect("mgrDept.do");
-		response.sendRedirect("loginForm.do");
+		//response.sendRedirect("loginForm.do");
+		response.sendRedirect("monthlyList.do");
 	%>
 	
 	

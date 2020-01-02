@@ -31,7 +31,7 @@ $(function(){
 </head>
 
 <body class="dailyListBox">
-	<img class="mirisLogo" alt="miris" src="./image/mirisci.png">
+	<!-- <img class="mirisLogo" alt="miris" src="./image/mirisci.png"> -->	
 	<div class="title">■ 인력근무현황</div>
 	<div class="search">
 		<form action="memberSearch.do">
@@ -52,59 +52,77 @@ $(function(){
 			<input class="searchBtn" type="submit" value="조회">
 		</form>
 	</div>
-	<table class="memberSum" border="1">
-		<tr>
-			<th>총인원</th>
-			<th>근무</th>
-			<th>휴가</th>
-			<th>출장</th>
-			<th>기타</th>
-		</tr>
-		<c:forEach var="dailySum" items="${dailySum}">
-			<tr>
-				<td>${dailySum.zero}</td>
-				<td>${dailySum.one}</td>
-				<td>${dailySum.two}</td>
-				<td>${dailySum.three}</td>
-				<td>${dailySum.four}</td>
+	<div class="memberSumTable">
+		<table class="memberSum">
+			<tr class="memberSum-rowheader">
+				<th>총인원</th>
+				<th>근무</th>
+				<th>휴가</th>
+				<th>출장</th>
+				<th>기타</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<tr class="memberSum-row">
+				<td>총인원</td>
+				<td>근무</td>
+				<td>휴가</td>
+				<td>출장</td>
+				<td>기타</td>
+			</tr>
+			<c:forEach var="dailySum" items="${dailySum}">
+				<tr>
+					<td>${dailySum.zero}</td>
+					<td>${dailySum.one}</td>
+					<td>${dailySum.two}</td>
+					<td>${dailySum.three}</td>
+					<td>${dailySum.four}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 	
-	<table class="memberList">
-		<tr>
-			<th>성명</th>
-			<th>직급</th>
-			<th>상태</th>
-			<th>현근무지</th>
-			<th>출근일시</th>
-		</tr>
-		<c:forEach var="dailyList" items="${dailyList}">
-			<tr>
-				<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
-				<td>${dailyList.m_position}</td>
-				<td>
-					<c:choose>
-						<c:when test="${dailyList.w_status == '1'}">근무</c:when>
-						<c:when test="${dailyList.w_status == '2'}">휴가</c:when>
-						<c:when test="${dailyList.w_status == '3'}">출장</c:when>
-						<c:when test="${dailyList.w_status == '4'}">기타</c:when>
-					</c:choose>
-				</td>
-				<td>${dailyList.p_name}</td>
-				<td>
-					<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
-					<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
-					<c:choose>
-					<c:when test="${time == '00:00:00'}">미출근</c:when>
-					<c:when test="${time != '00:00:00'}">${time}</c:when>
-					</c:choose>
-				
-				</td>
+	<div class="memberListTable">
+		<table class="memberList">
+			<tr class="memberList-rowheader">
+				<th>성명</th>
+				<th>직급</th>
+				<th>상태</th>
+				<th>현근무지</th>
+				<th>출근일시</th>
 			</tr>
-			
-		</c:forEach>
-	</table>
+			<tr class="memberList-row">
+				<td>성명</td>
+				<td>직급</td>
+				<td>상태</td>
+				<td>현근무지</td>
+				<td>출근일시</td>
+			</tr>
+			<c:forEach var="dailyList" items="${dailyList}">
+				<tr class="memberList-row">
+					<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
+					<td>${dailyList.m_position}</td>
+					<td>
+						<c:choose>
+							<c:when test="${dailyList.w_status == '1'}">근무</c:when>
+							<c:when test="${dailyList.w_status == '2'}">휴가</c:when>
+							<c:when test="${dailyList.w_status == '3'}">출장</c:when>
+							<c:when test="${dailyList.w_status == '4'}">기타</c:when>
+						</c:choose>
+					</td>
+					<td>${dailyList.p_name}</td>
+					<td>
+						<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
+						<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
+						<c:choose>
+						<c:when test="${time == '00:00:00'}">미출근</c:when>
+						<c:when test="${time != '00:00:00'}">${time}</c:when>
+						</c:choose>
+					
+					</td>
+				</tr>
+				
+			</c:forEach>
+		</table>
+	</div>
 </body>
 <%@ include file="../common/footer.jsp" %>
 </html>
