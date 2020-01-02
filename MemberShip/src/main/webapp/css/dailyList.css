@@ -15,11 +15,11 @@
 
 .title {
 	margin: 0 auto 5px;
-	width: 650px;
+	width: 800px;
 }
 
 .search{
-	width:650px;
+	width:800px;
 	margin: 0 auto;
 }
 
@@ -40,7 +40,9 @@
 }
 
 .memberSumTable{
-  width: 650px;
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
@@ -60,34 +62,32 @@
 
 .memberSum-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
+  font-size: 12px;
   color: #fff;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 10px 2px;
 }
 .memberSum-row {
   display: table-row;
   background: #fff;
 }
 
-.memberSum-row th {
+.memberSum-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 10px 2px;
   border-bottom: 1px solid #f2f2f2;
 }
 
 
 .memberListTable{
-  width: 650px;
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
@@ -107,28 +107,24 @@
 
 .memberList-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
+  font-size: 12px;
   color: #fff;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 10px 2px;
 }
 .memberList-row {
   display: table-row;
   background: #fff;
 }
 
-.memberList-row th {
+.memberList-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 10px 2px;
   border-bottom: 1px solid #f2f2f2;
 }
 

@@ -47,20 +47,14 @@
 					<th>휴가</th>
 					<th>기타</th>
 				</tr>
-				<tr class="todayWorking-row">
-					<td>총인원</td>
-					<td>근무</td>
-					<td>휴가</td>
-					<td>기타</td>
-				</tr>
-				<%-- <c:forEach var="dailySum" items="${dailySum}">
+				<c:forEach var="dailySum" items="${dailySum}">
 				<tr class="todayWorking-row">
 					<td>${dailySum.one}</td>
 					<td>${dailySum.two}</td>
 					<td>${dailySum.three}</td>
 					<td>${dailySum.four}</td>
 				</tr>
-				</c:forEach> --%>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

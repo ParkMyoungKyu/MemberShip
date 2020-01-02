@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="css/monthlyList.css" type="text/css">
 <title>Insert title here</title>
 </head>
-<%-- <%@ include file="../common/header.jsp" %> --%>
+<%@ include file="../common/header.jsp" %>
 <body class="monthlyListBox">
 	<div class="monthlySumTable">
-		<div>■ 인력 가동률</div>
+		<div class="sumText">■ 인력 가동률</div>
 		<table class="monthlySum">
 			<tr class="monthlySum-rowheader">
 				<th>총인원</th>
@@ -37,7 +37,7 @@
 		</table>
 	</div>
 	<div class="monthlyListTable">
-	<div>■ 월별 인력 투입현황</div>
+	<div class="listText">■ 월별 인력 투입현황</div>
 	<button onclick="window.open('monthlyStatusInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
 	<button onclick="window.open('monthlyWorkInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">현황등록</button>
 	<button>일괄복사</button>
@@ -111,7 +111,7 @@
 							<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
 						</c:choose>
 					</td>
-					<td>1<a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">${monthlyList.m_name}</a></td>
+					<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
 					<td>${monthlyList.m_position}</td>
 					<td></td>
 					<td></td>
@@ -133,5 +133,5 @@
 		</table>
 	</div>
 </body>
-<%-- <%@ include file="../common/footer.jsp" %> --%>
+<%@ include file="../common/footer.jsp" %>
 </html>

@@ -22,8 +22,8 @@
              a.m_position,
              a.m_notice,
              b.m_month,
-             b.m_work,
-             b.m_except,
+             b.j_name,
+             b.j_except,
              b.m_notice
 	      from MEMBER A, M_WORK B
 	      where 1=1

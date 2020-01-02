@@ -20,9 +20,9 @@ public class MonthlyController {
 	private String monthlyList(MonthlyWorkVO monthlyWorkVO,Model model) {
 		System.out.println("====================MonthlyContraller monthlyList=====================");
 		
-//		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
-//		
-//		model.addAttribute("monthlyList",monthlyList);
+		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
+		
+		model.addAttribute("monthlyList",monthlyList);
 		
 		return "inputStatus/monthlyList";
 	}

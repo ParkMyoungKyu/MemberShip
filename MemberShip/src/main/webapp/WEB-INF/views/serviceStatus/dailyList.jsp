@@ -61,15 +61,8 @@ $(function(){
 				<th>출장</th>
 				<th>기타</th>
 			</tr>
-			<tr class="memberSum-row">
-				<td>총인원</td>
-				<td>근무</td>
-				<td>휴가</td>
-				<td>출장</td>
-				<td>기타</td>
-			</tr>
 			<c:forEach var="dailySum" items="${dailySum}">
-				<tr>
+				<tr class="memberSum-row">
 					<td>${dailySum.zero}</td>
 					<td>${dailySum.one}</td>
 					<td>${dailySum.two}</td>
@@ -88,13 +81,6 @@ $(function(){
 				<th>상태</th>
 				<th>현근무지</th>
 				<th>출근일시</th>
-			</tr>
-			<tr class="memberList-row">
-				<td>성명</td>
-				<td>직급</td>
-				<td>상태</td>
-				<td>현근무지</td>
-				<td>출근일시</td>
 			</tr>
 			<c:forEach var="dailyList" items="${dailyList}">
 				<tr class="memberList-row">

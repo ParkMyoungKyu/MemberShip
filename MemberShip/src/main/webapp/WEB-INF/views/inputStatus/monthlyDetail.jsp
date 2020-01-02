@@ -42,8 +42,8 @@
 		 <c:forEach var="monthlyDetail" items="${monthlyDetail}">
 			<tr>
 				<td>${monthlyDetail.m_month}</td>
-				<td>${monthlyDetail.m_work}</td>
-				<td>${monthlyDetail.m_except}</td>
+				<td>${monthlyDetail.j_name}</td>
+				<td>${monthlyDetail.j_except}</td>
 				<td>${monthlyDetail.m_notice}</td>
 			</tr>
 		</c:forEach>

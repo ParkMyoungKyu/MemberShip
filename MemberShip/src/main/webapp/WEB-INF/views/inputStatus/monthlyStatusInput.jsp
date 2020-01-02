@@ -11,39 +11,35 @@
 //행개수
 var count = 0;
 //최대 행개수
-var full_count = 12;
+var full_count = 11;
     $(function() {
-     //처음에 켜지면 실행됨 onload
-     $(window).load(function(){
-      //추가 버튼 클릭이 자동으로 됨
-      $('#addRow').trigger('click');
-     });
+
      //추가 버튼 클릭시
      $('#addRow').click(function() {
-      //행추가할때마다 행개수 +1
-         ++count;
-      
       //최대 행개수보다 크면 리턴
       if(count>full_count){
        alert("최대12개까지만 가능합니다.");
        return;
+      } else {
+   	   //행추가할때마다 행개수 +1
+       ++count;
+       //행추가
+       $("#inputTable").append('<tr id=tr'+count+'><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>');
       }
-            //행추가
-            $("#inputTable").append('<tr id=tr><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>');
-     });
+    });
        
      //삭제 버튼 클릭시
      $('#deleteRow').click(function() {
       //행이 하나밖에 없으면 삭제하지 않기
-      if(count<=1){
+      if(count<=0){
        alert("더이상 삭제할수 없습니다");
        return;
+      } else {
+        //마지막 라인 삭제
+        $('#tr'+count).remove();
+        //삭제할때마다 행개수 -1
+     	count--;
       }
-         //마지막 라인 삭제
-         $('#tr'+count).remove();
-        
-         //삭제할때마다 행개수 -1
-      count--;
      });
      
     });
@@ -74,7 +70,7 @@ var full_count = 12;
 	<div>
 		<div>■ 투입정보</div>
 		<button id="addRow" onclick="addRow()">+</button>
-		<button id="deleteRow" onclick="addRow()">-</button>
+		<button id="deleteRow" onclick="deleteRow()">-</button>
 		<table id="inputTable">
 			<tr>
 				<th>기준년도</th>
