@@ -44,19 +44,19 @@ public class MemberController {
 	public String memberList(MemberVO memberVO,DailyWorkVO dailyWorkVO, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
 		
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String today = format1.format(date);
-		
-		dailyWorkVO.setSearchDate(today);
-
-		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
-		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
-		List<MemberVO> dailyList = memberService.dailyList(memberVO);
-		
-		
-		model.addAttribute("dailySum",dailySum);
-		model.addAttribute("dailyList",dailyList);
+//		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = new Date();
+//		String today = format1.format(date);
+//		
+//		dailyWorkVO.setSearchDate(today);
+//
+//		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
+//		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
+//		List<MemberVO> dailyList = memberService.dailyList(memberVO);
+//		
+//		
+//		model.addAttribute("dailySum",dailySum);
+//		model.addAttribute("dailyList",dailyList);
 				
 		return "serviceStatus/dailyList";
 	}
@@ -65,9 +65,9 @@ public class MemberController {
 	public String memberDetail(DailyWorkVO dailyWorkVO,HttpServletRequest request,Model model) {
 		System.out.println("===================dailyDetail page start===================");
 		System.out.println("===========" + dailyWorkVO.getM_id()); 
-		List<DailyWorkVO> dailyDetail = memberService.dailyDetail(dailyWorkVO);
-		
-		model.addAttribute("dailyDetail",dailyDetail);
+//		List<DailyWorkVO> dailyDetail = memberService.dailyDetail(dailyWorkVO);
+//		
+//		model.addAttribute("dailyDetail",dailyDetail);
 		
 		return "serviceStatus/dailyDetail";
 	}

@@ -1,0 +1,40 @@
+.inputBox{
+	width:450px;
+	margin: 25px auto 0;
+}
+.inputTitle{
+	display: inline-block;
+}
+.inputTable{
+ 	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 10px auto;
+    width: 450px;
+	
+}
+.inputTable th {
+    width: 155px;
+    color: #fff;
+    font-size:15px;
+    background: #0370a2 ;
+    height: 30px;
+}
+
+.inputTable td {
+    width: 155px;
+    vertical-align: top;
+    padding:5px 0;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    font-size:13px;
+}
+
+.inputBtn{
+	text-align: center;
+	margin: 25px;
+}
+
+
+	

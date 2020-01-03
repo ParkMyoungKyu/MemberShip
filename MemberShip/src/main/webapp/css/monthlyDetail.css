@@ -1,0 +1,79 @@
+.infoTitle{
+	width:450px;
+	margin: 25px auto 0;
+}
+.info{
+	display: inline-block;
+}
+.updateBtn{
+	float: right;
+	
+}
+.inputBtn{
+	float: right;
+	margin: 0 10px;
+}
+.infoTable{
+ 	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 10px auto;
+    width: 450px;
+	
+}
+.infoTable th {
+    width: 155px;
+    color: #fff;
+    font-size:15px;
+    background: #0370a2 ;
+    height: 30px;
+}
+
+.infoTable td {
+    width: 155px;
+    vertical-align: top;
+    padding:5px 0;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    font-size:13px;
+}
+.monthlyInfo{
+	width: 450px;
+	margin: 20px auto 0;
+}
+.monthlyTable{
+ 	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 10px auto;
+    width: 450px;
+	
+}
+.monthlyTable th {
+    width: 155px;
+    color: #fff;
+    font-size:15px;
+    background: #0370a2 ;
+    height: 30px;
+}
+
+.monthlyTable td {
+    width: 155px;
+    vertical-align: top;
+    padding:5px 0;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    font-size:13px;
+}
+
+.closeBtn{
+	text-align: center;
+	margin: 25px;
+}
+
+.closeBtnBox{
+	width: 100px;
+	margin: 0 auto;
+	

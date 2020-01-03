@@ -1,10 +1,7 @@
 .dailyListBox{
-	margin: 0px;
-	height: 500px;
-}
-
-.mainBox{
-	margin: 0px;
+	margin:100px auto 0;
+	min-height: 80vh;
+	background-color: #fdfdfd;
 }
 
 .mirisLogo{
@@ -14,12 +11,13 @@
 }
 
 .title {
+	text-align:center;
 	margin: 0 auto 5px;
-	width: 650px;
+	width: 800px;
 }
 
 .search{
-	width:650px;
+	width:800px;
 	margin: 0 auto;
 }
 
@@ -40,7 +38,9 @@
 }
 
 .memberSumTable{
-  width: 650px;
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
@@ -54,40 +54,39 @@
 }
 
 .memberSum-rowheader {
-  color: #ffffff;
-  background: #6c7ae0;
+  color: #24292e;
+  background: #efefef;
+  width: 20%;
 }
 
 .memberSum-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
-  color: #fff;
+  font-size: 12px;
+  color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 10px 2px;
 }
 .memberSum-row {
   display: table-row;
   background: #fff;
 }
 
-.memberSum-row th {
+.memberSum-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 10px 2px;
   border-bottom: 1px solid #f2f2f2;
 }
 
 
 .memberListTable{
-  width: 650px;
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
@@ -101,34 +100,31 @@
 }
 
 .memberList-rowheader {
-  color: #ffffff;
-  background: #6c7ae0;
+  color: #24292e;
+  background: #efefef;
+  width: 20%;
 }
 
 .memberList-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
-  color: #fff;
+  font-size: 12px;
+  color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 10px 2px;
 }
 .memberList-row {
   display: table-row;
   background: #fff;
 }
 
-.memberList-row th {
+.memberList-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 10px 2px;
   border-bottom: 1px solid #f2f2f2;
 }
 

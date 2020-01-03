@@ -1,26 +1,28 @@
+.footerBody{
+	margin: 0;
+}
 .footBox{
-	position:fixed;
 	left:0px;
 	bottom:0px;
 	width: 100%;
 	text-align: center;
-	background-color: #808080;
+	background-color: #24292e;
 }
 
 .one {
-	color: white;
+	color: #e4e4e4;
 	padding: 15px 0 0;
 	font-size: 13px;
 }
 
 .two{
-	color: white;
+	color: #e4e4e4;
 	padding: 3px 0;
 	font-size: 13px;
 }
 
 .Copyright{
-	color: white;
+	color: #e4e4e4;
 	padding: 0 0 15px;
 	font-size: 13px;
 }

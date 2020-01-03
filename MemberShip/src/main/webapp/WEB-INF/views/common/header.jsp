@@ -12,7 +12,7 @@
 	}
 </script>
 </head>
-<body>
+<body class="headerBody">
 	<div class="headerBox">
 		<div class="headerBox2">
 			<div class="mainTitle">
@@ -25,18 +25,18 @@
 				<input class="btn1" type="button" value="투입현황" onclick="location.href = 'monthlyList.do'">
 				<input class="btn2" type="button" value="근무상태" onclick="location.href = 'dailyList.do'">
 			</div>
+			
+			<div class="loginBox">
+				<div class="loginBox2">
+					<c:choose>
+						<c:when test="${member.m_id != null}">
+							<span class="loginUser">${member.m_name} ${member.m_position }</span>
+							<button class="logoutBtn" type="button" onclick="logout()">로그아웃</button>
+						</c:when>
+					</c:choose>
+				</div>		
+			</div>
 		</div>
-	</div>
-	
-	<div class="loginBox">
-		<div class="loginBox2">
-			<c:choose>
-				<c:when test="${member.m_id != null}">
-					<span class="loginUser">${member.m_name} ${member.m_position }</span>
-					<button class="logoutBtn" type="button" onclick="logout()">로그아웃</button>
-				</c:when>
-			</c:choose>
-		</div>		
 	</div>
 </body>
 </html>

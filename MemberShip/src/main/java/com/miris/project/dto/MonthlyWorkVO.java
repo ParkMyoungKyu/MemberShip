@@ -8,10 +8,10 @@ public class MonthlyWorkVO {
 	private String m_id;
 	private String m_year;
 	private String m_month;
-	private String m_work;
+	//private String j_name;
 	//private String l_code;
 	private String m_status;
-	private String m_except;
+	//private String j_except;
 	private String m_notice;
 	
 	//사이트
@@ -24,6 +24,10 @@ public class MonthlyWorkVO {
 	private String m_gubun;
 	private String d_code;
 	private String m_position;
+	
+	//업무
+	private String j_name;
+	private String j_except;
 	
 	
 	public String getM_id() {
@@ -44,23 +48,11 @@ public class MonthlyWorkVO {
 	public void setM_month(String m_month) {
 		this.m_month = m_month;
 	}
-	public String getM_work() {
-		return m_work;
-	}
-	public void setM_work(String m_work) {
-		this.m_work = m_work;
-	}
 	public String getM_status() {
 		return m_status;
 	}
 	public void setM_status(String m_status) {
 		this.m_status = m_status;
-	}
-	public String getM_except() {
-		return m_except;
-	}
-	public void setM_except(String m_except) {
-		this.m_except = m_except;
 	}
 	public String getM_notice() {
 		return m_notice;
@@ -110,7 +102,19 @@ public class MonthlyWorkVO {
 	public void setM_position(String m_position) {
 		this.m_position = m_position;
 	}
-
+	public String getJ_name() {
+		return j_name;
+	}
+	public void setJ_name(String j_name) {
+		this.j_name = j_name;
+	}
+	public String getJ_except() {
+		return j_except;
+	}
+	public void setJ_except(String j_except) {
+		this.j_except = j_except;
+	}
+	
 	
 	
 }

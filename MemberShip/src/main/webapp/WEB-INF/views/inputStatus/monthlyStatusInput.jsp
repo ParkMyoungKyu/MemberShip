@@ -11,48 +11,48 @@
 //행개수
 var count = 0;
 //최대 행개수
-var full_count = 12;
+var full_count = 11;
     $(function() {
-     //처음에 켜지면 실행됨 onload
-     $(window).load(function(){
-      //추가 버튼 클릭이 자동으로 됨
-      $('#addRow').trigger('click');
-     });
+
      //추가 버튼 클릭시
      $('#addRow').click(function() {
-      //행추가할때마다 행개수 +1
-         ++count;
-      
       //최대 행개수보다 크면 리턴
       if(count>full_count){
        alert("최대12개까지만 가능합니다.");
        return;
+      } else {
+   	   //행추가할때마다 행개수 +1
+       ++count;
+       //행추가
+       $("#inputTable").append('<tr id=tr'+count+'><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>');
       }
-            //행추가
-            $("#inputTable").append('<tr id=tr><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>');
-     });
-       
+    });
      //삭제 버튼 클릭시
      $('#deleteRow').click(function() {
       //행이 하나밖에 없으면 삭제하지 않기
-      if(count<=1){
+      if(count<=0){
        alert("더이상 삭제할수 없습니다");
        return;
+      } else {
+        //마지막 라인 삭제
+        $('#tr'+count).remove();
+        //삭제할때마다 행개수 -1
+     	count--;
       }
-         //마지막 라인 삭제
-         $('#tr'+count).remove();
-        
-         //삭제할때마다 행개수 -1
-      count--;
      });
-     
     });
+   // 팝업창 닫을 시 부모창 새로고침
+	function closePopup(){
+		window.opener.location.reload();
+		window.close();	
+	};
+
 </script>
 </head>
-<body class="monthlyStatusInputBox">
-	<div>
-		<div>■ 대상인력</div>
-		<table>
+<body>
+	<div class="monthlyStatusInputBox">
+		<div class="statusTitle">■ 대상인력</div>
+		<table class="statusTable">
 			<tr>
 				<th>구분</th>
 				<th>부서</th>
@@ -67,15 +67,14 @@ var full_count = 12;
 				<td>dd</td>
 				<td>dd</td>
 			</tr>
-			
 		</table>
 	</div>
 	
-	<div>
-		<div>■ 투입정보</div>
-		<button id="addRow" onclick="addRow()">+</button>
-		<button id="deleteRow" onclick="addRow()">-</button>
-		<table id="inputTable">
+	<div class="inputBox">
+		<div class="inputTitle">■ 투입정보</div>
+		<button id="addRow" class="addRow" onclick="addRow()">+</button>
+		<button id="deleteRow" class="deleteRow" onclick="deleteRow()">-</button>
+		<table id="inputTable" class="inputTable">
 			<tr>
 				<th>기준년도</th>
 				<th>기준월</th>
@@ -84,14 +83,53 @@ var full_count = 12;
 				<th>P/C</th>
 			</tr>
 			<tr>
-				<td>ss</td>
-				<td>ss</td>
-				<td>ss</td>
-				<td>ss</td>
-				<td>ss</td>
+				<td>
+					<select>
+						<option value="2020">2020</option>
+						<option value="2019">2019</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+					</select>
+				</td>
+				<td>
+					<input type="text">
+				</td>
+				<td>
+					<select>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+				</td>
+				<td>
+					<select>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+				</td>
+				<td>
+					<select>
+						<option>P</option>
+						<option>C</option>
+					</select>
+				</td>
 			</tr>
 			<tbody></tbody>
+			<tr>
+				<th>비고</th>
+				<td colspan="4"></td>
+			</tr>
 		</table>
+	</div>
+	<div class="inputBtn">
+		<input type="button" class="pushBtn" value="등록" onclick="location.href = 'monthlyStatusInputGo.do'">
+		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
 	</div>
 </body>
 </html>

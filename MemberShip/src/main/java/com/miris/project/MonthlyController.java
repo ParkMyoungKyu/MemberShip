@@ -32,9 +32,9 @@ public class MonthlyController {
 		System.out.println("====================MonthlyContraller monthlyDetail=====================");
 		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getM_name());
 		
-		List<MonthlyWorkVO> monthlyDetail = monthlyService.monthlyDetail(monthlyWorkVO);
-				
-		model.addAttribute("monthlyDetail",monthlyDetail);
+//		List<MonthlyWorkVO> monthlyDetail = monthlyService.monthlyDetail(monthlyWorkVO);
+//				
+//		model.addAttribute("monthlyDetail",monthlyDetail);
 		
 		return "inputStatus/monthlyDetail";
 	}
@@ -52,4 +52,21 @@ public class MonthlyController {
 		
 		return "inputStatus/monthlyWorkInput";
 	}
+	
+	// 월별 투입 현황 입력
+	@RequestMapping(value = "monthlyStatusInputGo")
+	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
+		
+		return "inputStatus/monthlyList";
+	}
+	
+	// 인력 정보 입력
+	@RequestMapping(value = "monthlyWorkInputGo")
+	private String monthlyWorkInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyWorkInputGo=====================");
+		
+		return "inputStatus/monthlyList";
+	}
+	
 }

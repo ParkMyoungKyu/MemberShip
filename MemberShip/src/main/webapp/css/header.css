@@ -1,20 +1,22 @@
+.headerBody{
+	margin: 0;
+}
 .headerBox{
-	margin: 0 auto;
-	padding:20px 25%;
-	background-color: gray;
-	height: 75px;
+	margin: 0 auto;	
+	background-color: #24292e;
 }
 
 .headerBox2{
-	width: 700px;
 	margin: 0 auto;
+	display: flex;
+	padding: 5px 12px;
 }
 .mainTitle{
 	display: inline-block;
 }
 .mainName{
 	display: inline-block;
-	font-size: 30px;
+	font-size: 20px;
 	color: white;
 }
 .subName{
@@ -23,75 +25,74 @@
 	color: white;
 }
 .btnAll{
-	vertical-align:middle;
 	display:inline-block; 
 	float: right;
-	margin: 20px 0 0 0;
+	margin: auto 100px;
 }
 
 .mbtn  {
-	width:100px;
-	height:35px;
-    background-color: #0370a2;
-    border: none;
+	width:80px;
+	height:25px;
+    background-color: #24292e;
+    border: 1px;
     color:#ebebeb;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-	border-radius: 5px;
+    font-weight: bold;
+	
 }
 .mbtn:hover{
-	background-color: #054670;
+	color:#c0c0c0;
 }
 
 .btn1 {
-	width:100px;
-	height:35px;
-    background-color: #0370a2;
-    border: none;
+	width:80px;
+	height:25px;
+    background-color: #24292e;
+    border: 1px;
     color:#ebebeb;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-	border-radius: 5px;
+    font-weight: bold;
+	
 }
 .btn1:hover{
-	background-color: #054670;
+	color:#c0c0c0;
 }
 
 
 .btn2{
-	width:100px;
-	height:35px;
-    background-color: #0370a2;
-    border: none;
+	width:80px;
+	height:25px;
+    background-color: #24292e;
+    border: 1px;
     color:#ebebeb;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-	border-radius: 5px;
+    font-weight: bold;
+	
 }
 
 .btn2:hover{
-	background-color: #054670;
+	color:#c0c0c0;
 }
 
 .loginBox{
-	margin: 1px auto;
-	padding:0px 25%;
-	background-color: #0080c0;
-	height: 35px;
+	margin:auto;
+	margin-right: 5px;
+
 }
 
 .loginBox2{
-	width: 290px;
-	margin:5px auto;
 	float: right;
 }
 
@@ -102,15 +103,19 @@
 
 .logoutBtn{
 	width:80px;
-	height:20px;
-    background-color: #0370a2;
-    border: none;
+	height:25px;
+    background-color: #24292e;
+    border: 1px;
     color:#ebebeb;
     text-align: center;
     display: inline-block;
-    font-size: 8px;
+    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-	border-radius: 5px;
+    font-weight: bold;
 }
+.logoutBtn:hover{
+    color:#c0c0c0;
+}
+
 

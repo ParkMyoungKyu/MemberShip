@@ -1,13 +1,11 @@
-.mainBox{
-	margin: 0;
-}
 .mainBody{
-	width: 650px;
+	width: 800px;
+	height: 80vh;
     margin: 0 auto;
 }
 
 .mainMonthlyTable {
-  width: 650px;
+  width: 800px;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
@@ -19,8 +17,8 @@
 }
 
 .nowName{
-	margin: 0 auto 5px;
-	width: 650px;
+	margin: 80px auto 5px;
+	width: 800px;
 }
 .nowWorking{
 	width: 100%;
@@ -36,13 +34,11 @@
 
 .nowWorking-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
+  font-size: 12px;
   color: #fff;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 5px 0;
 }
 .nowWorking-row {
   display: table-row;
@@ -51,14 +47,13 @@
 
 .nowWorking-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 5px 0;
   border-bottom: 1px solid #f2f2f2;
+  text-align: center;
 }
 
 .nowWorking-row:hover {
@@ -67,14 +62,14 @@
 }
 
 .mainTodayTable {
-  width: 650px;
+  width: 800px;
 /*   min-height: 100vh;
   padding: 33px 30px; */
 }
 
 .todayName{
 	margin: 50px auto 5px;
-	width: 650px;
+	width: 800px;
 }
 
 .todayWorking{
@@ -91,17 +86,16 @@
 
 .todayWorking-rowheader th {
   font-family: Poppins-Regular;
-  font-size: 18px;
+  font-size: 12px;
   color: #fff;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding : 5px 0;
 }
 .todayWorking-row {
   display: table-row;
   background: #fff;
+  width: 25%;
 }
 
 .todayWorking-row td {

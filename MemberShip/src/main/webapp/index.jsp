@@ -10,7 +10,7 @@
 
 	<%
 		//response.sendRedirect("loginForm.do");
-		response.sendRedirect("monthlyList.do");
+		response.sendRedirect("dailyList.do");
 	%>
 	
 	
