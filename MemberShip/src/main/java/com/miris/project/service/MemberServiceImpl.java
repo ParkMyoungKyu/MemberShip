@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.dailyMemberSearch(dailyWorkVO);
 	}
 
+	@Override
+	public int totalPage() {
+		System.out.println("=====================MemberServiceImpl totalPage=====================");
+		return memberDao.totalPage();
+	}
+
 	
 
 

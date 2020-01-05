@@ -29,7 +29,23 @@ public class DailyWorkVO {
     private String m_name;
     private String m_position;
     
+    //페이징용
+    private int start;
+    private int end;
     
+    
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
     
 	public String getM_id() {
 		return m_id;

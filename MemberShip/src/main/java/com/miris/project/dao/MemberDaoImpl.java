@@ -45,6 +45,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("dailyMemberSearch",dailyWorkVO);
 	}
 
+	@Override
+	public int totalPage() {
+		System.out.println("=====================MemberDaoImpl totalPage=====================");
+		return session.selectOne("totalPage");
+	}
+
 	
 
 	

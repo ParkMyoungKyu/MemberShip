@@ -17,6 +17,8 @@ public interface MemberDao {
 
 	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
 
+	int totalPage();
+
 		
 
 }

@@ -14,7 +14,7 @@
 	<div class="mainBody">
 		<div class="mainMonthlyTable">
 		<!-- <img class="mirisLogo" alt="miris" src="./image/mirisci.png"> -->
-			<div class="nowName">■ 현재 인력 가동률</div>
+			<div class="nowName">현재 인력 가동률</div>
 			<table class="nowWorking">
 				<tr class="nowWorking-rowheader">
 					<th>총인원</th>
@@ -39,16 +39,18 @@
 			</table>
 		</div>
 		<div class="mainTodayTable">
-			<div class="todayName">■ 오늘 인력 상태 </div>
+			<div class="todayName">오늘 인력 상태 </div>
 			<table class="todayWorking">
 				<tr class="todayWorking-rowheader">
 					<th>총인원</th>
 					<th>근무</th>
 					<th>휴가</th>
+					<th>출장</th>
 					<th>기타</th>
 				</tr>
 				<c:forEach var="dailySum" items="${dailySum}">
 				<tr class="todayWorking-row">
+					<td>${dailySum.zero}</td>
 					<td>${dailySum.one}</td>
 					<td>${dailySum.two}</td>
 					<td>${dailySum.three}</td>

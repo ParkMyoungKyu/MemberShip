@@ -7,10 +7,14 @@
   		SELECT b.m_id,
   			   b.m_gubun,
   			   b.m_name,
-  			   b.m_position 
-  		FROM M_WORK A, member B
+  			   b.m_position,
+          	   a.j_name,
+          	   c.l_name,
+          	   a.m_notice
+  		FROM M_WORK A, member B, site c
         WHERE 1=1
         AND A.M_ID = b.m_id
+        AND A.L_CODE = c.L_CODE
         and to_char(a.m_year,'yyyy') = to_char(sysdate,'yyyy')
         and to_char(a.m_month,'MM') = TO_CHAR(SYSDATE,'MM')
   	</select>

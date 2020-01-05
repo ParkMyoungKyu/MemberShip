@@ -59,14 +59,14 @@
 			<td>성명</td>
 			<td>직급</td>
 		</tr>
-<%-- 		 <c:forEach var="monthlyDetail" items="$*{monthlyDetail}">
+		 <c:forEach var="monthlyDetail" items="$*{monthlyDetail}">
 			<tr>
 				<td>${monthlyDetail.m_month}</td>
 				<td>${monthlyDetail.j_name}</td>
 				<td>${monthlyDetail.j_except}</td>
 				<td>${monthlyDetail.m_notice}</td>
 			</tr>
-		</c:forEach> --%>
+		</c:forEach>
 	</table>
 	<div class="closeBtn">
 		<input class="closeBtnBox" type="button" value="닫기" onclick="closePopup()">

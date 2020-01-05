@@ -57,7 +57,7 @@
 			       )
 	</select>
 	
-	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
+	<!-- <select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
 		select a.m_id,
            a.m_pw,
            a.m_name,
@@ -89,6 +89,25 @@
 		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
 	    ) c
     on a.m_id = c.m_id
+	</select> -->
+	
+	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
+		 select * from (
+          select rownum rn,a.* from (
+            select * from member where m_id in (
+              select m_id from d_work where p_name in (
+                select p_name from place where to_char(W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD'))))a)  
+        where 1=1
+        and rn between #{start} and 10
+	</select>
+	
+	<select id="totalPage" resultType="int">
+		select count(*) from (
+          select rownum rn,a.* from (
+            select * from member where m_id in (
+              select m_id from d_work where p_name in (
+                select p_name from place where to_char(W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD'))))a)  
+        where 1=1
 	</select>
 	
 	<select id="dailyDetail" parameterType="DailyWork" resultType="DailyWork">
@@ -103,6 +122,7 @@
 		AND m_id = #{m_id}
 		AND to_char(W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD') 
 	</select>
+	
 	
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
 		select a.m_id,

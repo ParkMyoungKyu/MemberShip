@@ -17,6 +17,8 @@ public interface MemberService {
 
 	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
 
+	int totalPage();
+
 	
 	
 }

@@ -9,8 +9,8 @@
 <body>
 
 	<%
-		//response.sendRedirect("loginForm.do");
-		response.sendRedirect("dailyList.do");
+		response.sendRedirect("loginForm.do");
+		//response.sendRedirect("dailyList.do");
 	%>
 	
 	

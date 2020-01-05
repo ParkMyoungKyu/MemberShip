@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.miris.project.dto.DailyWorkVO;
 import com.miris.project.dto.MemberVO;
 import com.miris.project.service.MemberService;
+import com.miris.project.util.Paging;
 
 @Controller
 public class MemberController {
@@ -41,22 +42,35 @@ public class MemberController {
 	}	
 	
 	@RequestMapping(value = "dailyList")
-	public String memberList(MemberVO memberVO,DailyWorkVO dailyWorkVO, Model model) {
+	public String memberList(MemberVO memberVO,DailyWorkVO dailyWorkVO,String currentPage, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
 		
-//		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-//		Date date = new Date();
-//		String today = format1.format(date);
-//		
-//		dailyWorkVO.setSearchDate(today);
-//
-//		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
-//		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
-//		List<MemberVO> dailyList = memberService.dailyList(memberVO);
-//		
-//		
-//		model.addAttribute("dailySum",dailySum);
-//		model.addAttribute("dailyList",dailyList);
+		// 첫 검색시 오늘날짜로 셋팅
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String today = format1.format(date);
+		
+		dailyWorkVO.setSearchDate(today);
+		
+		// 페이징 작업
+		int total = memberService.totalPage();
+		System.out.println("total page -> " + total);
+		System.out.println("currentPage -> " + currentPage);
+		Paging pg = new Paging(total, currentPage);
+		dailyWorkVO.setStart(pg.getStart());
+		dailyWorkVO.setEnd(pg.getEnd());
+		
+		System.out.println("startPage -> " + dailyWorkVO.getStart());
+		System.out.println("endPage -> " + dailyWorkVO.getEnd());
+		
+		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
+		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
+		List<MemberVO> dailyList = memberService.dailyList(memberVO);
+		
+		System.out.println("몇개 -> " + dailyList);
+		model.addAttribute("dailySum",dailySum);
+		model.addAttribute("dailyList",dailyList);
+		model.addAttribute("pg",pg);
 				
 		return "serviceStatus/dailyList";
 	}
@@ -65,9 +79,9 @@ public class MemberController {
 	public String memberDetail(DailyWorkVO dailyWorkVO,HttpServletRequest request,Model model) {
 		System.out.println("===================dailyDetail page start===================");
 		System.out.println("===========" + dailyWorkVO.getM_id()); 
-//		List<DailyWorkVO> dailyDetail = memberService.dailyDetail(dailyWorkVO);
-//		
-//		model.addAttribute("dailyDetail",dailyDetail);
+		List<DailyWorkVO> dailyDetail = memberService.dailyDetail(dailyWorkVO);
+		
+		model.addAttribute("dailyDetail",dailyDetail);
 		
 		return "serviceStatus/dailyDetail";
 	}

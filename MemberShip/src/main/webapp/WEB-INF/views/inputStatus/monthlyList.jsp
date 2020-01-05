@@ -13,7 +13,7 @@
 <body>
 <div class="monthlyListBox">
 	<div class="monthlySumTable">
-		<div class="sumText">■ 인력 가동률</div>
+		<div class="sumText">인력 가동률</div>
 		<table class="monthlySum">
 			<tr class="monthlySum-rowheader">
 				<th>총인원</th>
@@ -38,19 +38,21 @@
 		</table>
 	</div>
 	<div class="monthlyListTable">
-	<div class="listText">■ 월별 인력 투입현황</div>
-	<button onclick="window.open('monthlyWorkInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
-	<button onclick="window.open('monthlyStatusInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">현황등록</button>
-	<button>일괄복사</button>
-	<form action="monthlySearch.do">
-		기준년도 : <select>
+	<div class="listText">월별 인력 투입현황</div>
+	<div class="btn">
+		<button class="workBtn" onclick="window.open('monthlyWorkInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
+		<button class="statusBtn" onclick="window.open('monthlyStatusInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">현황등록</button>
+		<button class="copyBtn">일괄복사</button>
+	</div>
+	<form action="monthlySearch.do" class="monthlyForm">
+		기준년도 : <select class="yearSelect" name="m_year">
 		 			<option value="2019">2019</option>
 		 			<option value="2018">2018</option>
 		 			<option value="2017">2017</option>
 		 			<option value="2016">2016</option>
 		 			<option value="2015">2015</option>
 				</select>
-		기준월 : <select>
+		기준월 : <select class="monthSelect" name="m_month">
 					<option value="1">1월</option>
 					<option value="2">2월</option>
 					<option value="3">3월</option>
@@ -64,12 +66,12 @@
 					<option value="11">11월</option>
 					<option value="12">12월</option>
 			   </select>
-		 구분 :  <select>
+		 구분 :  <select class="gbnSelect" name="m_gubun">
 		  	 		<option value="gbnIn">내부</option>
 		  	 		<option value="gbnOut">외부</option>
 		 	   </select>
-		 성명 :  <input type="text">
-		 직급 :  <select>
+		 성명 :  <input type="text" class="nameInput" name="m_name">
+		 직급 :  <select class="positionSelect" name="m_position">
 		 			<option>사원</option>
 		 			<option>대리</option>
 		 			<option>과장</option>
@@ -77,8 +79,8 @@
 		 			<option>부장</option>
 		 			<option>상무</option>
 		 	   </select>
-		 현업무 : <input type="text">
-	  <input type="submit" value="조회">
+		 현업무 : <input type="text" class="nowWork" name="j_name">
+	  <input type="submit" class="formBtn" value="조회">
 	</form>
 	
 		<table class="monthlyList">
@@ -87,7 +89,7 @@
 				<th>구분</th>
 				<th>성명</th>
 				<th>직급</th>
-				<th>현 근무지</th>
+				<th>현 업무</th>
 				<th>site</th>
 				<th>1월</th>
 				<th>2월</th>
@@ -103,17 +105,19 @@
 				<th>12월</th>
 				<th>비고</th>
 			</tr>
-			<%-- <c:forEach var="monthlyList" items="${monthlyList}"> --%>
+			<c:forEach var="monthlyList" items="${monthlyList}">
 				<tr class="monthlyList-row">
 					<td><input type="checkbox"> </td>
-					<td>ㅁㅁ
+					<td>
 						<c:choose>
 							<c:when test="${monthlyList.m_gubun == 'G1'}">내부</c:when>
 							<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
 						</c:choose>
 					</td>
-					<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">ㅁㅁ${monthlyList.m_name}</a></td>
-					<td>ㅁㅁ${monthlyList.m_position}</td>
+					<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
+					<td>${monthlyList.m_position}</td>
+					<td>${monthlyList.j_name}</td>
+					<td>${monthlyList.l_name}</td>
 					<td>ㅁㅁ</td>
 					<td>ㅁㅁ</td>
 					<td>ㅁㅁ</td>
@@ -126,11 +130,9 @@
 					<td>ㅁㅁ</td>
 					<td>ㅁㅁ</td>
 					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
+					<td>${monthlyList.m_notice}</td>
 				</tr>	
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</table>
 	</div>
 </div>	

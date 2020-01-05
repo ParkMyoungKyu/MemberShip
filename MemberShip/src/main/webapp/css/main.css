@@ -1,13 +1,12 @@
 .mainBody{
-	width: 800px;
-	height: 80vh;
-    margin: 0 auto;
+	margin:0 auto;
+	background-color: #e7e8eb;
+	min-height: 824px;
 }
 
 .mainMonthlyTable {
-  width: 800px;
-/*   min-height: 100vh;
-  padding: 33px 30px; */
+	width: 800px;
+    margin: 0 auto;
 }
 
 .mirisLogo{
@@ -17,28 +16,30 @@
 }
 
 .nowName{
-	margin: 80px auto 5px;
+	font-weight:600;
+	font-size:30px;
+	text-align:center;
+	margin: 0 auto;
+	padding: 50px 0 30px;
 	width: 800px;
 }
 .nowWorking{
 	width: 100%;
- 	display: table;
-  	margin: 0;
-  	border-radius: 5px;
-  	overflow: hidden;
+    display: table;
+    text-align: center;
 }
 .nowWorking-rowheader {
-  color: #ffffff;
-  background: #6c7ae0;
+  background-color: #24292e;
 }
 
 .nowWorking-rowheader th {
   font-family: Poppins-Regular;
   font-size: 12px;
-  color: #fff;
+  color: #efefef;
   line-height: 1.2;
   font-weight: unset !important;
-  padding : 5px 0;
+  padding : 10px 2px;
+  width: 12.5%;
 }
 .nowWorking-row {
   display: table-row;
@@ -51,9 +52,7 @@
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-  padding : 5px 0;
-  border-bottom: 1px solid #f2f2f2;
-  text-align: center;
+  padding : 10px 2px;
 }
 
 .nowWorking-row:hover {
@@ -62,14 +61,18 @@
 }
 
 .mainTodayTable {
-  width: 800px;
-/*   min-height: 100vh;
-  padding: 33px 30px; */
+   width: 800px;
+   margin: 0 auto;
 }
 
 .todayName{
-	margin: 50px auto 5px;
+	font-weight:600;
+	font-size:30px;
+	text-align:center;
+	margin: 0 auto;
+	padding: 50px 0 30px;
 	width: 800px;
+	color: #24292e;
 }
 
 .todayWorking{
@@ -78,35 +81,33 @@
   	margin: 0;
   	border-radius: 5px;
   	overflow: hidden;
+  	text-align: center;
 }
 .todayWorking-rowheader {
-  color: #ffffff;
-  background: #6c7ae0;
+  background-color: #24292e;
 }
 
 .todayWorking-rowheader th {
   font-family: Poppins-Regular;
   font-size: 12px;
-  color: #fff;
+  color: #efefef;
   line-height: 1.2;
   font-weight: unset !important;
-  padding : 5px 0;
+  padding : 10px 0;
+  width: 20%;
 }
 .todayWorking-row {
   display: table-row;
   background: #fff;
-  width: 25%;
 }
 
 .todayWorking-row td {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  font-size: 12px;
   color: #666666;
   line-height: 1.2;
   font-weight: unset !important;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding : 5px 0;
   border-bottom: 1px solid #f2f2f2;
 }
 
