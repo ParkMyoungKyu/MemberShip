@@ -1,7 +1,5 @@
 package com.miris.project.dto;
 
-import java.util.Date;
-
 public class MonthlyWorkVO {
 	
 	//월별 근무이력
@@ -18,6 +16,11 @@ public class MonthlyWorkVO {
 	private String l_code;
 	private String l_name;
 	
+	//업무
+	private String j_name;
+	private String j_except;
+	
+		
 	//조회하기 위한
 	private String m_pw;
 	private String m_name;
@@ -25,15 +28,97 @@ public class MonthlyWorkVO {
 	private String d_code;
 	private String m_position;
 	
-	//업무
-	private String j_name;
-	private String j_except;
+	//월별 조회 담기용도
+	private String JAN;
+	private String FEB;
+	private String MAR;
+	private String APR;
+	private String MAY;
+	private String JUN;
+	private String JUL;
+	private String AUG;
+	private String SEPT;
+	private String OCT;
+	private String NOV;
+	private String DEC;
 	
 	//페이징용
     private int start;
     private int end;
     
     
+	public String getJAN() {
+		return JAN;
+	}
+	public void setJAN(String jAN) {
+		JAN = jAN;
+	}
+	public String getFEB() {
+		return FEB;
+	}
+	public void setFEB(String fEB) {
+		FEB = fEB;
+	}
+	public String getMAR() {
+		return MAR;
+	}
+	public void setMAR(String mAR) {
+		MAR = mAR;
+	}
+	public String getAPR() {
+		return APR;
+	}
+	public void setAPR(String aPR) {
+		APR = aPR;
+	}
+	public String getMAY() {
+		return MAY;
+	}
+	public void setMAY(String mAY) {
+		MAY = mAY;
+	}
+	public String getJUN() {
+		return JUN;
+	}
+	public void setJUN(String jUN) {
+		JUN = jUN;
+	}
+	public String getJUL() {
+		return JUL;
+	}
+	public void setJUL(String jUL) {
+		JUL = jUL;
+	}
+	public String getAUG() {
+		return AUG;
+	}
+	public void setAUG(String aUG) {
+		AUG = aUG;
+	}
+	public String getSEPT() {
+		return SEPT;
+	}
+	public void setSEPT(String sEPT) {
+		SEPT = sEPT;
+	}
+	public String getOCT() {
+		return OCT;
+	}
+	public void setOCT(String oCT) {
+		OCT = oCT;
+	}
+	public String getNOV() {
+		return NOV;
+	}
+	public void setNOV(String nOV) {
+		NOV = nOV;
+	}
+	public String getDEC() {
+		return DEC;
+	}
+	public void setDEC(String dEC) {
+		DEC = dEC;
+	}
 	public int getStart() {
 		return start;
 	}

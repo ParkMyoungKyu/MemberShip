@@ -35,7 +35,7 @@ $(function(){
 		<!-- <img class="mirisLogo" alt="miris" src="./image/mirisci.png"> -->	
 		<div class="title">인력근무현황</div>
 		<div class="search">
-			<form action="memberSearch.do">
+			<form action="dailyList.do">
 				<div class="gbnSearch">
 					구분 : <select class="gubun" name="w_status">
 							<option value="0" selected="selected">전체</option>
@@ -83,14 +83,17 @@ $(function(){
 					<th>현근무지</th>
 					<th>출근일시</th>
 				</tr>
+				
 				<c:forEach var="dailyList" items="${dailyList}">
+				<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
 					<tr class="memberList-row">
 						<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
 						<td>${dailyList.m_position}</td>
 						<td>
 							<c:choose>
-								<c:when test="${time == '00:00:00'}">-</c:when>
-								<c:when test="${time != '00:00:00'}">
+								<c:when test="${time == '00:00:00' and dailyList.w_status != '2'}">-</c:when>
+								<c:when test="${time != '00:00:00' or dailyList.w_status == '2'}">
 									<c:choose>
 										<c:when test="${dailyList.w_status == '1'}">근무</c:when>
 										<c:when test="${dailyList.w_status == '2'}">휴가</c:when>
@@ -107,24 +110,23 @@ $(function(){
 							</c:choose>
 						</td>
 						<td>
-							<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
-							<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
 							<c:choose>
-								<c:when test="${time == '00:00:00'}">미출근</c:when>
+								<c:when test="${time == '00:00:00' and dailyList.w_status != '2'}">미출근</c:when>
+								<c:when test="${time == '00:00:00' or dailyList.w_status == '2'}">휴가중</c:when>
 								<c:when test="${time != '00:00:00'}">${time}</c:when>
 							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			
-		<div id="paging">
+		</div>
+		
+		<div class="paging">
+			<hr class="line">
 			<!-- 페이지 넘김 -->
 			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="dailyList.do?currentPage=${i}">[${i}]</a>
+				<a href="dailyList.do?currentPage=${i}&w_status=${pg.w_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}">[${i}]</a>
 			</c:forEach>
-		</div>
-			
 		</div>
 	</div>
 </body>

@@ -28,9 +28,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<MemberVO> dailyList(MemberVO memberVO) {
+	public List<DailyWorkVO> dailyList(DailyWorkVO dailyWorkVO) {
 		System.out.println("=====================MemberServiceImpl dailyList=====================");
-		return memberDao.dailyList(memberVO);
+		return memberDao.dailyList(dailyWorkVO);
 	}
 
 	@Override
@@ -46,9 +46,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int totalPage() {
+	public int totalPage(DailyWorkVO dailyWorkVO) {
 		System.out.println("=====================MemberServiceImpl totalPage=====================");
-		return memberDao.totalPage();
+		return memberDao.totalPage(dailyWorkVO);
+	}
+
+	@Override
+	public int searchTotalPage() {
+		System.out.println("=====================MemberServiceImpl searchTotalPage=====================");
+		return memberDao.searchTotalPage();
 	}
 
 	

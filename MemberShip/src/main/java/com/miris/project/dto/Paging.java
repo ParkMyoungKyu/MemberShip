@@ -1,4 +1,6 @@
-package com.miris.project.util;
+package com.miris.project.dto;
+
+import java.util.Date;
 
 public class Paging {
 	private int currentPage = 1;
@@ -10,6 +12,11 @@ public class Paging {
 	private int endPage;
 	private int total;
 	private int totalPage;
+	
+	private String w_status;
+	private String searchDate;
+	private String m_name;
+	
 	
 	public Paging(int total, String currentPage1) {
 		this.total = total;
@@ -32,6 +39,49 @@ public class Paging {
 		}
 
 	}
+
+	
+	
+	
+	public String getW_status() {
+		return w_status;
+	}
+
+
+
+
+	public void setW_status(String w_status) {
+		this.w_status = w_status;
+	}
+
+
+
+
+	public String getSearchDate() {
+		return searchDate;
+	}
+
+
+
+
+	public void setSearchDate(String searchDate) {
+		this.searchDate = searchDate;
+	}
+
+
+	public String getM_name() {
+		return m_name;
+	}
+
+
+
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
+
+
 
 	public int getCurrentPage() {
 		return currentPage;

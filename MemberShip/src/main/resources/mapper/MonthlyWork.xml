@@ -8,15 +8,31 @@
   			   b.m_gubun,
   			   b.m_name,
   			   b.m_position,
-          	   a.j_name,
-          	   c.l_name,
-          	   a.m_notice
+	           a.j_name,
+	           c.l_name,
+	           (SELECT A.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '01') AS JAN,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '02') as FEB,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '03') as MAR,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '04') as APR,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '05') as MAY,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '06') as JUN,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '07') as JUL,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '08') as AUG,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '09') as SEPT,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '10') as OCT,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '11') as NOV,
+	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '12') as DEC,
+	           a.m_notice
   		FROM M_WORK A, member B, site c
         WHERE 1=1
         AND A.M_ID = b.m_id
         AND A.L_CODE = c.L_CODE
-        and to_char(a.m_year,'yyyy') = to_char(sysdate,'yyyy')
-        and to_char(a.m_month,'MM') = TO_CHAR(SYSDATE,'MM')
+        and to_char(a.m_year,'yyyy') = #{m_year}
+        and to_char(a.m_month,'MM') = #{m_month}
+        <if test="m_gubun != null"> and B.M_GUBUN = #{m_gubun}</if>
+        <if test="m_name != null || m_name != ''">and B.M_NAME = #{m_name}</if>
+        <if test="m_position != null">AND B.M_POSITION = #{m_position}</if>
+        <if test="j_name != null || j_name = ''">AND A.J_NAME = #{j_name}</if>
   	</select>
   	
   	<select id="monthlyDetail" parameterType="MonthlyWork" resultType="MonthlyWork">

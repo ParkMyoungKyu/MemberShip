@@ -1,5 +1,7 @@
 package com.miris.project;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,25 @@ public class MonthlyController {
 	private String monthlyList(MonthlyWorkVO monthlyWorkVO,Model model) {
 		System.out.println("====================MonthlyContraller monthlyList=====================");
 		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy");
+		SimpleDateFormat format2 = new SimpleDateFormat("MM");
+		Date date1 = new Date();
+		Date date2 = new Date();
+		String year = format1.format(date1);
+		String month = format2.format(date2);
+     			
+		monthlyWorkVO.setM_year(year);
+		monthlyWorkVO.setM_month(month);
+		
+		System.out.println("선택한 년도 -> " + monthlyWorkVO.getM_year());
+		System.out.println("선택한 월  -> " + monthlyWorkVO.getM_month());
+		System.out.println("선택한 구분 -> " + monthlyWorkVO.getM_gubun());
+		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
+		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
+		System.out.println("선택한 업무 -> " + monthlyWorkVO.getJ_name());
+		
+		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
+				
 		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
 		
 		model.addAttribute("monthlyList",monthlyList);
@@ -37,6 +58,17 @@ public class MonthlyController {
 		
 		return "inputStatus/monthlyDetail";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "monthlySearch")
 	private String monthlySearch(MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("====================MonthlyContraller monthlySearch=====================");
@@ -47,6 +79,8 @@ public class MonthlyController {
 		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
 		System.out.println("선택한 업무 -> " + monthlyWorkVO.getJ_name());
+		
+		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		
 		return "inputStatus/monthlyList";
 	}

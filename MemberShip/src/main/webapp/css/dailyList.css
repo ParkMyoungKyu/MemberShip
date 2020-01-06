@@ -1,6 +1,7 @@
 .dailyListBox{
 	margin:0 auto;
 	background-color: #e7e8eb;
+	min-height: 824px;
 }
 
 .mirisLogo{
@@ -126,4 +127,16 @@
 .memberList-row:hover {
   background-color: #ececff;
   cursor: pointer;
+}
+
+
+.paging{
+	width: 100%;
+    text-align: center;
+    bottom: 200px;
+}
+.line{
+	width: 800px;
+	border-bottom: 0px;
+	color: #666666
 }

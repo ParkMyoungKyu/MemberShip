@@ -44,8 +44,9 @@
 		<button class="statusBtn" onclick="window.open('monthlyStatusInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">현황등록</button>
 		<button class="copyBtn">일괄복사</button>
 	</div>
-	<form action="monthlySearch.do" class="monthlyForm">
+	<form action="monthlyList.do" class="monthlyForm">
 		기준년도 : <select class="yearSelect" name="m_year">
+		 			<option value="2020">2020</option>
 		 			<option value="2019">2019</option>
 		 			<option value="2018">2018</option>
 		 			<option value="2017">2017</option>
@@ -67,17 +68,17 @@
 					<option value="12">12월</option>
 			   </select>
 		 구분 :  <select class="gbnSelect" name="m_gubun">
-		  	 		<option value="gbnIn">내부</option>
-		  	 		<option value="gbnOut">외부</option>
+		  	 		<option value="G1">내부</option>
+		  	 		<option value="G2">외부</option>
 		 	   </select>
 		 성명 :  <input type="text" class="nameInput" name="m_name">
 		 직급 :  <select class="positionSelect" name="m_position">
-		 			<option>사원</option>
-		 			<option>대리</option>
-		 			<option>과장</option>
-		 			<option>차장</option>
-		 			<option>부장</option>
-		 			<option>상무</option>
+		 			<option value="사원">사원</option>
+		 			<option value="대리">대리</option>
+		 			<option value="과장">과장</option>
+		 			<option value="차장">차장</option>
+		 			<option value="부장">부장</option>
+		 			<option value="상무">상무</option>
 		 	   </select>
 		 현업무 : <input type="text" class="nowWork" name="j_name">
 	  <input type="submit" class="formBtn" value="조회">
@@ -118,18 +119,18 @@
 					<td>${monthlyList.m_position}</td>
 					<td>${monthlyList.j_name}</td>
 					<td>${monthlyList.l_name}</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
-					<td>ㅁㅁ</td>
+					<td>${monthlyList.JAN}</td>
+					<td>${monthlyList.FEB}</td>
+					<td>${monthlyList.MAR}</td>
+					<td>${monthlyList.APR}</td>
+					<td>${monthlyList.MAY}</td>
+					<td>${monthlyList.JUN}</td>
+					<td>${monthlyList.JUL}</td>
+					<td>${monthlyList.AUG}</td>
+					<td>${monthlyList.SEPT}</td>
+					<td>${monthlyList.OCT}</td>
+					<td>${monthlyList.NOV}</td>
+					<td>${monthlyList.DEC}</td>
 					<td>${monthlyList.m_notice}</td>
 				</tr>	
 			</c:forEach>

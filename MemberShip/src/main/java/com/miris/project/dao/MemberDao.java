@@ -3,7 +3,6 @@ package com.miris.project.dao;
 import java.util.List;
 
 import com.miris.project.dto.DailyWorkVO;
-import com.miris.project.dto.MemberVO;
 
 public interface MemberDao {
 
@@ -11,13 +10,15 @@ public interface MemberDao {
 	
 	List<DailyWorkVO> dailyNowUpdate(DailyWorkVO dailyWorkVO);
 	
-	List<MemberVO> dailyList(MemberVO memberVO);
+	List<DailyWorkVO> dailyList(DailyWorkVO dailyWorkVO);
 
 	List<DailyWorkVO> dailyDetail(DailyWorkVO dailyWorkVO);
 
 	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
 
-	int totalPage();
+	int totalPage(DailyWorkVO dailyWorkVO);
+
+	int searchTotalPage();
 
 		
 

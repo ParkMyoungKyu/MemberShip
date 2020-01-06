@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.miris.project.dto.DailyWorkVO;
-import com.miris.project.dto.MemberVO;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -28,9 +27,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public List<MemberVO> dailyList(MemberVO memberVO) {
+	public List<DailyWorkVO> dailyList(DailyWorkVO dailyWorkVO) {
 		System.out.println("=====================MemberDaoImpl dailyList=====================");
-		return session.selectList("dailyList",memberVO);
+		return session.selectList("dailyList",dailyWorkVO);
 	}
 
 	@Override
@@ -46,9 +45,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int totalPage() {
+	public int totalPage(DailyWorkVO dailyWorkVO) {
 		System.out.println("=====================MemberDaoImpl totalPage=====================");
-		return session.selectOne("totalPage");
+		return session.selectOne("totalPage",dailyWorkVO);
+	}
+
+	@Override
+	public int searchTotalPage() {
+		System.out.println("=====================MemberDaoImpl searchTotal=====================");
+		return session.selectOne("searchTotalPage");
 	}
 
 	

@@ -11,13 +11,15 @@ public interface MemberService {
 	
 	List<DailyWorkVO> dailyNowUpdate(DailyWorkVO dailyWorkVO);
 	
-	List<MemberVO> dailyList(MemberVO memberVO);
+	List<DailyWorkVO> dailyList(DailyWorkVO dailyWorkVO);
 
 	List<DailyWorkVO> dailyDetail(DailyWorkVO dailyWorkVO);
 
 	List<DailyWorkVO> dailyMemberSearch(DailyWorkVO dailyWorkVO);
 
-	int totalPage();
+	int totalPage(DailyWorkVO dailyWorkVO);
+
+	int searchTotalPage();
 
 	
 	
