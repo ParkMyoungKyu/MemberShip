@@ -15,9 +15,8 @@
 </script>
 </head>
 <body class="monthlyWorkInput">
-	<div>현황등록</div>
 	<div class="inputBox">
-		<div class="inputTitle">■ 인력 등록/수정</div>
+		<div class="inputTitle">인력 등록/수정</div>
 		<table class="inputTable">
 			<tr>
 				<th>구분</th>
@@ -27,19 +26,23 @@
 			</tr>
 			<tr>
 				<td>
-					<select>
-						<option>내부</option>
-						<option>외부</option>
+					<select class="gbnSelect" name="gubun">
+						<option value="G1">내부</option>
+						<option value="G2">외부</option>
 					</select>
 				</td>
 				<td>
-					<select>
-						<option>경영지원실</option>
-						<option>외부</option>
+					<select class="deptSelect" name="d_code">
+						<option value="D01">경영지원실</option>
+						<option value="D02">부설연구소</option>
+						<option value="D03">핀테크서비스1부</option>
+						<option value="D04">핀테크서비스2부</option>
+						<option value="D05">핀테크서비스3부</option>
+						<option value="D06">핀테크서비스4부</option>
 					</select>
 				</td>
 				<td>
-					<input type="text">
+					<input type="text" name="m_name">
 				</td>
 				<td>
 					<select>
@@ -48,6 +51,7 @@
 						<option>과장</option>
 						<option>차장</option>
 						<option>부장</option>
+						<option>상무</option>
 					</select>
 				</td>
 			</tr>

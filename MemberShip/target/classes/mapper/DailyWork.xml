@@ -98,7 +98,7 @@
               select m_id from d_work where p_name in (
                 select p_name from place where to_char(W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD'))))a)  
         where 1=1
-        and rn between #{start} and 10
+        and rn between #{start} and #{end}
 	</select>
 	
 	<select id="totalPage" resultType="int">
@@ -160,4 +160,6 @@
     WHERE 1=1
     <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
 	</select>
+	
+	
 </mapper>

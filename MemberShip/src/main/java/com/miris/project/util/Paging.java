@@ -22,11 +22,11 @@ public class Paging {
 		start = (currentPage - 1) * rowPage + 1;
 		end = start + rowPage - 1;
 		totalPage = (int)Math.ceil((double)total/rowPage);
-		startPage = currentPage - 2;
+		startPage = currentPage-3;
 		if( startPage < 1) {
 			startPage = 1;
 		}
-		endPage = currentPage + 2;
+		endPage = currentPage+3;
 		if(endPage > totalPage) {
 			endPage = totalPage;
 		}

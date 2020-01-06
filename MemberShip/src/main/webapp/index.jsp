@@ -13,6 +13,5 @@
 		//response.sendRedirect("dailyList.do");
 	%>
 	
-	
 </body>
 </html>

@@ -57,17 +57,17 @@ public class MemberController {
 		System.out.println("total page -> " + total);
 		System.out.println("currentPage -> " + currentPage);
 		Paging pg = new Paging(total, currentPage);
-		dailyWorkVO.setStart(pg.getStart());
-		dailyWorkVO.setEnd(pg.getEnd());
 		
-		System.out.println("startPage -> " + dailyWorkVO.getStart());
-		System.out.println("endPage -> " + dailyWorkVO.getEnd());
+		memberVO.setStart(pg.getStart());
+		memberVO.setEnd(pg.getEnd());
+		
+		System.out.println("startPage -> " + memberVO.getStart());
+		System.out.println("endPage -> " + memberVO.getEnd());
 		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
 		List<MemberVO> dailyList = memberService.dailyList(memberVO);
 		
-		System.out.println("몇개 -> " + dailyList);
 		model.addAttribute("dailySum",dailySum);
 		model.addAttribute("dailyList",dailyList);
 		model.addAttribute("pg",pg);
@@ -129,6 +129,8 @@ public class MemberController {
 		} else {
 			System.out.println("===== 입력한 이름값 O =====");	
 		}
+		
+		
 		
 		List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);

@@ -120,15 +120,9 @@ $(function(){
 			
 		<div id="paging">
 			<!-- 페이지 넘김 -->
-			<c:if test="${pg.startPage > pg.pageBlock }">
-				<a href="dailyList.do?currentPage=${pg.startPage - pg.pageBlock}">[이전]</a>
-			</c:if>
-			<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
+			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
 				<a href="dailyList.do?currentPage=${i}">[${i}]</a>
 			</c:forEach>
-			<c:if test="${pg.endPage < pg.totalPage }">
-				<a href="dailyList.do?currentPage=${pg.startPage + pg.pageBlock}">[다음]</a>
-			</c:if>	
 		</div>
 			
 		</div>
