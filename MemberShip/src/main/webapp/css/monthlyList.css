@@ -25,7 +25,7 @@
 }
 
 .monthlySum-rowheader {
-  background-color: #24292e;
+  background-color: #93aeca;
   
 }
 
@@ -122,11 +122,12 @@
 }
 
 .monthlyList-rowheader {
-  background-color: #24292e;
+  background-color: #93aeca;
 }
 
 .monthlyList-rowheader th {
   font-family: Poppins-Regular;
+  height : 30px;
   font-size: 12px;
   color: #efefef;
   line-height: 1.2;
@@ -141,6 +142,7 @@
 .monthlyList-row td {
   text-align: center;
   font-family: Poppins-Regular;
+  height : 30px;
   font-size: 12px;
   color: #666666;
   line-height: 1.2;

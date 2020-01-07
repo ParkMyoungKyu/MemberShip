@@ -41,6 +41,7 @@ public class MemberController {
      	dailyWorkVO.setSearchDate(today);
      	monthlyWorkVO.setM_month(month);
      	System.out.println("초기 날짜" + dailyWorkVO.getSearchDate());
+     	System.out.println("초기 날짜" + monthlyWorkVO.getM_month());
      		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);

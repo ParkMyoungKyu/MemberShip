@@ -9,6 +9,7 @@
 	.sideBar{
 		background-color: red;
 		width: 25vh;
+		min-height: 824px;
 	}
 </style>
 </head>
