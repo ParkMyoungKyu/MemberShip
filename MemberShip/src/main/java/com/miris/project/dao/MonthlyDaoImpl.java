@@ -25,4 +25,10 @@ public class MonthlyDaoImpl implements MonthlyDao {
 		System.out.println("=====================MonthlyDaoImpl monthlyDetail=====================");
 		return session.selectList("monthlyDetail",monthlyWorkVO);
 	}
+
+	@Override
+	public List<MonthlyWorkVO> monthlySum(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyDaoImpl monthlySum=====================");
+		return session.selectList("monthlySum",monthlyWorkVO);
+	}
 }

@@ -81,7 +81,7 @@
 		select count(*)
           from member a
     	inner join (
-		   select  rownum rn,
+		   select  
 		   		   a.m_id,
 		           a.w_status,
 		           a.w_day,
@@ -98,60 +98,60 @@
 	    ) c
 	    on a.m_id = c.m_id
 	    WHERE 1=1
+	    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
 	    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
 	</select>
 	
 	<select id="dailyDetail" parameterType="DailyWork" resultType="DailyWork">
-		SELECT m_id,
-			   w_status,
-			   w_day,
-			   w_time,
-			   w_notice,
-			   p_name
-		FROM D_WORK
+		SELECT *
+		FROM D_WORK a, member b
 		WHERE 1=1
-		AND m_id = #{m_id}
-		AND to_char(W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD') 
+		and a.m_id = b.m_id
+		AND a.m_id = #{m_id}
+		AND to_char(a.W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD')
 	</select>
 	
 	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
-		select rn, 
-			   a.m_id,
-	           a.m_pw,
-	           a.m_name,
-	           a.d_code,
-	           a.m_position,
-	           a.m_gubun,
-	           a.m_joindate,
-	           a.m_leavedate,
-	           a.m_notice,
-	           c.w_status,
-	           c.w_day,
-	           c.w_time,
-	           c.w_notice,
-	           c.p_name,
-	           c.p_addr
-          from member a
-    	inner join (
-		   select  rownum rn,
-		   		   a.m_id,
-		           a.w_status,
-		           a.w_day,
-		           a.w_time,
-		           a.w_notice,
-		           b.p_name,
-		           b.p_addr
-		          from d_work a
-		    inner join place b
-		    on a.p_name = b.p_name
+		select rn, A.* 
+		FROM (
+		   select ROWNUM rn, 
+				   a.m_id,
+		           a.m_pw,
+		           a.m_name,
+		           a.d_code,
+		           a.m_position,
+		           a.m_gubun,
+		           a.m_joindate,
+		           a.m_leavedate,
+		           a.m_notice,
+		           c.w_status,
+		           c.w_day,
+		           c.w_time,
+		           c.w_notice,
+		           c.p_name,
+		           c.p_addr
+	          from member a
+	    	inner join (
+			   select  rownum rn,
+			   		   a.m_id,
+			           a.w_status,
+			           a.w_day,
+			           a.w_time,
+			           a.w_notice,
+			           b.p_name,
+			           b.p_addr
+			          from d_work a
+			    inner join place b
+			    on a.p_name = b.p_name
+			    WHERE 1=1
+			    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
+			    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
+		    ) c
+		    on a.m_id = c.m_id
 		    WHERE 1=1
-		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-		    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
-	    ) c
-	    on a.m_id = c.m_id
-	    WHERE 1=1
-	    and rn between #{start} and #{end}
-	    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
+		    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
+		    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>) A
+		    WHERE rn between #{start} and #{end}
 	</select>
 	
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
@@ -191,6 +191,7 @@
 	    on a.m_id = c.m_id
 	    WHERE 1=1
 	    and rn between #{start} and #{end}
+	    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
 	    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
 	</select>
 	

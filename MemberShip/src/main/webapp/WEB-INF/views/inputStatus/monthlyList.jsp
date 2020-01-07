@@ -25,16 +25,18 @@
 				<th>가동율1</th>
 				<th>가동율2</th>
 			</tr>
-			<tr class="monthlySum-row">
-				<td>제외인원 + 가동가능인원</td>
-				<td>5555</td>
-				<td>5555</td>
-				<td>5555</td>
-				<td>5555</td>
-				<td>5555</td>
-				<td>투입인력1/가동가능인원</td>
-				<td>(투입인력1+투입인력2)/가동가능인원</td>
-			</tr>
+			<c:forEach var="monthlySum" items="${monthlySum}">
+				<tr class="monthlySum-row">
+					<td>${monthlySum.total}</td>
+					<td>${monthlySum.except}</td>
+					<td>${monthlySum.usingWork}</td>
+					<td>${monthlySum.inputWork1}</td>
+					<td></td>
+					<td>${monthlySum.waitWork}</td>
+					<td>${monthlySum.avg1}%</td>
+					<td></td>
+				</tr>
+				</c:forEach>
 		</table>
 	</div>
 	<div class="monthlyListTable">
@@ -68,11 +70,13 @@
 					<option value="12">12월</option>
 			   </select>
 		 구분 :  <select class="gbnSelect" name="m_gubun">
+		  	 		<option value="G0">전체</option>
 		  	 		<option value="G1">내부</option>
 		  	 		<option value="G2">외부</option>
 		 	   </select>
 		 성명 :  <input type="text" class="nameInput" name="m_name">
 		 직급 :  <select class="positionSelect" name="m_position">
+		 			<option value="전체">전체</option>
 		 			<option value="사원">사원</option>
 		 			<option value="대리">대리</option>
 		 			<option value="과장">과장</option>
@@ -80,7 +84,17 @@
 		 			<option value="부장">부장</option>
 		 			<option value="상무">상무</option>
 		 	   </select>
-		 현업무 : <input type="text" class="nowWork" name="j_name">
+		 현업무 : <select class="nowWork" name="j_name">
+		 	   		<option value="J00">전체</option>
+		 	   		<option value="J01">경영지원,영업</option>
+		 	   		<option value="J02">신사업발굴</option>
+		 	   		<option value="J03">SI 사업 발주 대기</option>
+		 	   		<option value="J04">시스템운영</option>
+		 	   		<option value="J05">서울시금고운영</option>
+		 	   		<option value="J06">경남시금고운영</option>
+		 	   		<option value="J07">광중시금고운영</option>
+		 	   		<option value="J08">인천시금고운영</option>
+		 	   </select>
 	  <input type="submit" class="formBtn" value="조회">
 	</form>
 	

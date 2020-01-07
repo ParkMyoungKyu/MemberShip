@@ -10,4 +10,6 @@ public interface MonthlyService {
 
 	List<MonthlyWorkVO> monthlyDetail(MonthlyWorkVO monthlyWorkVO);
 
+	List<MonthlyWorkVO> monthlySum(MonthlyWorkVO monthlyWorkVO);
+
 }

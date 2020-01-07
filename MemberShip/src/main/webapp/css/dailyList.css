@@ -32,6 +32,10 @@
 	display: inline-block;
 }
 
+.deptSearch{
+	display: inline-block;
+}
+
 .searchDate{
 	display: inline-block;
 }
@@ -105,7 +109,7 @@
   line-height: 1.2;
   font-weight: unset !important;
   padding : 10px 2px;
-  width: 20%;
+  width: 17%;
 }
 
 .memberList-row {
@@ -121,7 +125,7 @@
   font-weight: unset !important;
   padding : 10px 2px;
   border-bottom: 1px solid #f2f2f2;
-  width: 20%;
+  width: 17%;
 }
 
 .memberList-row:hover {

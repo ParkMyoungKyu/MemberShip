@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="css/dailyDetail.css" type="text/css"> 
 <title>Insert title here</title>
 </head>
-<body>
-	 <div class="detailTitle">■ 근무 이력(최근 30일)</div>
+<body>	
+	 
+	 <div class="detailTitle">근무 이력(최근 30일)</div>
+	 
 	 <table class="tableAll">
 		<tr class="tableName">
 			<th>출근일자</th>
@@ -28,7 +30,14 @@
 					<c:when test="${dailyDetail.w_status == '4'}">기타</c:when>
 				</c:choose>
 			</td>
-			<td>${dailyDetail.p_name}</td>
+			<td>
+				<c:choose>
+					<c:when test="${dailyDetail.w_status == '1'}">${dailyDetail.p_name}</c:when>
+					<c:when test="${dailyDetail.w_status == '2'}">-</c:when>
+					<c:when test="${dailyDetail.w_status == '3'}">${dailyDetail.p_name}</c:when>
+					<c:when test="${dailyDetail.w_status == '4'}">-</c:when>
+				</c:choose>
+			</td>
 		</tr>
 		</c:forEach>
 	</table> 

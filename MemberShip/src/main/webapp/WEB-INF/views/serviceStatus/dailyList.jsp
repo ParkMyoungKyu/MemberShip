@@ -47,6 +47,17 @@ $(function(){
 				<div class="nameSearch">
 					성명 : <input type="text" name="m_name">
 				</div>
+				<div class="deptSearch">
+					부서 : <select class="dept" name="d_code">
+							<option value="D00">전체</option>
+							<option value="D01">경영지원실</option>
+							<option value="D02">부설연구소</option>
+							<option value="D03">핀테크서비스1부</option>
+							<option value="D04">핀테크서비스2부</option>
+							<option value="D05">핀테크서비스3부</option>
+							<option value="D06">핀테크서비스4부</option>
+					     </select>
+				</div>
 				<div class="searchDate">
 					날짜 : <input type="text" id="searchDate" name="searchDate" readonly="readonly" required="required"> 
 				</div>  
@@ -78,6 +89,7 @@ $(function(){
 			<table class="memberList">
 				<tr class="memberList-rowheader">
 					<th>성명</th>
+					<th>부서</th>
 					<th>직급</th>
 					<th>상태</th>
 					<th>현근무지</th>
@@ -89,6 +101,16 @@ $(function(){
 				<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
 					<tr class="memberList-row">
 						<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
+						<td>
+							<c:choose>
+								<c:when test="${dailyList.d_code == 'D01'}">경영지원실</c:when>	
+								<c:when test="${dailyList.d_code == 'D02'}">부설연구소</c:when>
+								<c:when test="${dailyList.d_code == 'D03'}">핀테크서비스1부</c:when>
+								<c:when test="${dailyList.d_code == 'D04'}">핀테크서비스2부</c:when>
+								<c:when test="${dailyList.d_code == 'D05'}">핀테크서비스3부</c:when>
+								<c:when test="${dailyList.d_code == 'D06'}">핀테크서비스4부</c:when>
+							</c:choose>
+						</td>
 						<td>${dailyList.m_position}</td>
 						<td>
 							<c:choose>
@@ -125,7 +147,7 @@ $(function(){
 			<hr class="line">
 			<!-- 페이지 넘김 -->
 			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="dailyList.do?currentPage=${i}&w_status=${pg.w_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}">[${i}]</a>
+				<a href="dailyList.do?currentPage=${i}&w_status=${pg.w_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}&d_code=${pg.d_code}">[${i}]</a>
 			</c:forEach>
 		</div>
 	</div>

@@ -12,30 +12,42 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.miris.project.dto.DailyWorkVO;
+import com.miris.project.dto.MonthlyWorkVO;
 import com.miris.project.dto.Paging;
 import com.miris.project.service.MemberService;
+import com.miris.project.service.MonthlyService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MonthlyService monthlyService;
 	
 	@RequestMapping(value = "main")
-	public String memberSum(DailyWorkVO dailyWorkVO , Model model) {
+	public String memberSum(DailyWorkVO dailyWorkVO ,MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("=====================MemberContraller Main=====================");
      	
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format2 = new SimpleDateFormat("MM");
+		
 		Date date = new Date();
+		Date date2 = new Date();
+		
 		String today = format1.format(date);
+		String month = format2.format(date2);
+		
      	dailyWorkVO.setSearchDate(today);
-     	
+     	monthlyWorkVO.setM_month(month);
      	System.out.println("초기 날짜" + dailyWorkVO.getSearchDate());
      		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
+		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);
 		
 		model.addAttribute("dailySum",dailySum);
+		model.addAttribute("monthlySum",monthlySum);
 		
 		return "main";
 	}	
@@ -46,6 +58,7 @@ public class MemberController {
 		
 		System.out.println("전 구분 -> " + dailyWorkVO.getW_status());
 		System.out.println("전 이름 -> " + dailyWorkVO.getM_name());
+		System.out.println("전 부서 -> " + dailyWorkVO.getD_code());
 		System.out.println("전 날짜 -> " + dailyWorkVO.getSearchDate());
 		
 		if(dailyWorkVO.getW_status()==null) {
@@ -57,6 +70,7 @@ public class MemberController {
 			dailyWorkVO.setSearchDate(today);
 			dailyWorkVO.setW_status("0");
 			dailyWorkVO.setM_name("");
+			dailyWorkVO.setD_code("D00");
 			
 		} else {
 			
@@ -64,6 +78,7 @@ public class MemberController {
 		 
 		System.out.println("선택한 구분 -> " + dailyWorkVO.getW_status());
 		System.out.println("입력한 이름 -> " + dailyWorkVO.getM_name());
+		System.out.println("선택한 부서 -> " + dailyWorkVO.getD_code());
 		System.out.println("선택한 날짜 -> " + dailyWorkVO.getSearchDate());
 		
 		// 페이징 작업
@@ -74,6 +89,7 @@ public class MemberController {
 		
 		pg.setSearchDate(dailyWorkVO.getSearchDate());
 		pg.setW_status(dailyWorkVO.getW_status());
+		pg.setD_code(dailyWorkVO.getD_code());;
 		pg.setM_name(dailyWorkVO.getM_name());
 		
 		dailyWorkVO.setStart(pg.getStart());

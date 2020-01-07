@@ -10,4 +10,6 @@ public interface MonthlyDao {
 
 	List<MonthlyWorkVO> monthlyDetail(MonthlyWorkVO monthlyWorkVO);
 
+	List<MonthlyWorkVO> monthlySum(MonthlyWorkVO monthlyWorkVO);
+
 }

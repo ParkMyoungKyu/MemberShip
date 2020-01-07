@@ -28,6 +28,15 @@ public class MonthlyWorkVO {
 	private String d_code;
 	private String m_position;
 	
+	
+	//인원현황을 위한
+	private String total;
+	private String except;
+	private String usingWork;
+	private String inputWork1;
+	private String waitWork;
+	private String avg1;
+	
 	//월별 조회 담기용도
 	private String JAN;
 	private String FEB;
@@ -47,6 +56,44 @@ public class MonthlyWorkVO {
     private int end;
     
     
+    
+    
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	public String getExcept() {
+		return except;
+	}
+	public void setExcept(String except) {
+		this.except = except;
+	}
+	public String getUsingWork() {
+		return usingWork;
+	}
+	public void setUsingWork(String usingWork) {
+		this.usingWork = usingWork;
+	}
+	public String getInputWork1() {
+		return inputWork1;
+	}
+	public void setInputWork1(String inputWork1) {
+		this.inputWork1 = inputWork1;
+	}
+	public String getWaitWork() {
+		return waitWork;
+	}
+	public void setWaitWork(String waitWork) {
+		this.waitWork = waitWork;
+	}
+	public String getAvg1() {
+		return avg1;
+	}
+	public void setAvg1(String avg1) {
+		this.avg1 = avg1;
+	}
 	public String getJAN() {
 		return JAN;
 	}

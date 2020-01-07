@@ -26,6 +26,7 @@ public class DailyWorkVO {
     private int four;
     
     //조회성을 위한 변수 추가
+    private String d_code;
     private String m_name;
     private String m_position;
     
@@ -34,6 +35,12 @@ public class DailyWorkVO {
     private int end;
     
     
+	public String getD_code() {
+		return d_code;
+	}
+	public void setD_code(String d_code) {
+		this.d_code = d_code;
+	}
 	public int getStart() {
 		return start;
 	}

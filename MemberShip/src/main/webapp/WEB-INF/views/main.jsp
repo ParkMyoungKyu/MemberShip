@@ -13,8 +13,10 @@
 <body class="mainBox">	
 	<div class="mainBody">
 		<div class="mainMonthlyTable">
-		<!-- <img class="mirisLogo" alt="miris" src="./image/mirisci.png"> -->
-			<div class="nowName">현재 인력 가동률</div>
+		<c:set var="now" value="<%=new java.util.Date()%>" />
+		<c:set var="monthly"><fmt:formatDate value="${now}" pattern="yyyy.MM" /></c:set>
+		<c:set var="daily"><fmt:formatDate value="${now}" pattern="yyyy.MM.dd" /></c:set>
+			<div class="nowName">현재 인력 가동률  (기준 : <c:out value="${monthly}" />)</div>
 			<table class="nowWorking">
 				<tr class="nowWorking-rowheader">
 					<th>총인원</th>
@@ -26,20 +28,22 @@
 					<th>가동률1</th>
 					<th>가동률2</th>
 				</tr>
+				<c:forEach var="monthlySum" items="${monthlySum}">
 				<tr class="nowWorking-row">
-					<td>총인원</td>
-					<td>제외인원</td>
-					<td>가동 가능 인력</td>
-					<td>투입인력1</td>
-					<td>투입인력2</td>
-					<td>대기인력</td>
-					<td>가동률1</td>
-					<td>가동률2</td>
+					<td>${monthlySum.total}</td>
+					<td>${monthlySum.except}</td>
+					<td>${monthlySum.usingWork}</td>
+					<td>${monthlySum.inputWork1}</td>
+					<td></td>
+					<td>${monthlySum.waitWork}</td>
+					<td>${monthlySum.avg1}%</td>
+					<td></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<div class="mainTodayTable">
-			<div class="todayName">오늘 인력 상태 </div>
+			<div class="todayName">오늘 인력 상태   (기준 : <c:out value="${daily}" />)</div>
 			<table class="todayWorking">
 				<tr class="todayWorking-rowheader">
 					<th>총인원</th>
