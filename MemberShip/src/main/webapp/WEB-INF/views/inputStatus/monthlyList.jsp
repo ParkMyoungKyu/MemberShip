@@ -85,15 +85,15 @@
 		 			<option value="상무">상무</option>
 		 	   </select>
 		 현업무 : <select class="nowWork" name="j_name">
-		 	   		<option value="J00">전체</option>
-		 	   		<option value="J01">경영지원,영업</option>
-		 	   		<option value="J02">신사업발굴</option>
-		 	   		<option value="J03">SI 사업 발주 대기</option>
-		 	   		<option value="J04">시스템운영</option>
-		 	   		<option value="J05">서울시금고운영</option>
-		 	   		<option value="J06">경남시금고운영</option>
-		 	   		<option value="J07">광중시금고운영</option>
-		 	   		<option value="J08">인천시금고운영</option>
+		 	   		<option value="전체">전체</option>
+		 	   		<option value="경영지원,영업">경영지원,영업</option>
+		 	   		<option value="신사업발굴">신사업발굴</option>
+		 	   		<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
+		 	   		<option value="시스템운영">시스템운영</option>
+		 	   		<option value="서울시금고운영">서울시금고운영</option>
+		 	   		<option value="경남시금고운영">경남시금고운영</option>
+		 	   		<option value="광중시금고운영">광중시금고운영</option>
+		 	   		<option value="인천시금고운영">인천시금고운영</option>
 		 	   </select>
 	  <input type="submit" class="formBtn" value="조회">
 	</form>

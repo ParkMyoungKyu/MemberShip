@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="styleSheet" href="css/sideBar.css" type="text/css">
 <title>Insert title here</title>
-<style type="text/css">
-	.sideBar{
-		background-color: red;
-		width: 25vh;
-		min-height: 824px;
-	}
-</style>
+
 </head>
 <body>
 	<div class="sideBar">

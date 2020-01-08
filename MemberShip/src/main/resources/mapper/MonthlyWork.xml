@@ -6,14 +6,16 @@
   	
   	<select id="monthlySum" parameterType="MonthlyWork" resultType="MonthlyWork">
   		SELECT DISTINCT
-        (select COUNT(*) from m_work WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month}) AS total,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'N') AS except,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'Y') AS usingWork,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기') AS inputWork1,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'Y' AND j_name = 'SI 사업 발주 대기') AS waitWork,
-        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = #{m_month} AND j_except = 'Y')*100),1) AS AVG1
+        (select COUNT(*) from m_work WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')) AS total,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'N') AS except,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y') AS usingWork,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기') AS inputWork1,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name = 'SI 사업 발주 대기') AS waitWork,
+        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y')*100),1) AS AVG1
         FROM m_work
-        WHERE TO_CHAR(M_MONTH,'MM') = #{m_month}
+        WHERE 1=1
+        AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')
+        AND TO_CHAR(M_YEAR,'YYYY') = #{m_year}
   	</select>
   	
   	<select id="monthlyList" parameterType="MonthlyWork" resultType="MonthlyWork">
@@ -41,11 +43,11 @@
         AND A.M_ID = b.m_id
         AND A.L_CODE = c.L_CODE
         and to_char(a.m_year,'yyyy') = #{m_year}
-        and to_char(a.m_month,'MM') = #{m_month}
-        <if test="m_gubun != null"> and B.M_GUBUN = #{m_gubun}</if>
-        <if test="m_name != null">and B.M_NAME like '%||#{m_name}||%'</if>
-        <if test="m_position != null">AND B.M_POSITION = #{m_position}</if>
-        <if test="j_name != null">AND A.J_NAME = #{j_name}</if>
+        and to_char(a.m_month,'MM') = LPAD(#{m_month},2,'0')
+        <if test="m_gubun != 'G0'"> and B.m_gubun = #{m_gubun}</if>
+        <if test="m_name != '전체'">and B.m_name like '%'||#{m_name}||'%'</if>
+        <if test="m_position != '전체'">AND B.m_position = #{m_position}</if>
+        <if test="j_name != '전체'">AND A.j_name = #{j_name}</if>
   	</select>
   	
   	<select id="monthlyDetail" parameterType="MonthlyWork" resultType="MonthlyWork">

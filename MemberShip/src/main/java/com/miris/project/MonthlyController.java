@@ -32,10 +32,17 @@ public class MonthlyController {
      			
 		monthlyWorkVO.setM_year(year);
 		monthlyWorkVO.setM_month(month);
-		monthlyWorkVO.setM_gubun(null);
-		monthlyWorkVO.setM_name(null);
-		monthlyWorkVO.setJ_name(null);
-		monthlyWorkVO.setM_position(null);
+		monthlyWorkVO.setM_gubun("G0");
+		
+		} 
+		if(monthlyWorkVO.getM_name() == null || monthlyWorkVO.getM_name() == "") {
+			monthlyWorkVO.setM_name("전체");	
+		} 
+		if(monthlyWorkVO.getJ_name() == null ) {
+			monthlyWorkVO.setJ_name("전체");
+		} 
+		if(monthlyWorkVO.getM_position() == null ) {
+			monthlyWorkVO.setM_position("전체");
 		}
 		
 		System.out.println("선택한 년도 -> " + monthlyWorkVO.getM_year());
@@ -43,7 +50,7 @@ public class MonthlyController {
 		System.out.println("선택한 구분 -> " + monthlyWorkVO.getM_gubun());
 		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
-		System.out.println("선택한 업무 -> " + monthlyWorkVO.getM_position());
+		System.out.println("선택한 업무 -> " + monthlyWorkVO.getJ_name());
 		
 		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);		
