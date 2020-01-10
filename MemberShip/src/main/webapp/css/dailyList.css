@@ -84,13 +84,13 @@
 }
 
 
-.memberListTable{
+.dailyListTable{
   width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
-.memberList {
+.dailyList {
   width: 100%;
   display: table;
   margin: 0;
@@ -98,11 +98,11 @@
   overflow: hidden;
 }
 
-.memberList-rowheader {
+.dailyList-rowheader {
   background-color: #24292e;
 }
 
-.memberList-rowheader th {
+.dailyList-rowheader th {
   font-family: Poppins-Regular;
   font-size: 12px;
   color: #efefef;
@@ -112,12 +112,12 @@
   width: 17%;
 }
 
-.memberList-row {
+.dailyList-row {
   display: table-row;
   background: #fff;
 }
 
-.memberList-row td {
+.dailyList-row td {
   font-family: Poppins-Regular;
   font-size: 12px;
   color: #666666;
@@ -128,7 +128,7 @@
   width: 17%;
 }
 
-.memberList-row:hover {
+.dailyList-row:hover {
   background-color: #ececff;
   cursor: pointer;
 }

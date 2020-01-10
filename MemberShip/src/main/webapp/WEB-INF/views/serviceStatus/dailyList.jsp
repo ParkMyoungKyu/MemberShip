@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
-<title>memberList</title>
+<title>dailyList</title>
 <script type="text/javascript">
 //datepicker 사용
 $(function(){
@@ -85,9 +85,9 @@ $(function(){
 			</table>
 		</div>
 		
-		<div class="memberListTable">
-			<table class="memberList">
-				<tr class="memberList-rowheader">
+		<div class="dailyListTable">
+			<table class="dailyList">
+				<tr class="dailyList-rowheader">
 					<th>성명</th>
 					<th>부서</th>
 					<th>직급</th>
@@ -99,7 +99,7 @@ $(function(){
 				<c:forEach var="dailyList" items="${dailyList}">
 				<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
 				<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
-					<tr class="memberList-row">
+					<tr class="dailyList-row">
 						<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
 						<td>
 							<c:choose>

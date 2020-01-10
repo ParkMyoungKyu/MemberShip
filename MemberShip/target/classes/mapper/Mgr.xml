@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Mgr">
+	
+	<select id="deptList" parameterType="Mgr" resultType="Mgr">
+		SELECT d_code,
+			   d_name
+		FROM DEPT
+	</select>	
+	<insert id="deptInput" parameterType="Mgr">
+		MERGE INTO DEPT a 
+		USING DUAL
+		ON (a.d_code = #{d_code}
+		    or a.d_name = #{d_name}
+		    or #{d_code} NOT LIKE 'D%'
+		   ) 
+		WHEN NOT MATCHED THEN
+			INSERT (a.d_code,a.d_name)
+			VALUES (#{d_code},#{d_name})
+	</insert>
+	<update id="deptUpdate">
+		MERGE INTO DEPT A
+		USING (SELECT D_CODE,D_NAME 
+	           FROM DEPT
+	           WHERE D_CODE = #{d_code}
+          ) B
+		ON ( A.d_code = B.D_CODE
+		   ) 
+   		WHEN MATCHED THEN
+        	UPDATE SET A.d_name=#{d_name}
+	</update>
+	
+	
+	<select id="workList" parameterType="Mgr" resultType="Mgr">
+		SELECT j_name,
+			   j_except
+		FROM JOB
+	</select>
+	
+	<select id="siteList" parameterType="Mgr" resultType="Mgr">
+		SELECT l_code,
+			   l_name 
+		FROM SITE
+	</select>
+	
+	<select id="workPlaceList" parameterType="Mgr" resultType="Mgr">
+		SELECT p_name,
+			   p_addr
+		FROM PLACE
+	</select>
+	
+	<select id="memberList" parameterType="Mgr" resultType="Mgr">
+		SELECT A.m_id,
+               A.m_pw,
+               A.m_name,
+               A.d_code,
+               A.m_position,
+               A.m_gubun,
+               A.m_joindate,
+               A.m_leavedate,
+               A.m_notice,
+               B.d_name 
+		FROM MEMBER A, DEPT B
+	</select>
+</mapper>

@@ -7,12 +7,14 @@
 		<typeAlias alias="Member" type="com.miris.project.dto.MemberVO"/>
 		<typeAlias alias="DailyWork" type="com.miris.project.dto.DailyWorkVO"/>
 		<typeAlias alias="MonthlyWork" type="com.miris.project.dto.MonthlyWorkVO"/>
+		<typeAlias alias="Mgr" type="com.miris.project.dto.MgrVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/Member.xml"/>
 		<mapper resource="mapper/DailyWork.xml"/>
 		<mapper resource="mapper/MonthlyWork.xml"/>
+		<mapper resource="mapper/Mgr.xml"/>
 	</mappers>
 	
 </configuration>

@@ -6,12 +6,12 @@
   	
   	<select id="monthlySum" parameterType="MonthlyWork" resultType="MonthlyWork">
   		SELECT DISTINCT
-        (select COUNT(*) from m_work WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')) AS total,
+        (select COUNT(*) from M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')) AS total,
         (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'N') AS except,
         (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y') AS usingWork,
         (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기') AS inputWork1,
         (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name = 'SI 사업 발주 대기') AS waitWork,
-        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y')*100),1) AS AVG1
+        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y')*100),1) AS avg1
         FROM m_work
         WHERE 1=1
         AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')

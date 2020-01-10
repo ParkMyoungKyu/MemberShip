@@ -26,22 +26,28 @@ public class MemberController {
 	private MonthlyService monthlyService;
 	
 	@RequestMapping(value = "main")
-	public String memberSum(DailyWorkVO dailyWorkVO ,MonthlyWorkVO monthlyWorkVO, Model model) {
+	public String main(DailyWorkVO dailyWorkVO ,MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("=====================MemberContraller Main=====================");
      	
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat format2 = new SimpleDateFormat("MM");
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyy");
+		SimpleDateFormat format3 = new SimpleDateFormat("MM");
 		
 		Date date = new Date();
 		Date date2 = new Date();
+		Date date3 = new Date();
 		
 		String today = format1.format(date);
-		String month = format2.format(date2);
+		String year = format2.format(date2);
+		String month = format3.format(date3);
 		
      	dailyWorkVO.setSearchDate(today);
+     	monthlyWorkVO.setM_year(year);
      	monthlyWorkVO.setM_month(month);
-     	System.out.println("초기 날짜" + dailyWorkVO.getSearchDate());
-     	System.out.println("초기 날짜" + monthlyWorkVO.getM_month());
+     	
+     	System.out.println("daily 초기 날짜 -> " + dailyWorkVO.getSearchDate());
+     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getM_year());
+     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getM_month());
      		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
@@ -54,7 +60,7 @@ public class MemberController {
 	}	
 	
 	@RequestMapping(value = "dailyList")
-	public String memberList(DailyWorkVO dailyWorkVO,String currentPage, Model model) {
+	public String dailyList(DailyWorkVO dailyWorkVO,String currentPage, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
 		
 		System.out.println("전 구분 -> " + dailyWorkVO.getW_status());
@@ -112,7 +118,7 @@ public class MemberController {
 	}
 		
 	@RequestMapping(value = "dailyDetail")
-	public String memberDetail(DailyWorkVO dailyWorkVO,HttpServletRequest request,Model model) {
+	public String dailyDetail(DailyWorkVO dailyWorkVO,HttpServletRequest request,Model model) {
 		System.out.println("===================dailyDetail page start===================");
 		System.out.println("===========" + dailyWorkVO.getM_id()); 
 		List<DailyWorkVO> dailyDetail = memberService.dailyDetail(dailyWorkVO);
