@@ -6,10 +6,10 @@ public class DailyWorkVO {
 
 	//일별근무이력
     private String m_id;
-    private String w_status;
-    private Date w_day;
-    private Date w_time;
-    private String w_notice;
+    private String dw_status;
+    private Date dw_day;
+    private Date dw_time;
+    private String dw_notice;
     //private String p_name;
     
     private String searchDate;
@@ -35,54 +35,35 @@ public class DailyWorkVO {
     private int end;
     
     
-	public String getD_code() {
-		return d_code;
-	}
-	public void setD_code(String d_code) {
-		this.d_code = d_code;
-	}
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
-	public int getEnd() {
-		return end;
-	}
-	public void setEnd(int end) {
-		this.end = end;
-	}
-    
 	public String getM_id() {
 		return m_id;
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-	public String getW_status() {
-		return w_status;
+	public String getDw_status() {
+		return dw_status;
 	}
-	public void setW_status(String w_status) {
-		this.w_status = w_status;
+	public void setDw_status(String dw_status) {
+		this.dw_status = dw_status;
 	}
-	public Date getW_day() {
-		return w_day;
+	public Date getDw_day() {
+		return dw_day;
 	}
-	public void setW_day(Date w_day) {
-		this.w_day = w_day;
+	public void setDw_day(Date dw_day) {
+		this.dw_day = dw_day;
 	}
-	public Date getW_time() {
-		return w_time;
+	public Date getDw_time() {
+		return dw_time;
 	}
-	public void setW_time(Date w_time) {
-		this.w_time = w_time;
+	public void setDw_time(Date dw_time) {
+		this.dw_time = dw_time;
 	}
-	public String getW_notice() {
-		return w_notice;
+	public String getDw_notice() {
+		return dw_notice;
 	}
-	public void setW_notice(String w_notice) {
-		this.w_notice = w_notice;
+	public void setDw_notice(String dw_notice) {
+		this.dw_notice = dw_notice;
 	}
 	public String getSearchDate() {
 		return searchDate;
@@ -132,6 +113,12 @@ public class DailyWorkVO {
 	public void setFour(int four) {
 		this.four = four;
 	}
+	public String getD_code() {
+		return d_code;
+	}
+	public void setD_code(String d_code) {
+		this.d_code = d_code;
+	}
 	public String getM_name() {
 		return m_name;
 	}
@@ -144,6 +131,21 @@ public class DailyWorkVO {
 	public void setM_position(String m_position) {
 		this.m_position = m_position;
 	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+    
+    
+	
     
     
     

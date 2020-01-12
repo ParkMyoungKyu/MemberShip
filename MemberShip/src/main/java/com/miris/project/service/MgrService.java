@@ -8,15 +8,33 @@ public interface MgrService {
 
 	List<MgrVO> deptList(MgrVO mgrVO);
 	int DeptInput(MgrVO mgrVO);
+	List<MgrVO> deptUpdateForm(MgrVO mgrVO);
 	int DeptUpdate(MgrVO mgrVO);
+	int DeptDelete(MgrVO mgrVO);
+	int DeptDeleteError(MgrVO mgrVO);
+	
 	
 	List<MgrVO> workList(MgrVO mgrVO);
-
+	int wrokInput(MgrVO mgrVO);
+	List<MgrVO> workUpdateForm(MgrVO mgrVO);
+	int WorkUpdate(MgrVO mgrVO);
+	int workDelete(MgrVO mgrVO);
+	int workDeleteError(MgrVO mgrVO);
+	
+	
+	
 	List<MgrVO> siteList(MgrVO mgrVO);
 
 	List<MgrVO> memberList(MgrVO mgrVO);
 
 	List<MgrVO> workPlaceList(MgrVO mgrVO);
+	
+	
+	
+	
+	
+	
+	
 	
 
 

@@ -10,7 +10,6 @@
 		window.opener.location.reload();
 		window.close();
 	}
-	
 </script>
 </head>
 <body>
@@ -18,7 +17,7 @@
 		<form action="mgrDeptInput.do">
 			<div><input type="text" name="d_code"></div>
 			<div><input type="text" name="d_name"></div>
-			<input type="submit" value="제출" onclick="ref();">
+			<input type="submit" value="제출" onclick="ref()">
 		</form>
 	</div>
 </body>

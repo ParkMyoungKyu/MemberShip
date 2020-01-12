@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.miris.project.dto.MemberVO;
 import com.miris.project.dto.MgrVO;
 import com.miris.project.service.MgrService;
 
@@ -51,21 +50,37 @@ public class MgrController {
 	@RequestMapping(value = "mgrDeptUpdateForm")
 	public String mgrDeptUpdateForm(MgrVO mgrVO,Model model) {
 		System.out.println("=====================MgrController mgrDeptInputForm=====================");
+		System.out.println("수정하고자 하는 부서코드 : " + mgrVO.getD_code());
+		System.out.println("수정하고자 하는 부서명 : " + mgrVO.getD_name());
+		
+		List<MgrVO> deptUpdateForm = mgrService.deptUpdateForm(mgrVO);
+		
+		model.addAttribute("deptUpdateForm",deptUpdateForm);
+		
 		return "manager/mgrDeptUpdateForm";
 	}
 	//수정할 부서 입력 후 부모페이지로 다시 이동
 	@RequestMapping(value = "mgrDeptUpdate")
 	public String mgrDeptUpdate(MgrVO mgrVO,Model model) {
 		System.out.println("=====================MgrController mgrDeptInput=====================");
-		
+		System.out.println("수정입력한 부서코드 : " + mgrVO.getD_code());
+		System.out.println("수정입력한 부서명 : " + mgrVO.getD_name());
 		mgrService.DeptUpdate(mgrVO);
 		
 		return "redirect:mgrDept.do";
 	}
-	
-	
-	
-	
+	//부서 삭제
+	@RequestMapping(value = "mgrDeptDelete")
+	public String mgrDeptDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrController mgrDeptDelete=====================");
+		System.out.println("삭제하고자 하는 부서코드 : " + mgrVO.getD_code());
+		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
+		
+		mgrService.DeptDelete(mgrVO);
+		mgrService.DeptDeleteError(mgrVO);
+		
+		return "manager/mgrDept";
+	}
 	
 	
 	
@@ -81,8 +96,70 @@ public class MgrController {
 		
 		return "manager/mgrWork";
 	}
+	//업무 목록 추가하러 페이지이동
+	@RequestMapping(value = "mgrWorkInputForm")
+	public String mgrWrokInputForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkInputForm=====================");
+		return "manager/mgrWorkInputForm";
+	}
+	//추가할 업무 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrWorkInput")
+	public String mgrWorkInput(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkInput=====================");
+		
+		System.out.println("업무명 -> " + mgrVO.getW_name());
+		System.out.println("해당업무 제외여부 -> " + mgrVO.getW_except());
+		
+		mgrService.wrokInput(mgrVO);
+		
+		return "redirect:mgrWork.do";
+	}
+
+	//수정 페이지 이동
+	@RequestMapping(value = "mgrWorkUpdateForm")
+	public String mgrWorkUpdateForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkInputForm=====================");
+		System.out.println("수정하고자 하는 업무명 : " + mgrVO.getW_name());
+		System.out.println("수정하고자 하는 업무제외여부 : " + mgrVO.getW_except());
+		
+		List<MgrVO> workUpdateForm = mgrService.workUpdateForm(mgrVO);
+		
+		model.addAttribute("workUpdateForm",workUpdateForm);
+		
+		return "manager/mgrWorkUpdateForm";
+	}
+	//수정할 업무 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrWorkUpdate")
+	public String mgrWorkUpdate(MgrVO mgrVO,Model model) {
+		System.out.println("=====================MgrController mgrWorkInput=====================");
+		System.out.println("수정입력한 부서코드 : " + mgrVO.getW_name());
+		System.out.println("수정입력한 부서명 : " + mgrVO.getW_except());
+		mgrService.WorkUpdate(mgrVO);
+		
+		return "redirect:mgrWork.do";
+	}
+	
+	// 업무 삭제
+	@RequestMapping(value="mgrWorkDelete")
+	public String mgrWrokDelete(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWrokDelete=====================");
+		System.out.println("삭제하고자 하는 업무명 : " + mgrVO.getW_name());
+		System.out.println("삭제하고자 하는 업무 제외여부 : " + mgrVO.getW_except());
+		
+		mgrService.workDelete(mgrVO);
+		mgrService.workDeleteError(mgrVO);
+		
+	
+		return "manager/mgrWork";
+	}
+	
+	
+	
+	
+	
 	
 	//사이트 목록
+	//-------------------사이트 관련 작업들-------------------
 	@RequestMapping(value="mgrSite")
 	public String mgrSite(MgrVO mgrVO,Model model) {
 		System.out.println("=====================MgrController mgrSite page=====================");

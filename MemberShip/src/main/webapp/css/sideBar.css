@@ -1,25 +1,60 @@
 .sideBar{
-	background-color: red;
-	width: 18em;
+	background-color: #93aeca;
+	width: 14vw;
 	min-height: 824px;
-	display: inline-block;
+	float: left;
 }
-
+.sideBar hr{
+	margin: 0;
+}
 .mgrDept{
-	
+	text-align: center;
+	height:40px;	
+	line-height: 40px;
+}
+.mgrDept:hover{
+	background-color: aqua;
+	cursor: pointer;
 }
 
 .mgrWork{
-	
+	text-align: center; 
+	height:40px;
+	line-height: 40px;
+}
+.mgrWork:hover{
+	background-color: aqua;
+	cursor: pointer;
 }
 
 .mgrSite{
-	
+	text-align: center;
+	height:40px;
+	line-height: 40px;
+}
+.mgrSite:hover{
+	background-color: aqua;
+	cursor: pointer;
 }
 
 .mgrWrokPlace{
-	
+	text-align: center; 
+	height:40px;
+	line-height: 40px;
+}
+.mgrWrokPlace:hover{
+	background-color: aqua;
+	cursor: pointer;
 }
 
 .mgrMember{
+	text-align: center; 
+	height:40px;
+	line-height: 40px;
+}
+.mgrMember:hover{
+	background-color: aqua;
+	cursor: pointer;
+}
+	
 	

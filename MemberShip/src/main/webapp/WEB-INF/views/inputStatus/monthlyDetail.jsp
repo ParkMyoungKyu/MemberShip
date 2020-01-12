@@ -61,10 +61,10 @@
 		</tr>
 		 <c:forEach var="monthlyDetail" items="$*{monthlyDetail}">
 			<tr>
-				<td>${monthlyDetail.m_month}</td>
-				<td>${monthlyDetail.j_name}</td>
-				<td>${monthlyDetail.j_except}</td>
-				<td>${monthlyDetail.m_notice}</td>
+				<td>${monthlyDetail.mw_month}</td>
+				<td>${monthlyDetail.w_name}</td>
+				<td>${monthlyDetail.w_except}</td>
+				<td>${monthlyDetail.mw_notice}</td>
 			</tr>
 		</c:forEach>
 	</table>

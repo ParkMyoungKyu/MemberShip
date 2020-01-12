@@ -1,13 +1,15 @@
 package com.miris.project.dto;
 
+import java.util.Date;
+
 public class MgrVO {
 	// 부서 관리
 	private String d_code;
 	private String d_name;
 	
 	// 업무 관리
-	private String j_name;
-	private String j_except;
+	private String w_name;
+	private String w_except;
 	
 	// 사이트 관리
 	private String l_code;
@@ -24,8 +26,8 @@ public class MgrVO {
 	//private String d_code;
 	private String m_position;
 	private String m_gubun;
-	private String m_joindate;
-	private String m_leavedate;
+	private Date m_joindate;
+	private Date m_leavedate;
 	private String m_notice;
 	
 	// 관리자 관리
@@ -46,17 +48,17 @@ public class MgrVO {
 	public void setD_name(String d_name) {
 		this.d_name = d_name;
 	}
-	public String getJ_name() {
-		return j_name;
+	public String getW_name() {
+		return w_name;
 	}
-	public void setJ_name(String j_name) {
-		this.j_name = j_name;
+	public void setW_name(String w_name) {
+		this.w_name = w_name;
 	}
-	public String getJ_except() {
-		return j_except;
+	public String getW_except() {
+		return w_except;
 	}
-	public void setJ_except(String j_except) {
-		this.j_except = j_except;
+	public void setW_except(String w_except) {
+		this.w_except = w_except;
 	}
 	public String getL_code() {
 		return l_code;
@@ -112,16 +114,16 @@ public class MgrVO {
 	public void setM_gubun(String m_gubun) {
 		this.m_gubun = m_gubun;
 	}
-	public String getM_joindate() {
+	public Date getM_joindate() {
 		return m_joindate;
 	}
-	public void setM_joindate(String m_joindate) {
+	public void setM_joindate(Date m_joindate) {
 		this.m_joindate = m_joindate;
 	}
-	public String getM_leavedate() {
+	public Date getM_leavedate() {
 		return m_leavedate;
 	}
-	public void setM_leavedate(String m_leavedate) {
+	public void setM_leavedate(Date m_leavedate) {
 		this.m_leavedate = m_leavedate;
 	}
 	public String getM_notice() {

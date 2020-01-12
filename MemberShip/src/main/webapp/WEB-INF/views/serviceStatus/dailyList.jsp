@@ -32,12 +32,11 @@ $(function(){
 
 <body>
 	<div class="dailyListBox">
-		<!-- <img class="mirisLogo" alt="miris" src="./image/mirisci.png"> -->	
 		<div class="title">인력근무현황</div>
 		<div class="search">
 			<form action="dailyList.do">
 				<div class="gbnSearch">
-					구분 : <select class="gubun" name="w_status">
+					구분 : <select class="gubun" name="dw_status">
 							<option value="0" selected="selected">전체</option>
 							<option value="1">근무</option>
 							<option value="2">휴가</option>
@@ -97,8 +96,8 @@ $(function(){
 				</tr>
 				
 				<c:forEach var="dailyList" items="${dailyList}">
-				<fmt:formatDate var="day"  value="${dailyList.w_day}" pattern="yyyy-MM-dd"/>
-				<fmt:formatDate var="time" value="${dailyList.w_day}" pattern="HH:mm:ss"/>
+				<fmt:formatDate var="day"  value="${dailyList.dw_day}" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate var="time" value="${dailyList.dw_day}" pattern="HH:mm:ss"/>
 					<tr class="dailyList-row">
 						<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
 						<td>
@@ -114,13 +113,13 @@ $(function(){
 						<td>${dailyList.m_position}</td>
 						<td>
 							<c:choose>
-								<c:when test="${time == '00:00:00' and dailyList.w_status != '2'}">-</c:when>
-								<c:when test="${time != '00:00:00' or dailyList.w_status == '2'}">
+								<c:when test="${time == '00:00:00' and dailyList.dw_status != '2'}">-</c:when>
+								<c:when test="${time != '00:00:00' or dailyList.dw_status == '2'}">
 									<c:choose>
-										<c:when test="${dailyList.w_status == '1'}">근무</c:when>
-										<c:when test="${dailyList.w_status == '2'}">휴가</c:when>
-										<c:when test="${dailyList.w_status == '3'}">출장</c:when>
-										<c:when test="${dailyList.w_status == '4'}">기타</c:when>
+										<c:when test="${dailyList.dw_status == '1'}">근무</c:when>
+										<c:when test="${dailyList.dw_status == '2'}">휴가</c:when>
+										<c:when test="${dailyList.dw_status == '3'}">출장</c:when>
+										<c:when test="${dailyList.dw_status == '4'}">기타</c:when>
 									</c:choose>
 								</c:when>
 							</c:choose>
@@ -133,8 +132,8 @@ $(function(){
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="${time == '00:00:00' and dailyList.w_status != '2'}">미출근</c:when>
-								<c:when test="${time == '00:00:00' or dailyList.w_status == '2'}">휴가중</c:when>
+								<c:when test="${time == '00:00:00' and dailyList.dw_status != '2'}">미출근</c:when>
+								<c:when test="${time == '00:00:00' or dailyList.dw_status == '2'}">휴가중</c:when>
 								<c:when test="${time != '00:00:00'}">${time}</c:when>
 							</c:choose>
 						</td>
@@ -147,7 +146,7 @@ $(function(){
 			<hr class="line">
 			<!-- 페이지 넘김 -->
 			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="dailyList.do?currentPage=${i}&w_status=${pg.w_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}&d_code=${pg.d_code}">[${i}]</a>
+				<a href="dailyList.do?currentPage=${i}&w_status=${pg.dw_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}&d_code=${pg.d_code}">[${i}]</a>
 			</c:forEach>
 		</div>
 	</div>

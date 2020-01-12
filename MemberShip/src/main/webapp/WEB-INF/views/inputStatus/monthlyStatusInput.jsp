@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,30 +42,31 @@ var full_count = 11;
 				'	</td>'+
 				'	<td>'+
 				'		<select>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
+				'			<option>경영지원,영업</option>'+
+				'			<option>시스템운영</option>'+
+				'			<option>시금고운영</option>'+
+				'			<option>SI 사업 발주 대기</option>'+
+				'			<option>신사업 발굴</option>'+
+				'			<option>출산휴가</option>'+
 				'		</select>'+
 				'	</td>'+
 				'	<td>'+
 				'		<select>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
-				'			<option></option>'+
+				'			<option value="L01">서울</option>'+
+				'			<option value="L02">서울</option>'+
+				'			<option value="L03">인천</option>'+
+				'			<option value="L04">제주</option>'+
+				'			<option value="L05">대전</option>'+
+				'			<option value="L06">경남</option>'+
 				'		</select>'+
 				'	</td>'+
 				'	<td>'+
 				'		<select>'+
-				'			<option>P</option>'+
-				'			<option>C</option>'+
+				'			<option value="P">P</option>'+
+				'			<option value="C">C</option>'+
 				'		</select>'+
 				'	</td>'+
 				'</tr>');
-       
       }
     });
      //삭제 버튼 클릭시
@@ -99,13 +102,15 @@ var full_count = 11;
 				<th>직급</th>
 				<th>비고</th>
 			</tr>
-			<tr>
-				<td>dd</td>
-				<td>dd</td>
-				<td>dd</td>
-				<td>dd</td>
-				<td>dd</td>
-			</tr>
+			<c:forEach var="monthlyStatusInput" items="${monthlyStatusInput}">
+				<tr>
+					<td>${monthlyStatusInput.m_gubun}</td>
+					<td>${monthlyStatusInput.w_name}</td>
+					<td>${monthlyStatusInput.m_name}</td>
+					<td>${monthlyStatusInput.m_position}</td>
+					<td>${monthlyStatusInput.mw_notice}</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 	

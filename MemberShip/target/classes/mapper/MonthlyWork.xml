@@ -6,16 +6,16 @@
   	
   	<select id="monthlySum" parameterType="MonthlyWork" resultType="MonthlyWork">
   		SELECT DISTINCT
-        (select COUNT(*) from M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')) AS total,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'N') AS except,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y') AS usingWork,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기') AS inputWork1,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name = 'SI 사업 발주 대기') AS waitWork,
-        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y' AND j_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0') AND j_except = 'Y')*100),1) AS avg1
+        (select COUNT(*) from M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0')) AS total,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N') AS except,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y') AS usingWork,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name != 'SI 사업 발주 대기') AS inputWork1,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name = 'SI 사업 발주 대기') AS waitWork,
+        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y')*100),1) AS avg1
         FROM m_work
         WHERE 1=1
-        AND TO_CHAR(M_MONTH,'MM') = LPAD(#{m_month},2,'0')
-        AND TO_CHAR(M_YEAR,'YYYY') = #{m_year}
+        AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0')
+        AND TO_CHAR(MW_YEAR,'YYYY') = #{mw_year}
   	</select>
   	
   	<select id="monthlyList" parameterType="MonthlyWork" resultType="MonthlyWork">
@@ -23,31 +23,33 @@
   			   b.m_gubun,
   			   b.m_name,
   			   b.m_position,
-	           a.j_name,
+	           a.w_name,
 	           c.l_name,
-	           (SELECT A.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '01') AS JAN,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '02') as FEB,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '03') as MAR,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '04') as APR,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '05') as MAY,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '06') as JUN,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '07') as JUL,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '08') as AUG,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '09') as SEPT,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '10') as OCT,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '11') as NOV,
-	           (SELECT a.m_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.m_year,'yyyy') = #{m_year} and to_char(a.m_month,'MM') = '12') as DEC,
-	           a.m_notice
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '01') as JAN,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '02') as FEB,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '03') as MAR,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '04') as APR,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '05') as MAY,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '06') as JUN,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '07') as JUL,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '08') as AUG,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '09') as SEPT,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '10') as OCT,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '11') as NOV,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '12') as DEC,
+	           a.mw_notice,
+	           TO_CHAR(a.mw_year,'yyyy') AS mw_year,
+	           TO_CHAR(a.mw_month,'MM') AS mw_month
   		FROM M_WORK A, member B, site c
         WHERE 1=1
         AND A.M_ID = b.m_id
         AND A.L_CODE = c.L_CODE
-        and to_char(a.m_year,'yyyy') = #{m_year}
-        and to_char(a.m_month,'MM') = LPAD(#{m_month},2,'0')
+        and to_char(a.mw_year,'yyyy') = #{mw_year}
+        and to_char(a.mw_month,'MM') = LPAD(#{mw_month},2,'0')
         <if test="m_gubun != 'G0'"> and B.m_gubun = #{m_gubun}</if>
         <if test="m_name != '전체'">and B.m_name like '%'||#{m_name}||'%'</if>
         <if test="m_position != '전체'">AND B.m_position = #{m_position}</if>
-        <if test="j_name != '전체'">AND A.j_name = #{j_name}</if>
+        <if test="w_name != '전체'">AND A.w_name = #{w_name}</if>
   	</select>
   	
   	<select id="monthlyDetail" parameterType="MonthlyWork" resultType="MonthlyWork">
@@ -56,16 +58,48 @@
              a.m_name,
              a.m_position,
              a.m_notice,
-             b.m_month,
-             b.j_name,
-             b.j_except,
-             b.m_notice
+             b.mw_month,
+             b.w_name,
+             b.w_except,
+             b.mw_notice
 	      from MEMBER A, M_WORK B
 	      where 1=1
 	      and a.m_id=b.m_id
 	      and a.m_name = #{m_name}
-	      and to_char(b.m_year,'yyyy') = to_char(sysdate,'yyyy')
-	      and to_char(b.m_month,'MM') > (TO_CHAR(SYSDATE,'MM')-12)
-	      order by b.m_year,b.m_month
+	      and to_char(b.mw_year,'yyyy') = to_char(sysdate,'yyyy')
+	      and to_char(b.mw_month,'MM') > (TO_CHAR(SYSDATE,'MM')-12)
+	      order by b.mw_year,b.mw_month
+  	</select>
+  	
+  	<select id="monthlyStatusInput" parameterType="MonthlyWork" resultType="MonthlyWork">
+  		SELECT b.m_id,
+  			   b.m_gubun,
+  			   b.m_name,
+  			   b.m_position,
+	           a.w_name,
+	           c.l_name,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '01') as JAN,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '02') as FEB,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '03') as MAR,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '04') as APR,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '05') as MAY,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '06') as JUN,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '07') as JUL,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '08') as AUG,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '09') as SEPT,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '10') as OCT,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '11') as NOV,
+	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '12') as DEC,
+	           a.mw_notice
+  		FROM M_WORK A, member B, site c
+        WHERE 1=1
+        AND A.M_ID = b.m_id
+        AND A.L_CODE = c.L_CODE
+        and to_char(a.mw_year,'yyyy') = #{mw_year}
+        and to_char(a.mw_month,'MM') = LPAD(#{mw_month},2,'0')
+        and B.m_gubun = #{m_gubun}
+        and B.m_name = #{m_name}
+        AND B.m_position = #{m_position}
+        AND A.w_name = #{w_name}
   	</select>
   </mapper>

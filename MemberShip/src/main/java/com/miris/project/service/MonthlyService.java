@@ -12,4 +12,6 @@ public interface MonthlyService {
 
 	List<MonthlyWorkVO> monthlySum(MonthlyWorkVO monthlyWorkVO);
 
+	List<MonthlyWorkVO> monthlyStatusInput(MonthlyWorkVO monthlyWorkVO);
+
 }

@@ -42,12 +42,12 @@ public class MemberController {
 		String month = format3.format(date3);
 		
      	dailyWorkVO.setSearchDate(today);
-     	monthlyWorkVO.setM_year(year);
-     	monthlyWorkVO.setM_month(month);
+     	monthlyWorkVO.setMw_year(year);
+     	monthlyWorkVO.setMw_month(month);
      	
      	System.out.println("daily 초기 날짜 -> " + dailyWorkVO.getSearchDate());
-     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getM_year());
-     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getM_month());
+     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getMw_year());
+     	System.out.println("monthly 초기 날짜 ->" + monthlyWorkVO.getMw_month());
      		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
@@ -63,19 +63,19 @@ public class MemberController {
 	public String dailyList(DailyWorkVO dailyWorkVO,String currentPage, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
 		
-		System.out.println("전 구분 -> " + dailyWorkVO.getW_status());
+		System.out.println("전 구분 -> " + dailyWorkVO.getDw_status());
 		System.out.println("전 이름 -> " + dailyWorkVO.getM_name());
 		System.out.println("전 부서 -> " + dailyWorkVO.getD_code());
 		System.out.println("전 날짜 -> " + dailyWorkVO.getSearchDate());
 		
-		if(dailyWorkVO.getW_status()==null) {
+		if(dailyWorkVO.getDw_status()==null) {
 			// 첫 검색시 오늘날짜로 셋팅
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			String today = format1.format(date);
 			
 			dailyWorkVO.setSearchDate(today);
-			dailyWorkVO.setW_status("0");
+			dailyWorkVO.setDw_status("0");
 			dailyWorkVO.setM_name("");
 			dailyWorkVO.setD_code("D00");
 			
@@ -83,7 +83,7 @@ public class MemberController {
 			
 		}
 		 
-		System.out.println("선택한 구분 -> " + dailyWorkVO.getW_status());
+		System.out.println("선택한 구분 -> " + dailyWorkVO.getDw_status());
 		System.out.println("입력한 이름 -> " + dailyWorkVO.getM_name());
 		System.out.println("선택한 부서 -> " + dailyWorkVO.getD_code());
 		System.out.println("선택한 날짜 -> " + dailyWorkVO.getSearchDate());
@@ -95,7 +95,7 @@ public class MemberController {
 		Paging pg = new Paging(total, currentPage);
 		
 		pg.setSearchDate(dailyWorkVO.getSearchDate());
-		pg.setW_status(dailyWorkVO.getW_status());
+		pg.setDw_status(dailyWorkVO.getDw_status());
 		pg.setD_code(dailyWorkVO.getD_code());;
 		pg.setM_name(dailyWorkVO.getM_name());
 		
@@ -150,11 +150,11 @@ public class MemberController {
 	public String DailyMemberSearch(DailyWorkVO dailyWorkVO,Model model,String currentPage, HttpServletRequest request) {
 		System.out.println("===================MemberContraller DailyMemberSearch Start===================");
 		
-		System.out.println("선택한 구분 -> " + dailyWorkVO.getW_status());
+		System.out.println("선택한 구분 -> " + dailyWorkVO.getDw_status());
 		System.out.println("입력한 이름 -> " + dailyWorkVO.getM_name());
 		System.out.println("선택한 날짜 -> " + dailyWorkVO.getSearchDate());
 		
-		dailyWorkVO.setW_status(request.getParameter("w_status"));
+		dailyWorkVO.setDw_status(request.getParameter("w_status"));
 		dailyWorkVO.setM_name(request.getParameter("m_name"));
 		
 		String inputgubun = request.getParameter("w_status");
@@ -165,16 +165,16 @@ public class MemberController {
 		
 		if(inputgubun.equals("0")) {
 			System.out.println("===== '구분 : 전체' =====");
-			dailyWorkVO.setW_status(inputgubun);
+			dailyWorkVO.setDw_status(inputgubun);
 		} else if(inputgubun.equals("1")) {
 			System.out.println("===== '구분 : 근무' =====");
-			dailyWorkVO.setW_status(inputgubun);
+			dailyWorkVO.setDw_status(inputgubun);
 		} else if(inputgubun.equals("2")) {
 			System.out.println("===== '구분 : 휴가' =====");
-			dailyWorkVO.setW_status(inputgubun);
+			dailyWorkVO.setDw_status(inputgubun);
 		} else if(inputgubun.equals("3")) {
 			System.out.println("===== '구분 : 출장' =====");
-			dailyWorkVO.setW_status(inputgubun);
+			dailyWorkVO.setDw_status(inputgubun);
 		}
 		
 		if(replaceName.equals("")) {
@@ -196,7 +196,7 @@ public class MemberController {
 		System.out.println("endPage -> " + dailyWorkVO.getEnd());
 		
 		System.out.println("넣기 전 최종 이름->" +  dailyWorkVO.getM_name());
-		System.out.println("넣기 전 최종 상태->" + dailyWorkVO.getW_status());
+		System.out.println("넣기 전 최종 상태->" + dailyWorkVO.getDw_status());
 		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);

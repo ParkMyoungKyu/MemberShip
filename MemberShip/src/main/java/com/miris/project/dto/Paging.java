@@ -13,7 +13,7 @@ public class Paging {
 	private int total;
 	private int totalPage;
 	
-	private String w_status;
+	private String dw_status;
 	private String searchDate;
 	private String m_name;
 	private String d_code;
@@ -46,15 +46,14 @@ public class Paging {
 	public String getD_code() {
 		return d_code;
 	}
-
 	public void setD_code(String d_code) {
 		this.d_code = d_code;
 	}
-	public String getW_status() {
-		return w_status;
+	public String getDw_status() {
+		return dw_status;
 	}
-	public void setW_status(String w_status) {
-		this.w_status = w_status;
+	public void setDw_status(String dw_status) {
+		this.dw_status = dw_status;
 	}
 	public String getSearchDate() {
 		return searchDate;

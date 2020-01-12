@@ -30,27 +30,27 @@ public class MonthlyController {
 		String year = format1.format(date1);
 		String month = format2.format(date2);
      			
-		monthlyWorkVO.setM_year(year);
-		monthlyWorkVO.setM_month(month);
+		monthlyWorkVO.setMw_year(year);
+		monthlyWorkVO.setMw_month(month);
 		monthlyWorkVO.setM_gubun("G0");
 		
 		} 
 		if(monthlyWorkVO.getM_name() == null || monthlyWorkVO.getM_name() == "") {
 			monthlyWorkVO.setM_name("전체");	
 		} 
-		if(monthlyWorkVO.getJ_name() == null ) {
-			monthlyWorkVO.setJ_name("전체");
+		if(monthlyWorkVO.getW_name() == null ) {
+			monthlyWorkVO.setW_name("전체");
 		} 
 		if(monthlyWorkVO.getM_position() == null ) {
 			monthlyWorkVO.setM_position("전체");
 		}
 		
-		System.out.println("선택한 년도 -> " + monthlyWorkVO.getM_year());
-		System.out.println("선택한 월  -> " + monthlyWorkVO.getM_month());
+		System.out.println("선택한 년도 -> " + monthlyWorkVO.getMw_year());
+		System.out.println("선택한 월  -> " + monthlyWorkVO.getMw_month());
 		System.out.println("선택한 구분 -> " + monthlyWorkVO.getM_gubun());
 		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
-		System.out.println("선택한 업무 -> " + monthlyWorkVO.getJ_name());
+		System.out.println("선택한 업무 -> " + monthlyWorkVO.getW_name());
 		
 		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);		
@@ -74,9 +74,33 @@ public class MonthlyController {
 		return "inputStatus/monthlyDetail";
 	}
 	
+	//현황등록
+	@RequestMapping(value = "monthlyStatusInputForm")
+	private String monthlyStatusInput(MonthlyWorkVO monthlyWorkVO, Model model){
+		System.out.println("====================MonthlyContraller monthlyStatusInput=====================");
+		System.out.println("선택한 구분 : " + monthlyWorkVO.getM_gubun());
+		System.out.println("선택한 현업무 : " + monthlyWorkVO.getW_name());
+		System.out.println("선택한 성명 : "  + monthlyWorkVO.getM_name());
+		System.out.println("선택한 직급 : " + monthlyWorkVO.getM_position());
+		System.out.println("선택한 비고 : " + monthlyWorkVO.getMw_notice());
+		System.out.println("선택한 년도 : " + monthlyWorkVO.getMw_year());
+		System.out.println("선택한 월 : " + monthlyWorkVO.getMw_month());
+		
+		
+		List<MonthlyWorkVO> monthlyStatusInput = monthlyService.monthlyStatusInput(monthlyWorkVO);
+		
+		model.addAttribute("monthlyStatusInput",monthlyStatusInput);
+		
+		return "inputStatus/monthlyStatusInput";
+	}
 	
-	
-	
+	//인력등록
+	@RequestMapping(value = "monthlyWorkInputForm")
+	private String monthlyWorkInput(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyWorkInput=====================");
+		
+		return "inputStatus/monthlyWorkInput";
+	}
 	
 	
 	
@@ -88,30 +112,20 @@ public class MonthlyController {
 	private String monthlySearch(MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("====================MonthlyContraller monthlySearch=====================");
 		
-		System.out.println("선택한 년도 -> " + monthlyWorkVO.getM_year());
-		System.out.println("선택한 월  -> " + monthlyWorkVO.getM_month());
+		System.out.println("선택한 년도 -> " + monthlyWorkVO.getMw_year());
+		System.out.println("선택한 월  -> " + monthlyWorkVO.getMw_month());
 		System.out.println("선택한 구분 -> " + monthlyWorkVO.getM_gubun());
 		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
-		System.out.println("선택한 업무 -> " + monthlyWorkVO.getJ_name());
+		System.out.println("선택한 업무 -> " + monthlyWorkVO.getW_name());
 		
 		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		
 		return "inputStatus/monthlyList";
 	}
-	@RequestMapping(value = "monthlyStatusInput")
-	private String monthlyStatusInput(MonthlyWorkVO monthlyWorkVO, Model model){
-		System.out.println("====================MonthlyContraller monthlyStatusInput=====================");
-		
-		return "inputStatus/monthlyStatusInput";
-	}
 	
-	@RequestMapping(value = "monthlyWorkInput")
-	private String monthlyWorkInput(MonthlyWorkVO monthlyWorkVO, Model model) {
-		System.out.println("====================MonthlyContraller monthlyWorkInput=====================");
-		
-		return "inputStatus/monthlyWorkInput";
-	}
+	
+	
 	
 	// 월별 투입 현황 입력
 	@RequestMapping(value = "monthlyStatusInputGo")

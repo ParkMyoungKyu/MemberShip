@@ -12,4 +12,6 @@ public interface MonthlyDao {
 
 	List<MonthlyWorkVO> monthlySum(MonthlyWorkVO monthlyWorkVO);
 
+	List<MonthlyWorkVO> monthlyStatusInput(MonthlyWorkVO monthlyWorkVO);
+
 }

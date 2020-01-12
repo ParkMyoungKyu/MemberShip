@@ -5,14 +5,14 @@
 <mapper namespace="DailyWork">
 	<select id="dailySum" parameterType="DailyWork" resultType="DailyWork">
 		SELECT
-		  (SELECT COUNT(*) FROM D_WORK WHERE to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ZERO,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '1' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ONE,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '2' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS TWO,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '3' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS THREE,
-	      (SELECT COUNT(*) FROM D_WORK WHERE W_STATUS = '4' and to_char(W_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS FOUR   
+		  (SELECT COUNT(*) FROM D_WORK WHERE to_char(DW_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ZERO,
+	      (SELECT COUNT(*) FROM D_WORK WHERE DW_STATUS = '1' and to_char(DW_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS ONE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE DW_STATUS = '2' and to_char(DW_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS TWO,
+	      (SELECT COUNT(*) FROM D_WORK WHERE DW_STATUS = '3' and to_char(DW_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS THREE,
+	      (SELECT COUNT(*) FROM D_WORK WHERE DW_STATUS = '4' and to_char(DW_DAY,'YYYYMMDD')= to_char(TO_DATE(#{searchDate}),'YYYYMMDD')) AS FOUR   
 	    FROM d_work
 	    WHERE 1=1
-	    AND TO_CHAR(W_DAY,'YYYYMMDD')=TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')	      
+	    AND TO_CHAR(DW_DAY,'YYYYMMDD')=TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')	      
 	    AND ROWNUM = 1
 	</select>
 	
@@ -20,38 +20,38 @@
 		 MERGE INTO D_WORK A
 		 USING (SELECT 
 			         A.M_ID,
-			         A.W_STATUS,
-			         A.W_DAY,
-			         A.W_TIME,
-			         A.W_NOTICE,
+			         A.DW_STATUS,
+			         A.DW_DAY,
+			         A.DW_TIME,
+			         A.DW_NOTICE,
 			         A.P_NAME,
 			         B.M_NAME,
 			         B.M_POSITION
 		        FROM D_WORK A, MEMBER B
 		        WHERE 1=1
 		        AND A.M_ID=B.M_ID
-		        AND TO_CHAR(A.W_DAY,'YYYYMMDD')=TO_CHAR(SYSDATE-1,'YYYYMMDD')
+		        AND TO_CHAR(A.DW_DAY,'YYYYMMDD')=TO_CHAR(SYSDATE-1,'YYYYMMDD')
 		     ) B
 		 ON (
 		      A.M_ID = B.M_ID  
-		 AND TO_CHAR(A.W_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
+		 AND TO_CHAR(A.DW_DAY,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD')
 		    )
 		 WHEN MATCHED THEN 
-		    UPDATE SET A.W_NOTICE = '매칭된데이터'
+		    UPDATE SET A.DW_NOTICE = '매칭된데이터'
 		 WHEN NOT MATCHED THEN
 		    INSERT ( 
 		    		A.M_ID,
-			         A.W_STATUS,
-			         A.W_DAY,
-			         A.W_TIME,
-			         A.W_NOTICE,
+			         A.DW_STATUS,
+			         A.DW_DAY,
+			         A.DW_TIME,
+			         A.DW_NOTICE,
 			         A.P_NAME
 		         	)
 		    VALUES (
 			     	 B.M_ID,
-			         B.W_STATUS,
+			         B.DW_STATUS,
 			         TO_CHAR(SYSDATE,'YYYYMMDD'),
-			         B.W_TIME,
+			         B.DW_TIME,
 			         '매칭안된것',
 			         B.P_NAME
 			       )
@@ -83,18 +83,18 @@
     	inner join (
 		   select  
 		   		   a.m_id,
-		           a.w_status,
-		           a.w_day,
-		           a.w_time,
-		           a.w_notice,
+		           a.dw_status,
+		           a.dw_day,
+		           a.dw_time,
+		           a.dw_notice,
 		           b.p_name,
 		           b.p_addr
 		          from d_work a
 		    inner join place b
 		    on a.p_name = b.p_name
 		    WHERE 1=1
-		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-		    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
+		    AND to_char(a.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
+		    <if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
 	    ) c
 	    on a.m_id = c.m_id
 	    WHERE 1=1
@@ -108,7 +108,7 @@
 		WHERE 1=1
 		and a.m_id = b.m_id
 		AND a.m_id = #{m_id}
-		AND to_char(a.W_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD')
+		AND to_char(a.DW_DAY,'YYYYMMDD') between TO_CHAR(sysdate-30,'YYYYMMDD') and TO_CHAR(sysdate,'YYYYMMDD')
 	</select>
 	
 	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
@@ -124,28 +124,28 @@
 		           a.m_joindate,
 		           a.m_leavedate,
 		           a.m_notice,
-		           c.w_status,
-		           c.w_day,
-		           c.w_time,
-		           c.w_notice,
+		           c.dw_status,
+		           c.dw_day,
+		           c.dw_time,
+		           c.dw_notice,
 		           c.p_name,
 		           c.p_addr
 	          from member a
 	    	inner join (
 			   select  rownum rn,
 			   		   a.m_id,
-			           a.w_status,
-			           a.w_day,
-			           a.w_time,
-			           a.w_notice,
+			           a.dw_status,
+			           a.dw_day,
+			           a.dw_time,
+			           a.dw_notice,
 			           b.p_name,
 			           b.p_addr
 			          from d_work a
 			    inner join place b
 			    on a.p_name = b.p_name
 			    WHERE 1=1
-			    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-			    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
+			    AND to_char(a.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
+			    <if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
 		    ) c
 		    on a.m_id = c.m_id
 		    WHERE 1=1
@@ -165,28 +165,28 @@
 	           a.m_joindate,
 	           a.m_leavedate,
 	           a.m_notice,
-	           c.w_status,
-	           c.w_day,
-	           c.w_time,
-	           c.w_notice,
+	           c.dw_status,
+	           c.dw_day,
+	           c.dw_time,
+	           c.dw_notice,
 	           c.p_name,
 	           c.p_addr
           from member a
     	inner join (
 		   select  rownum rn,
 		   		   a.m_id,
-		           a.w_status,
-		           a.w_day,
-		           a.w_time,
-		           a.w_notice,
+		           a.dw_status,
+		           a.dw_day,
+		           a.dw_time,
+		           a.dw_notice,
 		           b.p_name,
 		           b.p_addr
 		          from d_work a
 		    inner join place b
 		    on a.p_name = b.p_name
 		    WHERE 1=1
-		    AND to_char(a.W_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-		    <if test="w_status != 0">AND a.w_status = #{w_status}</if>
+		    AND to_char(a.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
+		    <if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
 	    ) c
 	    on a.m_id = c.m_id
 	    WHERE 1=1

@@ -10,11 +10,11 @@
 </head>
 <body>
 	<div class="sideBar">
-		<div class="mgrDept" onclick="location.href='mgrDept.do'">부서관리</div>
-		<div class="mgrWork" onclick="location.href='mgrWork.do'">업무관리</div>
-		<div class="mgrSite" onclick="location.href='mgrSite.do'">사이트관리</div>
-		<div class="mgrWrokPlace" onclick="location.href='mgrWorkPlace.do'">근무지관리</div>
-		<div class="mgrMember" onclick="location.href='mgrMember.do'">직원관리</div>
+		<div class="mgrDept" onclick="location.href='mgrDept.do'">부서관리</div><hr>
+		<div class="mgrWork" onclick="location.href='mgrWork.do'">업무관리</div><hr>
+		<div class="mgrSite" onclick="location.href='mgrSite.do'">사이트관리</div><hr>
+		<div class="mgrWrokPlace" onclick="location.href='mgrWorkPlace.do'">근무지관리</div><hr>
+		<div class="mgrMember" onclick="location.href='mgrMember.do'">직원관리</div><hr>
 	</div>
 </body>
 </html>
