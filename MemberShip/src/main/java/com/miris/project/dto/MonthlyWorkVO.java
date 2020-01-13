@@ -27,6 +27,7 @@ public class MonthlyWorkVO {
 	private String m_gubun;
 	private String d_code;
 	private String m_position;
+	private String m_notice;
 	
 	
 	//인원현황을 위한
@@ -57,6 +58,12 @@ public class MonthlyWorkVO {
     
     
     
+	public String getM_notice() {
+		return m_notice;
+	}
+	public void setM_notice(String m_notice) {
+		this.m_notice = m_notice;
+	}
 	public String getMw_id() {
 		return mw_id;
 	}

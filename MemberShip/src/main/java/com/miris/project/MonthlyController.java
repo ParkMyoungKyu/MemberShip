@@ -96,12 +96,24 @@ public class MonthlyController {
 	
 	//인력등록
 	@RequestMapping(value = "monthlyWorkInputForm")
-	private String monthlyWorkInput(MonthlyWorkVO monthlyWorkVO, Model model) {
-		System.out.println("====================MonthlyContraller monthlyWorkInput=====================");
-		
+	private String monthlyWorkInputFrom(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyWorkInputForm=====================");
 		return "inputStatus/monthlyWorkInput";
 	}
 	
+	@RequestMapping(value = "monthlyWorkInput")
+	private String monthlyWorkInput(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyWorkInput=====================");
+		System.out.println("입력하고자하는 구분값 : " + monthlyWorkVO.getM_gubun());
+		System.out.println("입력하고자하는 부서값 : " + monthlyWorkVO.getD_code());
+		System.out.println("입력하고자하는 이름값 : " + monthlyWorkVO.getM_name());
+		System.out.println("입력하고자하는 직급값 : " + monthlyWorkVO.getM_position());
+		System.out.println("입력하고자하는 비고값 : " + monthlyWorkVO.getM_notice());
+		
+		monthlyService.monthlyWorkInput(monthlyWorkVO);
+		
+		return "inputStatus/monthlyWorkInput";
+	}
 	
 	
 	

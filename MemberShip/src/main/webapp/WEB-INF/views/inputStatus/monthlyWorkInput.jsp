@@ -15,6 +15,7 @@
 </script>
 </head>
 <body class="monthlyWorkInput">
+<form action="monthlyWorkInput.do">
 	<div class="inputBox">
 		<div class="inputTitle">인력 등록/수정</div>
 		<table class="inputTable">
@@ -26,7 +27,7 @@
 			</tr>
 			<tr>
 				<td>
-					<select class="gbnSelect" name="gubun">
+					<select class="gbnSelect" name="m_gubun">
 						<option value="G1">내부</option>
 						<option value="G2">외부</option>
 					</select>
@@ -42,32 +43,31 @@
 					</select>
 				</td>
 				<td>
-					<input type="text" name="m_name">
+					<input type="text" name="m_name" required="required">
 				</td>
 				<td>
-					<select>
-						<option>사원</option>
-						<option>대리</option>
-						<option>과장</option>
-						<option>차장</option>
-						<option>부장</option>
-						<option>상무</option>
+					<select name="m_position">
+						<option value="사원">사원</option>
+						<option value="대리">대리</option>
+						<option value="과장">과장</option>
+						<option value="차장">차장</option>
+						<option value="부장">부장</option>
+						<option value="상무">상무</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>비고</th>
 				<td colspan="3">
-					<input type="text">
+					<input type="text" name="m_notice">
 				</td>
 			</tr>
 		</table>
 	</div>
 	<div class="inputBtn">
-		<input type="button" class="pushBtn" value="등록" onclick="location.href = 'monthlyWorkInputGo.do'">
+		<input type="submit" class="pushBtn" value="등록">
 		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
 	</div>
-	
-	
+	</form>
 </body>
 </html>

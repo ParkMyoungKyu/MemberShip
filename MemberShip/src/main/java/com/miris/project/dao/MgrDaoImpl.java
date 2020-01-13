@@ -85,7 +85,16 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl siteList=====================");
 		return session.selectList("siteList",mgrVO);
 	}
-
+	@Override
+	public int siteInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl siteInput=====================");
+		return session.insert("siteInput",mgrVO);
+	}
+	
+	
+	
+	
+	
 	@Override
 	public List<MgrVO> workPlaceList(MgrVO mgrVO) {
 		System.out.println("=====================MgrDaoImpl workPlaceList=====================");
@@ -97,6 +106,7 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl memberList=====================");
 		return session.selectList("memberList",mgrVO);
 	}
+	
 	
 	
 

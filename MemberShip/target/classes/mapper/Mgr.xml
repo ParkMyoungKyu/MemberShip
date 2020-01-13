@@ -119,13 +119,23 @@
 	
 	
 	
-	
-	
 	<select id="siteList" parameterType="Mgr" resultType="Mgr">
 		SELECT l_code,
 			   l_name 
 		FROM SITE
 	</select>
+	<insert id="siteInput">
+		MERGE INTO SITE A
+		 USING DUAL
+		 ON( L_CODE = #{l_code})
+		WHEN NOT MATCHED THEN
+		  INSERT (A.L_CODE,A.L_NAME)
+		  VALUES (#{l_code},#{l_name});
+	</insert>
+	
+	
+	
+	
 	
 	<select id="workPlaceList" parameterType="Mgr" resultType="Mgr">
 		SELECT p_name,

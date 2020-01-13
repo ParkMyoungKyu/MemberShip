@@ -37,4 +37,10 @@ public class MonthlyServiceImpl implements MonthlyService {
 		System.out.println("=====================MonthlyServiceImpl monthlyStatusInput=====================");
 		return monthlyDao.monthlyStatusInput(monthlyWorkVO);
 	}
+
+	@Override
+	public int monthlyWorkInput(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyServiceImpl monthlyWorkInput=====================");
+		return monthlyDao.monthlyWorkInput(monthlyWorkVO);
+	}
 }

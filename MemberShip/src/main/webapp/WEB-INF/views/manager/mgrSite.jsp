@@ -14,8 +14,8 @@
 	<div class="mSiteBox">
 	<div class="mSiteBox2">	
 			<div class="title">사이트관리</div>
-			<div class="updateBtn"><button onclick="window.open('mgrDeptUpdateForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">수정</button></div>
-			<div class="insertBtn"><button onclick="window.open('mgrDeptInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
+			<div class="insertBtn"><button onclick="window.open('mgrSiteInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
+			<div class="updateBtn"><button onclick="window.open('mgrSiteUpdateForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">수정</button></div>
 			<div class="deleteBtn"><button onclick="">삭제</button></div>
 		<table class="mSiteTable">
 			<tr class="mSiteTable-rowheader">

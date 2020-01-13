@@ -87,6 +87,14 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl siteList=====================");
 		return mgrDao.siteList(mgrVO);
 	}
+	@Override
+	public int siteInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl siteInput=====================");
+		return mgrDao.siteInput(mgrVO);
+	}
+	
+	
+	
 	
 	@Override
 	public List<MgrVO> workPlaceList(MgrVO mgrVO) {
@@ -99,6 +107,7 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl memberList=====================");
 		return mgrDao.memberList(mgrVO);
 	}
+	
 	
 	
 	

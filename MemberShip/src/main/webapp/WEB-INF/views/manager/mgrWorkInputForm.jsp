@@ -12,7 +12,6 @@
 		window.opener.location.reload(true);
 		window.close();
 	}
-	
 </script>
 </head>
 <body>

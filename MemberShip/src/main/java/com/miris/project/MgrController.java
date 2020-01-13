@@ -158,8 +158,8 @@ public class MgrController {
 	
 	
 	
-	//사이트 목록
 	//-------------------사이트 관련 작업들-------------------
+	//사이트 목록
 	@RequestMapping(value="mgrSite")
 	public String mgrSite(MgrVO mgrVO,Model model) {
 		System.out.println("=====================MgrController mgrSite page=====================");
@@ -170,6 +170,30 @@ public class MgrController {
 		
 		return "manager/mgrSite";
 	}
+	//사이트 목록 추가하러 페이지이동
+	@RequestMapping(value = "mgrSiteInputForm")
+	public String mgrSiteInputForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrSiteInputForm=====================");
+		return "manager/mgrSiteInputForm";
+	}
+	//추가할 사이트 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrSiteInput")
+	public String mgrSiteInput(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrSiteInput=====================");
+		
+		System.out.println("사이트코드 -> " + mgrVO.getL_code());
+		System.out.println("사이트명 -> " + mgrVO.getL_name());
+		
+		mgrService.siteInput(mgrVO);
+		
+		return "redirect:mgrWork.do";
+	}
+	
+	
+	
+	
+	
+	
 	
 	//근무지 목록
 	@RequestMapping(value="mgrWorkPlace")

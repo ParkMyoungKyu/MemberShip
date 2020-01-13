@@ -97,7 +97,7 @@
 	<div class="monthlyListTable">
 	<div class="listText">월별 인력 투입현황</div>
 	<div class="btn">
-		<button class="workBtn" onclick="window.open('monthlyWorkInput.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
+		<button class="workBtn" onclick="window.open('monthlyWorkInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
 		<button type="button" class="statusBtn" id="statusInput">현황등록</button>
 		<button class="copyBtn">일괄복사</button>
 	</div>
@@ -203,67 +203,187 @@
 					<td>${monthlyList.m_position}</td>
 					<td>${monthlyList.w_name}</td>
 					<td>${monthlyList.l_name}</td>
+
 					<c:choose>
-						<c:when test="${nowMonth < '01'}">
+						<c:when test="${monthlyList.w_except == 'N'}">
 							<c:choose>
-								<c:when test="${monthlyList.JAN == 'C'}"><td style="background-color: green">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
-								<c:when test="${monthlyList.JAN == 'P'}">
+								<c:when test="${nowMonth >= '01'}"><td class="blue">${monthlyList.JAN}</td></c:when>
+								<c:when test="${nowMonth < '01'}">
 									<c:choose>
-										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td style="background-color: orange">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
-										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td style="background-color: gray;">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.JAN}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.JAN}</td></c:when>
 									</c:choose>
 								</c:when>
-							</c:choose>
+							</c:choose>						
 						</c:when>
-						<c:when test="${nowMonth >= '01'}">
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JAN}</td></c:when>					
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
 							<c:choose>
-								<c:when test="${monthlyList.JAN == 'C'}"><td style="background-color: green;">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
-								<c:when test="${monthlyList.JAN == 'P'}">
+								<c:when test="${nowMonth >= '02'}"><td class="blue">${monthlyList.FEB}</td></c:when>
+								<c:when test="${nowMonth < '02'}">
 									<c:choose>
-										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td style="background-color: blue">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
-										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td style="background-color: gray;">${monthlyList.JAN} : ${nowMonth} -> ${monthlyList.mw_month}</td></c:when>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.FEB}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.FEB}</td></c:when>
 									</c:choose>
 								</c:when>
-							</c:choose>
+							</c:choose>						
 						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.FEB}</td></c:when>					
 					</c:choose>
+					
 					<c:choose>
-						<c:when test="${nowMonth < '02'}">
+						<c:when test="${monthlyList.w_except == 'N'}">
 							<c:choose>
-								<c:when test="${monthlyList.FEB == 'C'}"><td style="background-color: green">${monthlyList.FEB}</td></c:when>
-								<c:when test="${monthlyList.FEB == 'P'}"><td style="background-color: orange">${monthlyList.FEB}</td></c:when>
-							</c:choose>
+								<c:when test="${nowMonth >= '03'}"><td class="blue">${monthlyList.MAR}</td></c:when>
+								<c:when test="${nowMonth < '03'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.MAR}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.MAR}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
 						</c:when>
-						<c:when test="${nowMonth >= '02'}">
-							<c:choose>
-								<c:when test="${monthlyList.FEB == 'C'}"><td style="background-color: green;">${monthlyList.FEB}</td></c:when>
-								<c:when test="${monthlyList.FEB == 'P'}"><td style="background-color: blue;">${monthlyList.FEB}</td></c:when>
-							</c:choose>
-						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.MAR}</td></c:when>					
 					</c:choose>
+					
 					<c:choose>
-						<c:when test="${nowMonth < '03'}">
+						<c:when test="${monthlyList.w_except == 'N'}">
 							<c:choose>
-								<c:when test="${monthlyList.MAR == 'C'}"><td style="background-color: green">${monthlyList.MAR}</td></c:when>
-								<c:when test="${monthlyList.MAR == 'P'}"><td style="background-color: orange">${monthlyList.MAR}</td></c:when>
-							</c:choose>
+								<c:when test="${nowMonth >= '04'}"><td class="blue">${monthlyList.APR}</td></c:when>
+								<c:when test="${nowMonth < '04'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.APR}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.APR}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
 						</c:when>
-						<c:when test="${nowMonth >= '03'}">
-							<c:choose>
-								<c:when test="${monthlyList.MAR == 'C'}"><td style="background-color: green;">${monthlyList.MAR}</td></c:when>
-								<c:when test="${monthlyList.MAR == 'P'}"><td style="background-color: blue;">${monthlyList.MAR}</td></c:when>
-							</c:choose>
-						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.APR}</td></c:when>					
 					</c:choose>
-					<td>${monthlyList.APR}</td>
-					<td>${monthlyList.MAY}</td>
-					<td>${monthlyList.JUN}</td>
-					<td>${monthlyList.JUL}</td>
-					<td>${monthlyList.AUG}</td>
-					<td>${monthlyList.SEPT}</td>
-					<td>${monthlyList.OCT}</td>
-					<td>${monthlyList.NOV}</td>
-					<td>${monthlyList.DEC}</td>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '05'}"><td class="blue">${monthlyList.MAY}</td></c:when>
+								<c:when test="${nowMonth < '05'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.MAY}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.MAY}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.MAY}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '06'}"><td class="blue">${monthlyList.JUN}</td></c:when>
+								<c:when test="${nowMonth < '06'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.JUN}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.JUN}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JUN}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '07'}"><td class="blue">${monthlyList.JUL}</td></c:when>
+								<c:when test="${nowMonth < '07'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.JUL}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.JUL}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JUL}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '08'}"><td class="blue">${monthlyList.AUG}</td></c:when>
+								<c:when test="${nowMonth < '08'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.AUG}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.AUG}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.AUG}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '09'}"><td class="blue">${monthlyList.SEPT}</td></c:when>
+								<c:when test="${nowMonth < '09'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.SEPT}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.SEPT}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.SEPT}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '10'}"><td class="blue">${monthlyList.OCT}</td></c:when>
+								<c:when test="${nowMonth < '10'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.OCT}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.OCT}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.OCT}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '11'}"><td class="blue">${monthlyList.NOV}</td></c:when>
+								<c:when test="${nowMonth < '11'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.NOV}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.NOV}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.NOV}</td></c:when>					
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${monthlyList.w_except == 'N'}">
+							<c:choose>
+								<c:when test="${nowMonth >= '12'}"><td class="blue">${monthlyList.DEC}</td></c:when>
+								<c:when test="${nowMonth < '12'}">
+									<c:choose>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.DEC}</td></c:when>
+										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.DEC}</td></c:when>
+									</c:choose>
+								</c:when>
+							</c:choose>						
+						</c:when>
+						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.DEC}</td></c:when>					
+					</c:choose>
+					
 					<td>${monthlyList.mw_notice}</td>
 				</tr>	
 			</c:forEach>

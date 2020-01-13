@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
@@ -53,13 +53,7 @@
 			<th>제외여부</th>
 			<th>비고</th>
 		</tr>
-		<tr>
-			<td>구분</td>
-			<td>부서</td>
-			<td>성명</td>
-			<td>직급</td>
-		</tr>
-		 <c:forEach var="monthlyDetail" items="$*{monthlyDetail}">
+		 <c:forEach var="monthlyDetail" items="${monthlyDetail}">
 			<tr>
 				<td>${monthlyDetail.mw_month}</td>
 				<td>${monthlyDetail.w_name}</td>

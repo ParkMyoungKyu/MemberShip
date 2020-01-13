@@ -38,6 +38,7 @@
 	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '11') as NOV,
 	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '12') as DEC,
 	           a.mw_notice,
+	           a.w_except,
 	           TO_CHAR(a.mw_year,'yyyy') AS mw_year,
 	           TO_CHAR(a.mw_month,'MM') AS mw_month
   		FROM M_WORK A, member B, site c
@@ -102,4 +103,8 @@
         AND B.m_position = #{m_position}
         AND A.w_name = #{w_name}
   	</select>
+  	
+  	<insert id="monthlyWorkInput">
+  		
+  	</insert>
   </mapper>

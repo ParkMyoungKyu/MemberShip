@@ -23,10 +23,14 @@ public interface MgrDao {
 	
 	
 	List<MgrVO> siteList(MgrVO mgrVO);
-
+	int siteInput(MgrVO mgrVO);
+	
+	
+	
 	List<MgrVO> memberList(MgrVO mgrVO);
 
 	List<MgrVO> workPlaceList(MgrVO mgrVO);
+	
 	
 	
 	
