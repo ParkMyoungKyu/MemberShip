@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function ref(){
-		window.opener.location.reload(true);
+		window.opener.location.reload();
 		window.close();
 	}
 </script>
@@ -25,7 +25,7 @@
 					<option value="N">N</option>
 				</select>
 			</div>
-			<input type="submit" value="제출" onclick="ref();">
+			<input type="submit" value="등록" onclick="ref();">
 		</form>
 	</div>
 </body>

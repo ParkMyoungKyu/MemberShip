@@ -124,15 +124,34 @@
 			   l_name 
 		FROM SITE
 	</select>
-	<insert id="siteInput">
+	<insert id="siteInput" parameterType="Mgr">
 		MERGE INTO SITE A
 		 USING DUAL
-		 ON( L_CODE = #{l_code})
+		 ON( l_code = #{l_code})
 		WHEN NOT MATCHED THEN
-		  INSERT (A.L_CODE,A.L_NAME)
-		  VALUES (#{l_code},#{l_name});
+		  INSERT (A.l_code,A.l_name)
+		  VALUES (#{l_code},#{l_name})
 	</insert>
-	
+	<delete id="siteDelete" parameterType="int">
+		 MERGE INTO SITE A
+		  USING DUAL
+		  ON (A.L_CODE = #{l_code})
+		  WHEN MATCHED THEN
+		    UPDATE SET A.L_NAME = 'D'
+		    WHERE A.L_CODE = #{l_code}
+		    AND A.L_NAME = #{l_name}
+		    DELETE WHERE A.L_CODE = #{l_code}
+		    AND A.L_NAME = #{l_name}
+		  WHEN NOT MATCHED THEN
+		    INSERT(A.L_CODE,A.L_NAME)
+		    VALUES ('E99','ERROR')
+	</delete>
+	<delete id="siteDeleteError" parameterType="int">
+		DELETE 
+		FROM SITE
+		WHERE L_CODE = 'E99'
+		AND   L_NAME = 'ERROR'
+	</delete>
 	
 	
 	
@@ -142,6 +161,31 @@
 			   p_addr
 		FROM PLACE
 	</select>
+	<insert id="workPlaceInput" parameterType="Mgr">
+		INSERT INTO PLACE(P_NAME,P_ADDR) 
+		VALUES (#{p_name},#{p_addr})
+	</insert>
+	<delete id="workPlaceDelete" parameterType="int">
+		 MERGE INTO PLACE A
+		  USING DUAL
+		  ON (A.P_NAME = #{p_name})
+		  WHEN MATCHED THEN
+		    UPDATE SET A.P_ADDR = 'D'
+		    WHERE A.P_NAME = #{p_name}
+		    AND A.P_ADDR = #{p_addr}
+		    DELETE WHERE A.P_NAME = #{p_name}
+		    AND A.P_ADDR = #{p_addr}
+		  WHEN NOT MATCHED THEN
+		    INSERT(A.P_NAME,A.P_ADDR)
+		    VALUES ('E99','ERROR')
+	</delete>
+	<delete id="workPlaceDeleteError" parameterType="int">
+		DELETE 
+		FROM PLACE
+		WHERE P_NAME = 'E99'
+		AND   P_ADDR = 'ERROR'
+	</delete>
+	
 	
 	<select id="memberList" parameterType="Mgr" resultType="Mgr">
 		SELECT A.m_id,
@@ -158,5 +202,44 @@
 		WHERE 1=1
     	AND A.D_CODE = B.D_CODE
 	</select>
-	
+	<insert id="mgrMemberInput" parameterType="Mgr">
+		MERGE INTO MEMBER A
+		  USING DUAL
+		  ON (A.M_ID = #{m_id})
+		  WHEN NOT MATCHED THEN
+		    INSERT(A.M_ID,A.M_PW,A.M_NAME,A.D_CODE,A.M_POSITION,A.M_GUBUN,A.M_JOINDATE,M_NOTICE)
+		    VALUES (#{m_id},#{m_pw},#{m_name},#{d_code},#{m_position},#{m_gubun}.#{m_joindate},#{m_notice})
+	</insert>
+	<delete id="mgrMemberDelete" parameterType="int">
+		 MERGE INTO MEMBER A
+			  USING DUAL
+			  ON (A.M_ID = #{m_id}
+	      AND A.M_NAME = #{m_name}
+	      AND A.D_CODE = #{d_code}
+	      AND A.M_POSITION = #{m_position})
+			  WHEN MATCHED THEN
+			    UPDATE SET A.M_NOTICE = 'D'
+			    WHERE A.M_ID = #{m_id}
+	      AND A.M_NAME = #{m_name}
+	      AND A.D_CODE = #{d_code}
+	      AND A.M_POSITION = #{m_position}
+			    DELETE WHERE A.M_ID = #{m_id}
+	      AND A.M_NAME = #{m_name}
+	      AND A.D_CODE = #{d_code}
+	      AND A.M_POSITION = #{m_position}
+			  WHEN NOT MATCHED THEN
+			    INSERT(A.M_ID,
+	               A.M_NAME,
+	               A.D_CODE,
+	               A.M_POSITION)
+	      VALUES ('E99','ERROR','E99','ERROR')
+	</delete>
+	<delete id="mgrMemberDeleteError" parameterType="int">
+		DELETE 
+		FROM MEMBER
+		WHERE A.M_ID = 'E99'
+        AND   A.M_NAME = 'ERROR'
+        AND   A.D_CODE = 'E99'
+        AND   A.M_POSITION = 'ERROR'
+	</delete>
 </mapper>

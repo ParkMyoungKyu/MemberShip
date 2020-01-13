@@ -14,10 +14,11 @@
 </head>
 <body>
 	<div>
+		<div>부서 등록</div>
 		<form action="mgrDeptInput.do">
-			<div><input type="text" name="d_code"></div>
-			<div><input type="text" name="d_name"></div>
-			<input type="submit" value="제출" onclick="ref()">
+			<div>부서 코드 : <input type="text" name="d_code" required="required"></div>
+			<div>부서 이름 : <input type="text" name="d_name"></div>
+			<input type="submit" value="등록" onclick="ref()">
 		</form>
 	</div>
 </body>

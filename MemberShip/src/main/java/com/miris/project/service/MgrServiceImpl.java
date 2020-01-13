@@ -92,6 +92,16 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl siteInput=====================");
 		return mgrDao.siteInput(mgrVO);
 	}
+	@Override
+	public int siteDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl siteDelete=====================");
+		return mgrDao.siteDelete(mgrVO);
+	}
+	@Override
+	public int siteDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl siteDeleteError=====================");
+		return mgrDao.siteDeleteError(mgrVO);
+	}
 	
 	
 	
@@ -101,12 +111,49 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl workPlaceList=====================");
 		return mgrDao.workPlaceList(mgrVO);
 	}
+	@Override
+	public int workPlaceInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl workPlaceInput=====================");
+		return mgrDao.workPlaceInput(mgrVO);
+	}
+	@Override
+	public int workPlaceDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl workPlaceDelete=====================");
+		return mgrDao.workPlaceDelete(mgrVO);
+	}
+	@Override
+	public int workPlaceDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl workPlaceDeleteError=====================");
+		return mgrDao.workPlaceDeleteError(mgrVO);
+	}
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public List<MgrVO> memberList(MgrVO mgrVO) {
 		System.out.println("=====================MgrServiceImpl memberList=====================");
 		return mgrDao.memberList(mgrVO);
 	}
+	@Override
+	public int mgrMemberInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl mgrMemberInput=====================");
+		return mgrDao.mgrMemberInput(mgrVO);
+	}
+	@Override
+	public int mgrMemberDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl mgrMemberDelete=====================");
+		return mgrDao.mgrMemberDelete(mgrVO);
+	}
+	@Override
+	public int mgrMemberDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl mgrMemberDeleteError=====================");
+		return mgrDao.mgrMemberDeleteError(mgrVO);
+	}
+	
 	
 	
 	

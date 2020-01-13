@@ -90,6 +90,16 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl siteInput=====================");
 		return session.insert("siteInput",mgrVO);
 	}
+	@Override
+	public int siteDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl siteDelete=====================");
+		return session.delete("siteDelete",mgrVO);
+	}
+	@Override
+	public int siteDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl siteDeleteError=====================");
+		return session.delete("siteDeleteError",mgrVO);
+	}
 	
 	
 	
@@ -100,12 +110,46 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl workPlaceList=====================");
 		return session.selectList("workPlaceList",mgrVO);
 	}
+	@Override
+	public int workPlaceInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl workPlaceInput=====================");
+		return session.insert("workPlaceInput",mgrVO);
+	}
+	@Override
+	public int workPlaceDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl workPlaceDelete=====================");
+		return session.delete("workPlaceDelete",mgrVO);
+	}
+	@Override
+	public int workPlaceDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl workPlaceDeleteError=====================");
+		return session.delete("workPlaceDeleteError",mgrVO);
+	}
+	
+	
+	
 	
 	@Override
 	public List<MgrVO> memberList(MgrVO mgrVO) {
 		System.out.println("=====================MgrDaoImpl memberList=====================");
 		return session.selectList("memberList",mgrVO);
 	}
+	@Override
+	public int mgrMemberInput(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl mgrMemberInput=====================");
+		return session.insert("mgrMemberInput",mgrVO);
+	}
+	@Override
+	public int mgrMemberDelete(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl mgrMemberDelete=====================");
+		return session.delete("mgrMemberDelete",mgrVO);
+	}
+	@Override
+	public int mgrMemberDeleteError(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl mgrMemberDeleteError=====================");
+		return session.delete("mgrMemberDeleteError",mgrVO);
+	}
+	
 	
 	
 	

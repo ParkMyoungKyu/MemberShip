@@ -186,10 +186,22 @@ public class MgrController {
 		
 		mgrService.siteInput(mgrVO);
 		
-		return "redirect:mgrWork.do";
+		return "redirect:mgrSite.do";
 	}
 	
+	// 사이트 삭제
+	@RequestMapping(value="mgrSiteDelete")
+	public String mgrSiteDelete(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrSiteDelete=====================");
+		System.out.println("삭제하고자 하는 사이트코드 : " + mgrVO.getL_code());
+		System.out.println("삭제하고자 하는 사이트명 : " + mgrVO.getL_name());
+		
+		mgrService.siteDelete(mgrVO);
+		mgrService.siteDeleteError(mgrVO);
+		
 	
+		return "manager/mgrSite";
+	}
 	
 	
 	
@@ -206,6 +218,43 @@ public class MgrController {
 		
 		return "manager/mgrWorkPlace";
 	}
+	//근무지 목록 추가하러 페이지이동
+	@RequestMapping(value = "mgrWorkPlaceInputForm")
+	public String mgrWorkPlaceInputForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkPlaceInputForm=====================");
+		return "manager/mgrWorkPlaceInputForm";
+	}
+	//추가할 근무지 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrWorkPlaceInput")
+	public String mgrWorkPlaceInput(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkPlaceInput=====================");
+		
+		System.out.println("사이트코드 -> " + mgrVO.getP_name());
+		System.out.println("사이트명 -> " + mgrVO.getP_addr());
+		
+		mgrService.workPlaceInput(mgrVO);
+		
+		return "redirect:mgrWorkPlace.do";
+	}
+	// 근무지 삭제
+	@RequestMapping(value="mgrWorkPlaceDelete")
+	public String mgrWorkPlaceDelete(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkPlaceDelete=====================");
+		System.out.println("삭제하고자 하는 사이트코드 : " + mgrVO.getP_name());
+		System.out.println("삭제하고자 하는 사이트명 : " + mgrVO.getP_addr());
+		
+		mgrService.workPlaceDelete(mgrVO);
+		mgrService.workPlaceDeleteError(mgrVO);
+		
+	
+		return "manager/mgrWorkPlace";
+	}
+	
+	
+	
+	
+	
+	
 	
 	//직원 목록
 	@RequestMapping(value="mgrMember")
@@ -215,6 +264,48 @@ public class MgrController {
 		List<MgrVO> memberList = mgrService.memberList(mgrVO);
 		
 		model.addAttribute("memberList",memberList);
+		
+		return "manager/mgrMember";
+	}
+	//직원 목록 추가하러 페이지이동
+	@RequestMapping(value = "mgrMemberInputForm")
+	public String mgrMemberInputForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrMemberInputForm=====================");
+		return "manager/mgrMemberInputForm";
+	}
+	//추가할 직원 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrMemberInput")
+	public String mgrMemberInput(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrMemberInput=====================");
+		
+		System.out.println("아이디 : " + mgrVO.getM_id());
+		System.out.println("비밀번호 : " + mgrVO.getM_pw());
+		System.out.println("이름 : " + mgrVO.getM_name());
+		System.out.println("부서명 : " + mgrVO.getD_code());
+		System.out.println("직급 : " + mgrVO.getM_position());
+		System.out.println("내부/외부 : " + mgrVO.getM_gubun());
+		System.out.println("입사일 : " + mgrVO.getM_joindate());
+		System.out.println("비고 : " + mgrVO.getM_notice());
+		
+		mgrService.mgrMemberInput(mgrVO);
+		
+		return "redirect:mgrMember.do";
+	}
+	// 직원 삭제
+	@RequestMapping(value="mgrMemberDelete")
+	public String mgrMemberDelete(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrMemberDelete=====================");
+		System.out.println("삭제하고자 하는 아이디 : " + mgrVO.getM_id());
+		System.out.println("삭제하고자 하는 비밀번호 : " + mgrVO.getM_pw());
+		System.out.println("삭제하고자 하는 이름 : " + mgrVO.getM_name());
+		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_code());
+		System.out.println("삭제하고자 하는 직급 : " + mgrVO.getM_position());
+		System.out.println("삭제하고자 하는 내부/외부 : " + mgrVO.getM_gubun());
+		System.out.println("삭제하고자 하는 입사일 : " + mgrVO.getM_joindate());
+		System.out.println("삭제하고자 하는 비고 : " + mgrVO.getM_notice());
+		
+		mgrService.mgrMemberDelete(mgrVO);
+		mgrService.mgrMemberDeleteError(mgrVO);
 		
 		return "manager/mgrMember";
 	}
