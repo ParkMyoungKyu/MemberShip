@@ -65,7 +65,7 @@
 		  	</div>
 			<div>입사일 : <input type="text" id="m_joindate" name="m_joindate" readonly="readonly" required="required"></div>
 			<div>비고 : <input type="text" name="m_notice"> </div>
-			<input type="submit" value="등록" onclick="ref();">
+			<input type="submit" value="등록" onclick="ref()">
 		</form>
 	</div>
 </body>

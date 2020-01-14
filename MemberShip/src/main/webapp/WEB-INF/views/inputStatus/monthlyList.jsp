@@ -205,7 +205,7 @@
 					<td>${monthlyList.l_name}</td>
 
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.JAN_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '01'}"><td class="blue">${monthlyList.JAN}</td></c:when>
 								<c:when test="${nowMonth < '01'}">
@@ -216,11 +216,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JAN}</td></c:when>					
+						<c:when test="${monthlyList.JAN_EXCEPT == 'Y'}"><td class="green">${monthlyList.JAN}</td></c:when>					
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.FEB_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '02'}"><td class="blue">${monthlyList.FEB}</td></c:when>
 								<c:when test="${nowMonth < '02'}">
@@ -231,11 +231,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.FEB}</td></c:when>					
+						<c:when test="${monthlyList.FEB_EXCEPT == 'Y'}"><td class="green">${monthlyList.FEB}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.MAR_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '03'}"><td class="blue">${monthlyList.MAR}</td></c:when>
 								<c:when test="${nowMonth < '03'}">
@@ -246,11 +246,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.MAR}</td></c:when>					
+						<c:when test="${monthlyList.MAR_EXCEPT == 'Y'}"><td class="green">${monthlyList.MAR}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.APR_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '04'}"><td class="blue">${monthlyList.APR}</td></c:when>
 								<c:when test="${nowMonth < '04'}">
@@ -261,11 +261,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.APR}</td></c:when>					
+						<c:when test="${monthlyList.APR_EXCEPT == 'Y'}"><td class="green">${monthlyList.APR}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.MAY_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '05'}"><td class="blue">${monthlyList.MAY}</td></c:when>
 								<c:when test="${nowMonth < '05'}">
@@ -276,11 +276,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.MAY}</td></c:when>					
+						<c:when test="${monthlyList.MAY_EXCEPT == 'Y'}"><td class="green">${monthlyList.MAY}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.JUN_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '06'}"><td class="blue">${monthlyList.JUN}</td></c:when>
 								<c:when test="${nowMonth < '06'}">
@@ -291,11 +291,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JUN}</td></c:when>					
+						<c:when test="${monthlyList.JUN_EXCEPT == 'Y'}"><td class="green">${monthlyList.JUN}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.JUL_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '07'}"><td class="blue">${monthlyList.JUL}</td></c:when>
 								<c:when test="${nowMonth < '07'}">
@@ -306,11 +306,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.JUL}</td></c:when>					
+						<c:when test="${monthlyList.JUL_EXCEPT == 'Y'}"><td class="green">${monthlyList.JUL}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.AUG_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '08'}"><td class="blue">${monthlyList.AUG}</td></c:when>
 								<c:when test="${nowMonth < '08'}">
@@ -321,11 +321,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.AUG}</td></c:when>					
+						<c:when test="${monthlyList.AUG_EXCEPT == 'Y'}"><td class="green">${monthlyList.AUG}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.SEPT_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '09'}"><td class="blue">${monthlyList.SEPT}</td></c:when>
 								<c:when test="${nowMonth < '09'}">
@@ -336,11 +336,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.SEPT}</td></c:when>					
+						<c:when test="${monthlyList.SEPT_EXCEPT == 'Y'}"><td class="green">${monthlyList.SEPT}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.OCT_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '10'}"><td class="blue">${monthlyList.OCT}</td></c:when>
 								<c:when test="${nowMonth < '10'}">
@@ -351,11 +351,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.OCT}</td></c:when>					
+						<c:when test="${monthlyList.OCT_EXCEPT == 'Y'}"><td class="green">${monthlyList.OCT}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.NOV_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '11'}"><td class="blue">${monthlyList.NOV}</td></c:when>
 								<c:when test="${nowMonth < '11'}">
@@ -366,11 +366,11 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.NOV}</td></c:when>					
+						<c:when test="${monthlyList.NOV_EXCEPT == 'Y'}"><td class="green">${monthlyList.NOV}</td></c:when>					
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${monthlyList.w_except == 'N'}">
+						<c:when test="${monthlyList.DEC_EXCEPT == 'N'}">
 							<c:choose>
 								<c:when test="${nowMonth >= '12'}"><td class="blue">${monthlyList.DEC}</td></c:when>
 								<c:when test="${nowMonth < '12'}">
@@ -381,7 +381,7 @@
 								</c:when>
 							</c:choose>						
 						</c:when>
-						<c:when test="${monthlyList.w_except == 'Y'}"><td class="green">${monthlyList.DEC}</td></c:when>					
+						<c:when test="${monthlyList.DEC_EXCEPT == 'Y'}"><td class="green">${monthlyList.DEC}</td></c:when>					
 					</c:choose>
 					
 					<td>${monthlyList.mw_notice}</td>

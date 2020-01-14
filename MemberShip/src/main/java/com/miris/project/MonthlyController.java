@@ -93,7 +93,23 @@ public class MonthlyController {
 		
 		return "inputStatus/monthlyStatusInput";
 	}
+	// 월별 투입 현황 입력
+	@RequestMapping(value = "monthlyStatusInputGo")
+	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
+		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
 	
+		System.out.println("넣으려는 구분 : " + monthlyWorkVO.getM_gubun());
+		System.out.println("넣으려는 현업무 : " + monthlyWorkVO.getW_name());
+		System.out.println("넣으려는 성명 : "  + monthlyWorkVO.getM_name());
+		System.out.println("넣으려는 직급 : " + monthlyWorkVO.getM_position());
+		System.out.println("넣으려는 비고 : " + monthlyWorkVO.getMw_notice());
+		System.out.println("넣으려는 년도 : " + monthlyWorkVO.getMw_year());
+		System.out.println("넣으려는 월 : " + monthlyWorkVO.getMw_month());
+		
+		
+		return "inputStatus/monthlyList";
+	}
+		
 	//인력등록
 	@RequestMapping(value = "monthlyWorkInputForm")
 	private String monthlyWorkInputFrom(MonthlyWorkVO monthlyWorkVO, Model model) {
@@ -139,13 +155,7 @@ public class MonthlyController {
 	
 	
 	
-	// 월별 투입 현황 입력
-	@RequestMapping(value = "monthlyStatusInputGo")
-	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
-		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
-		
-		return "inputStatus/monthlyList";
-	}
+	
 	
 	// 인력 정보 입력
 	@RequestMapping(value = "monthlyWorkInputGo")

@@ -26,10 +26,9 @@ var full_count = 11;
    	   //행추가할때마다 행개수 +1
        ++count;
        //행추가
-       //$("#inputTable").append('<tr id=tr'+count+'><td>ss</td><td>ss</td><td>ss</td><td>ss</td><td>ss</td></tr>');
        $("#inputTable").append('<tr id=tr'+count+'>'+
 				'	<td>'+
-				'		<select>'+
+				'		<select name="mw_year">'+
 				'			<option value="2020">2020</option>'+
 				'			<option value="2019">2019</option>'+
 				'			<option value="2018">2018</option>'+
@@ -38,20 +37,20 @@ var full_count = 11;
 				'		</select>'+
 				'	</td>'+
 				'	<td>'+
-				'		<input type="text">'+
+				'		<input type="text" name="mw_month">'+
 				'	</td>'+
 				'	<td>'+
-				'		<select>'+
-				'			<option>경영지원,영업</option>'+
-				'			<option>시스템운영</option>'+
-				'			<option>시금고운영</option>'+
-				'			<option>SI 사업 발주 대기</option>'+
-				'			<option>신사업 발굴</option>'+
-				'			<option>출산휴가</option>'+
+				'		<select name="w_name">'+
+				'			<option value="경영지원,영업">경영지원,영업</option>'+
+				'			<option value="시스템운영">시스템운영</option>'+
+				'			<option value="시금고운영">시금고운영</option>'+
+				'			<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>'+
+				'			<option value="신사업 발굴">신사업 발굴</option>'+
+				'			<option value="출산휴가">출산휴가</option>'+
 				'		</select>'+
 				'	</td>'+
 				'	<td>'+
-				'		<select>'+
+				'		<select name="l_code">'+
 				'			<option value="L01">서울</option>'+
 				'			<option value="L02">서울</option>'+
 				'			<option value="L03">인천</option>'+
@@ -61,7 +60,7 @@ var full_count = 11;
 				'		</select>'+
 				'	</td>'+
 				'	<td>'+
-				'		<select>'+
+				'		<select name="w_except">'+
 				'			<option value="P">P</option>'+
 				'			<option value="C">C</option>'+
 				'		</select>'+
@@ -92,8 +91,10 @@ var full_count = 11;
 </script>
 </head>
 <body>
+<c:forEach var="monthlyStatusInput" items="${monthlyStatusInput}">
 	<div class="monthlyStatusInputBox">
 		<div class="statusTitle">■ 대상인력</div>
+		
 		<table class="statusTable">
 			<tr>
 				<th>구분</th>
@@ -102,15 +103,13 @@ var full_count = 11;
 				<th>직급</th>
 				<th>비고</th>
 			</tr>
-			<c:forEach var="monthlyStatusInput" items="${monthlyStatusInput}">
-				<tr>
-					<td>${monthlyStatusInput.m_gubun}</td>
-					<td>${monthlyStatusInput.w_name}</td>
-					<td>${monthlyStatusInput.m_name}</td>
-					<td>${monthlyStatusInput.m_position}</td>
-					<td>${monthlyStatusInput.mw_notice}</td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td>${monthlyStatusInput.m_gubun}</td>
+				<td>${monthlyStatusInput.w_name}</td>
+				<td>${monthlyStatusInput.m_name}</td>
+				<td>${monthlyStatusInput.m_position}</td>
+				<td>${monthlyStatusInput.mw_notice}</td>
+			</tr>
 		</table>
 	</div>
 	
@@ -118,6 +117,10 @@ var full_count = 11;
 		<div class="inputTitle">■ 투입정보</div>
 		<button id="addRow" class="addRow" onclick="addRow()">+</button>
 		<button id="deleteRow" class="deleteRow" onclick="deleteRow()">-</button>
+		<form action="monthlyStatusInputGo.do">
+		<input type="hidden" name="m_gubun" value="${monthlyStatusInput.m_gubun}">
+		<input type="hidden" name="m_name" value="${monthlyStatusInput.m_name}">
+		<input type="hidden" name="m_position" value="${monthlyStatusInput.m_position}">
 		<table id="inputTable" class="inputTable">
 			<tr>
 				<th>기준년도</th>
@@ -128,7 +131,7 @@ var full_count = 11;
 			</tr>
 			<tr>
 				<td>
-					<select>
+					<select name="mw_year">
 						<option value="2020">2020</option>
 						<option value="2019">2019</option>
 						<option value="2018">2018</option>
@@ -137,20 +140,20 @@ var full_count = 11;
 					</select>
 				</td>
 				<td>
-					<input type="text">
+					<input type="text" name="mw_month">
 				</td>
 				<td>
-					<select>
-						<option>경영지원,영업</option>
-						<option>시스템운영</option>
-						<option>시금고운영</option>
-						<option>SI 사업 발주 대기</option>
-						<option>신사업 발굴</option>
-						<option>출산휴가</option>
+					<select name="w_name">
+						<option value="경영지원,영업">경영지원,영업</option>
+						<option value="시스템운영">시스템운영</option>
+						<option value="시금고운영">시금고운영</option>
+						<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
+						<option value="신사업 발굴">신사업 발굴</option>
+						<option value="출산휴가">출산휴가</option>
 					</select>
 				</td>
 				<td>
-					<select>
+					<select name="l_code">
 						<option value="L01">서울</option>
 						<option value="L02">광주</option>
 						<option value="L03">인천</option>
@@ -160,7 +163,7 @@ var full_count = 11;
 					</select>
 				</td>
 				<td>
-					<select>
+					<select name="w_except">
 						<option value="P">P</option>
 						<option value="C">C</option>
 					</select>
@@ -169,13 +172,16 @@ var full_count = 11;
 			<tbody></tbody>
 			<tr>
 				<th>비고</th>
-				<td colspan="4"></td>
+				<td colspan="4"><input type="text" name="mw_notice"></td>
 			</tr>
 		</table>
-	</div>
-	<div class="inputBtn">
-		<input type="button" class="pushBtn" value="등록" onclick="location.href = 'monthlyStatusInputGo.do'">
+		
+		<div class="inputBtn">
+		<input type="submit" class="pushBtn" value="등록">
 		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
 	</div>
+	</form>
+	</div>
+	</c:forEach>
 </body>
 </html>

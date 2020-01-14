@@ -7,11 +7,11 @@
   	<select id="monthlySum" parameterType="MonthlyWork" resultType="MonthlyWork">
   		SELECT DISTINCT
         (select COUNT(*) from M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0')) AS total,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N') AS except,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y') AS usingWork,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name != 'SI 사업 발주 대기') AS inputWork1,
-        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name = 'SI 사업 발주 대기') AS waitWork,
-        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y' AND w_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y')*100),1) AS avg1
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'Y') AS except,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N') AS usingWork,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N' AND w_name != 'SI 사업 발주 대기') AS inputWork1,
+        (SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N' AND w_name = 'SI 사업 발주 대기') AS waitWork,
+        ROUND(((SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N' AND w_name != 'SI 사업 발주 대기')/(SELECT COUNT(*) FROM M_WORK WHERE 1=1 AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0') AND w_except = 'N')*100),1) AS avg1
         FROM m_work
         WHERE 1=1
         AND TO_CHAR(MW_MONTH,'MM') = LPAD(#{mw_month},2,'0')
@@ -37,6 +37,18 @@
 	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '10') as OCT,
 	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '11') as NOV,
 	           (SELECT a.mw_status	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = #{mw_year} and to_char(a.mw_month,'MM') = '12') as DEC,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '01') as JAN_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '02') as FEB_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '03') as MAR_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '04') as APR_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '05') as MAY_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '06') as JUN_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '07') as JUL_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '08') as AUG_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '09') as SEPT_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '10') as OCT_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '11') as NOV_EXCEPT,
+	           (SELECT A.W_EXCEPT	FROM M_WORK A WHERE 1=1 AND A.M_ID = b.m_id  and to_char(a.mw_year,'yyyy') = '2020' and to_char(a.mw_month,'MM') = '12') as DEC_EXCEPT,
 	           a.mw_notice,
 	           a.w_except,
 	           TO_CHAR(a.mw_year,'yyyy') AS mw_year,

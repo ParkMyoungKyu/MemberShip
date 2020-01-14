@@ -52,12 +52,98 @@ public class MonthlyWorkVO {
 	private String NOV;
 	private String DEC;
 	
+	//월별 제외여부 담기용도
+	private String JAN_EXCEPT;
+	private String FEB_EXCEPT;
+	private String MAR_EXCEPT;
+	private String APR_EXCEPT;
+	private String MAY_EXCEPT;
+	private String JUN_EXCEPT;
+	private String JUL_EXCEPT;
+	private String AUG_EXCEPT;
+	private String SEPT_EXCEPT;
+	private String OCT_EXCEPT;
+	private String NOV_EXCEPT;
+	private String DEC_EXCEPT;
+	
 	//페이징용
     private int start;
     private int end;
     
     
     
+	public String getJAN_EXCEPT() {
+		return JAN_EXCEPT;
+	}
+	public void setJAN_EXCEPT(String jAN_EXCEPT) {
+		JAN_EXCEPT = jAN_EXCEPT;
+	}
+	public String getFEB_EXCEPT() {
+		return FEB_EXCEPT;
+	}
+	public void setFEB_EXCEPT(String fEB_EXCEPT) {
+		FEB_EXCEPT = fEB_EXCEPT;
+	}
+	public String getMAR_EXCEPT() {
+		return MAR_EXCEPT;
+	}
+	public void setMAR_EXCEPT(String mAR_EXCEPT) {
+		MAR_EXCEPT = mAR_EXCEPT;
+	}
+	public String getAPR_EXCEPT() {
+		return APR_EXCEPT;
+	}
+	public void setAPR_EXCEPT(String aPR_EXCEPT) {
+		APR_EXCEPT = aPR_EXCEPT;
+	}
+	public String getMAY_EXCEPT() {
+		return MAY_EXCEPT;
+	}
+	public void setMAY_EXCEPT(String mAY_EXCEPT) {
+		MAY_EXCEPT = mAY_EXCEPT;
+	}
+	public String getJUN_EXCEPT() {
+		return JUN_EXCEPT;
+	}
+	public void setJUN_EXCEPT(String jUN_EXCEPT) {
+		JUN_EXCEPT = jUN_EXCEPT;
+	}
+	public String getJUL_EXCEPT() {
+		return JUL_EXCEPT;
+	}
+	public void setJUL_EXCEPT(String jUL_EXCEPT) {
+		JUL_EXCEPT = jUL_EXCEPT;
+	}
+	public String getAUG_EXCEPT() {
+		return AUG_EXCEPT;
+	}
+	public void setAUG_EXCEPT(String aUG_EXCEPT) {
+		AUG_EXCEPT = aUG_EXCEPT;
+	}
+	public String getSEPT_EXCEPT() {
+		return SEPT_EXCEPT;
+	}
+	public void setSEPT_EXCEPT(String sEPT_EXCEPT) {
+		SEPT_EXCEPT = sEPT_EXCEPT;
+	}
+	public String getOCT_EXCEPT() {
+		return OCT_EXCEPT;
+	}
+	public void setOCT_EXCEPT(String oCT_EXCEPT) {
+		OCT_EXCEPT = oCT_EXCEPT;
+	}
+	public String getNOV_EXCEPT() {
+		return NOV_EXCEPT;
+	}
+	public void setNOV_EXCEPT(String nOV_EXCEPT) {
+		NOV_EXCEPT = nOV_EXCEPT;
+	}
+	public String getDEC_EXCEPT() {
+		return DEC_EXCEPT;
+	}
+	public void setDEC_EXCEPT(String dEC_EXCEPT) {
+		DEC_EXCEPT = dEC_EXCEPT;
+	}
 	public String getM_notice() {
 		return m_notice;
 	}

@@ -188,7 +188,30 @@ public class MgrController {
 		
 		return "redirect:mgrSite.do";
 	}
-	
+	// 사이트 수정
+	@RequestMapping(value = "mgrSiteUpdateForm")
+	public String mgrSiteUpdateForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrSiteUpdateForm=====================");
+		System.out.println("수정하고자 하는 사이트코드 : " + mgrVO.getL_code());
+		System.out.println("수정하고자 하는 사이트명 : " + mgrVO.getL_name());
+		
+		List<MgrVO> siteUpdateForm = mgrService.siteUpdateForm(mgrVO);
+		
+		model.addAttribute("siteUpdateForm",siteUpdateForm);
+		
+		return "manager/mgrSiteUpdateForm";
+	}
+	//수정할 업무 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrSiteUpdate")
+	public String mgrSiteUpdate(MgrVO mgrVO,Model model) {
+		System.out.println("=====================MgrController mgrSiteUpdate=====================");
+		System.out.println("수정입력한 사이트코드 : " + mgrVO.getL_code());
+		System.out.println("수정입력한 사이트명 : " + mgrVO.getL_name());
+		mgrService.siteUpdate(mgrVO);
+		
+		return "redirect:mgrSite.do";
+	}
+		
 	// 사이트 삭제
 	@RequestMapping(value="mgrSiteDelete")
 	public String mgrSiteDelete(MgrVO mgrVO, Model model) {
@@ -206,7 +229,7 @@ public class MgrController {
 	
 	
 	
-	
+	//-------------------근무지 관련 작업들-------------------
 	//근무지 목록
 	@RequestMapping(value="mgrWorkPlace")
 	public String mgrWorkPlace(MgrVO mgrVO,Model model) {
@@ -229,13 +252,38 @@ public class MgrController {
 	public String mgrWorkPlaceInput(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrWorkPlaceInput=====================");
 		
-		System.out.println("사이트코드 -> " + mgrVO.getP_name());
-		System.out.println("사이트명 -> " + mgrVO.getP_addr());
+		System.out.println("근무지명 -> " + mgrVO.getP_name());
+		System.out.println("근무지주소 -> " + mgrVO.getP_addr());
 		
 		mgrService.workPlaceInput(mgrVO);
 		
 		return "redirect:mgrWorkPlace.do";
 	}
+	
+	// 근무지 수정
+	@RequestMapping(value = "mgrWorkPlaceUpdateForm")
+	public String mgrWorkPlaceUpdateForm(MgrVO mgrVO, Model model) {
+		System.out.println("=====================MgrController mgrWorkPlaceUpdateForm=====================");
+		System.out.println("수정하고자 하는 근무지명 : " + mgrVO.getL_code());
+		System.out.println("수정하고자 하는 근무지주소 : " + mgrVO.getL_name());
+		
+		List<MgrVO> workPlaceUpdateForm = mgrService.workPlaceUpdateForm(mgrVO);
+		
+		model.addAttribute("workPlaceUpdateForm",workPlaceUpdateForm);
+		
+		return "manager/mgrWorkPlaceUpdateForm";
+	}
+	//수정할 근무지 입력 후 부모페이지로 다시 이동
+	@RequestMapping(value = "mgrWorkPlaceUpdate")
+	public String mgrWorkPlaceUpdate(MgrVO mgrVO,Model model) {
+		System.out.println("=====================MgrController mgrWorkPlaceUpdate=====================");
+		System.out.println("수정입력한 근무지명 : " + mgrVO.getL_code());
+		System.out.println("수정입력한 근무지주소 : " + mgrVO.getL_name());
+		mgrService.workPlaceUpdate(mgrVO);
+		
+		return "redirect:mgrWorkPlace.do";
+	}
+	
 	// 근무지 삭제
 	@RequestMapping(value="mgrWorkPlaceDelete")
 	public String mgrWorkPlaceDelete(MgrVO mgrVO, Model model) {
@@ -255,7 +303,7 @@ public class MgrController {
 	
 	
 	
-	
+	//-------------------직원 관련 작업들-------------------
 	//직원 목록
 	@RequestMapping(value="mgrMember")
 	public String mgrMember(MgrVO mgrVO,Model model) {

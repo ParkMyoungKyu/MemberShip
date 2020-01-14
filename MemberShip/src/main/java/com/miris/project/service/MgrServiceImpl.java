@@ -93,6 +93,16 @@ public class MgrServiceImpl implements MgrService {
 		return mgrDao.siteInput(mgrVO);
 	}
 	@Override
+	public List<MgrVO> siteUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl SiteUpdateForm=====================");
+		return mgrDao.siteUpdateForm(mgrVO);
+	}
+	@Override
+	public int siteUpdate(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl siteUpdate=====================");
+		return mgrDao.siteUpdate(mgrVO);
+	}
+	@Override
 	public int siteDelete(MgrVO mgrVO) {
 		System.out.println("=====================MgrServiceImpl siteDelete=====================");
 		return mgrDao.siteDelete(mgrVO);
@@ -115,6 +125,16 @@ public class MgrServiceImpl implements MgrService {
 	public int workPlaceInput(MgrVO mgrVO) {
 		System.out.println("=====================MgrServiceImpl workPlaceInput=====================");
 		return mgrDao.workPlaceInput(mgrVO);
+	}
+	@Override
+	public List<MgrVO> workPlaceUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl workPlaceUpdateForm=====================");
+		return mgrDao.workPlaceUpdateForm(mgrVO);
+	}
+	@Override
+	public int workPlaceUpdate(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl workPlaceUpdate=====================");
+		return mgrDao.workPlaceUpdate(mgrVO);
 	}
 	@Override
 	public int workPlaceDelete(MgrVO mgrVO) {
@@ -153,6 +173,9 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl mgrMemberDeleteError=====================");
 		return mgrDao.mgrMemberDeleteError(mgrVO);
 	}
+	
+	
+	
 	
 	
 	

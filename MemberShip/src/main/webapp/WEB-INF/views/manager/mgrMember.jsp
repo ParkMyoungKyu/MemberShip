@@ -19,19 +19,37 @@ $(document).ready(function(){
 				alert("삭제하고자 하는 인원을 선택해주세요");
 				return;
 			} else {
-					var m_id = "";
-					var m_pw = "";
 				$("#memberCheck:checked").each(function(){
-					m_id = $(this).parent().children("#m_id").val();
-					m_pw = $(this).parent().children("#m_pw").val();
-					alert("삭제 부서코드 : " + m_id +"\n삭제 부서명 : " + m_pw);
+					var m_id = $(this).parent().children("#m_id").val();
+					var m_pw = $(this).parent().children("#m_pw").val();
+					var m_name = $(this).parent().children("#m_name").val();
+					var d_name = $(this).parent().children("#d_name").val();
+					var m_position = $(this).parent().children("#m_position").val();
+					var m_gubun = $(this).parent().children("#m_gubun").val();
+					var	m_joindate = $(this).parent().children("#m_joindate").val();
+					var m_notice = $(this).parent().children("#m_notice").val();
+					alert("삭제 부서코드 : " + m_id 
+						+ "\n삭제 부서명 : " + m_pw
+						+ "\n삭제  : " + m_name
+						+ "\n삭제 부서명 : " + d_name
+						+ "\n삭제 부서명 : " + m_position
+						+ "\n삭제 부서명 : " + m_gubun
+						+ "\n삭제 부서명 : " + m_joindate
+						+ "\n삭제 부서명 : " + m_notice
+						);
 				});
-				//var allData = {"d_code":d_code,"d_name":d_name};
-				
 				$.ajax({
 			        url : 'mgrMemberDelete.do',
 			        type : 'post',
-			        data : {m_pw:m_pw,m_pw:m_pw},
+			        data : { m_id:m_id,
+			        	     m_pw:m_pw,
+			        	     m_name:m_name,
+			        	     d_name:d_name,
+			        	     m_position:m_position,
+			        	     m_gubun:m_gubun,
+			        	     m_joindate:m_joindate,
+			        	     m_notice:m_notice
+			        		},
 			        dataType : 'text',
 			        success : function(data) {
 			          window.location.reload(true)			//reload : 새로고침
@@ -74,25 +92,35 @@ $(document).ready(function(){
 				<fmt:formatDate var="join" value="${memberList.m_joindate}" pattern="yyyy-MM-dd"/>
 				<fmt:formatDate var="leave" value="${memberList.m_leavedate}" pattern="yyyy-MM-dd"/>
 				<tr class="mMemberTable-row">
-					<td><input type="checkbox" class="memberCheck" id="memberCheck" onclick="memberCheck()"></td>
-					<td id="m_id">${memberList.m_id}</td>
-					<td id="m_pw">${memberList.m_pw}</td>
-					<td id="m_name">${memberList.m_name}</td>
-					<td id="d_name">${memberList.d_name}</td>
-					<td id="m_position">${memberList.m_position}</td>
+					<td>
+						<input type="checkbox" class="memberCheck" id="memberCheck" onclick="memberCheck()">
+						<input type="hidden" id="m_id" value="${memberList.m_id}">
+						<input type="hidden" id="m_pw" value="${memberList.m_pw}">
+						<input type="hidden" id="m_name" value="${memberList.m_name}">
+						<input type="hidden" id="d_name" value="${memberList.d_name}">
+						<input type="hidden" id="m_position" value="${memberList.m_position}">
+						<input type="hidden" id="m_gubun" value="${memberList.m_gubun}">
+						<input type="hidden" id="m_joindate" value="${join}">
+						<input type="hidden" id="m_notice" value="${memberList.m_notice}">
+					</td>
+					<td>${memberList.m_id}</td>
+					<td>${memberList.m_pw}</td>
+					<td>${memberList.m_name}</td>
+					<td>${memberList.d_name}</td>
+					<td>${memberList.m_position}</td>
 					<c:choose>
-						<c:when test="${memberList.m_gubun == 'G1'}"><td id="m_gubun">내부</td></c:when>
-						<c:when test="${memberList.m_gubun == 'G2'}"><td id="m_gubun">외부</td></c:when>
+						<c:when test="${memberList.m_gubun == 'G1'}"><td>내부</td></c:when>
+						<c:when test="${memberList.m_gubun == 'G2'}"><td>외부</td></c:when>
 					</c:choose>
 					<c:choose>
 						<c:when test="${memberList.m_joindate == null}"><td>-</td></c:when>
-						<c:when test="${memberList.m_joindate != null}"><td id="m_joindate">${join}</td></c:when>
+						<c:when test="${memberList.m_joindate != null}"><td>${join}</td></c:when>
 					</c:choose>
 					<c:choose>
 						<c:when test="${memberList.m_leavedate == null}"><td>-</td></c:when>
-						<c:when test="${memberList.m_leavedate != null}"><td id="m_leavedate">${leave}</td></c:when>
+						<c:when test="${memberList.m_leavedate != null}"><td>${leave}</td></c:when>
 					</c:choose>
-					<td id="m_notice">${memberList.m_notice}</td>
+					<td>${memberList.m_notice}</td>
 				</tr>
 			</c:forEach>
 		</table>

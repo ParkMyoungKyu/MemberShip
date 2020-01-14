@@ -91,6 +91,11 @@ public class MgrDaoImpl implements MgrDao {
 		return session.insert("siteInput",mgrVO);
 	}
 	@Override
+	public List<MgrVO> siteUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl mgrSiteUpdateForm=====================");
+		return session.selectList("siteUpdateForm",mgrVO);
+	}
+	@Override
 	public int siteDelete(MgrVO mgrVO) {
 		System.out.println("=====================MgrDaoImpl siteDelete=====================");
 		return session.delete("siteDelete",mgrVO);
@@ -115,6 +120,17 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl workPlaceInput=====================");
 		return session.insert("workPlaceInput",mgrVO);
 	}
+	@Override
+	public List<MgrVO> workPlaceUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl workPlaceUpdateForm=====================");
+		return session.selectList("workPlaceUpdateForm",mgrVO);
+	}
+	@Override
+	public int workPlaceUpdate(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl workPlaceUpdate=====================");
+		return session.update("workPlaceUpdate",mgrVO);
+	}
+	
 	@Override
 	public int workPlaceDelete(MgrVO mgrVO) {
 		System.out.println("=====================MgrDaoImpl workPlaceDelete=====================");
@@ -149,15 +165,11 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl mgrMemberDeleteError=====================");
 		return session.delete("mgrMemberDeleteError",mgrVO);
 	}
-	
-	
-	
-	
-
-	
-	
-
-	
+	@Override
+	public int siteUpdate(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl siteUpdate=====================");
+		return session.update("siteUpdate",mgrVO);
+	}
 	
 	
 }

@@ -10,39 +10,58 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-		$(document).ready(function(){
-			$("#workPlaceDelete").on("click",function(){
-				var sign = confirm("해당 근무지를 삭제하시겠습니까?");
+	//체크된 리스트 값 넘기는 부분	
+	$(document).ready(function(){
+		$("#deptUpdate").on("click",function(){
+			if($(".deptCheck:checked").size()<1){
+				alert("수정하고자 하는 부서를 선택해주세요");
+				return;
+			} else {
+				$("#deptCheck:checked").each(function(){
+					var	p_name = $(this).parent().children("#p_name").val();
+					var	p_addr = $(this).parent().children("#p_addr").val();
+					alert("수정할 부서코드 : " + d_code +"\n수정할 부서명 : " + p_addr);
+					window.open('mgrDeptUpdateForm.do?d_code='+d_code+"&d_name="+d_name, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+				});
 				
-				if(sign){
-					if($(".workPlaceCheck:checked").size()<1){
-						alert("삭제하고자 하는 근무지를 선택해주세요");
-						return;
-					} else {
-							var p_name = "";
-							var p_addr = "";
-						$("#workPlaceCheck:checked").each(function(){
-							p_name = $(this).parent().children("#p_name").val();
-							p_addr = $(this).parent().children("#p_addr").val();
-							alert("삭제 근무지 : " + p_name +"\n삭제 근무지 주소 : " + p_addr);
-						});
-						
-						$.ajax({
-					        url : 'mgrWorkPlaceDelete.do',
-					        type : 'post',
-					        data : {p_name:p_name,p_addr:p_addr},
-					        dataType : 'text',
-					        success : function(data) {
-					          window.location.reload(true)			//reload : 새로고침
-					        },
-					        error : function() { 
-					        	alert("error");
-					        	}
-					      });
-					}
+			}
+		})
+	}); 
+
+	//삭제
+	$(document).ready(function(){
+		$("#workPlaceDelete").on("click",function(){
+			var sign = confirm("해당 근무지를 삭제하시겠습니까?");
+			
+			if(sign){
+				if($(".workPlaceCheck:checked").size()<1){
+					alert("삭제하고자 하는 근무지를 선택해주세요");
+					return;
+				} else {
+						var p_name = "";
+						var p_addr = "";
+					$("#workPlaceCheck:checked").each(function(){
+						p_name = $(this).parent().children("#p_name").val();
+						p_addr = $(this).parent().children("#p_addr").val();
+						alert("삭제 근무지 : " + p_name +"\n삭제 근무지 주소 : " + p_addr);
+					});
+					
+					$.ajax({
+				        url : 'mgrWorkPlaceDelete.do',
+				        type : 'post',
+				        data : {p_name:p_name,p_addr:p_addr},
+				        dataType : 'text',
+				        success : function(data) {
+				          window.location.reload(true)			//reload : 새로고침
+				        },
+				        error : function() { 
+				        	alert("error");
+				        	}
+				      });
 				}
-			});
-		}); 
+			}
+		});
+	}); 
 </script>
 </head>
 <%@ include file="../common/header.jsp" %>

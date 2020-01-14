@@ -10,6 +10,25 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+//체크된 리스트 값 넘기는 부분	
+$(document).ready(function(){
+	$("#siteUpdate").on("click",function(){
+		if($(".siteCheck:checked").size()<1){
+			alert("수정하고자 하는 사이트를 선택해주세요");
+			return;
+		} else {
+			$("#siteCheck:checked").each(function(){
+				var	l_code = $(this).parent().children("#l_code").val();
+				var	l_name = $(this).parent().children("#l_name").val();
+				alert("수정할 사이트 코드 : " + l_code +"\n수정할 사이트명 : " + l_name);
+				window.open('mgrSiteUpdateForm.do.do?l_code='+l_code+"&l_name="+l_name, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+			});
+			
+		}
+	})
+}); 
+
+
 $(document).ready(function(){
 	$("#siteDelete").on("click",function(){
 		var sign = confirm("해당 사이트를 삭제하시겠습니까?");
@@ -52,7 +71,7 @@ $(document).ready(function(){
 	<div class="mSiteBox2">	
 			<div class="title">사이트관리</div>
 			<div class="insertBtn"><button onclick="window.open('mgrSiteInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
-			<div class="updateBtn"><button onclick="window.open('mgrSiteUpdateForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">수정</button></div>
+			<div class="updateBtn"><button type="button" id="siteUpdate">수정</button></div>
 			<div class="deleteBtn"><button type="button" id="siteDelete">삭제</button></div>
 		<table class="mSiteTable">
 			<tr class="mSiteTable-rowheader">

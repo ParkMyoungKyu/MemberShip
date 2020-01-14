@@ -132,10 +132,34 @@
 		  INSERT (A.l_code,A.l_name)
 		  VALUES (#{l_code},#{l_name})
 	</insert>
+	<select id="siteUpdateForm" parameterType="Mgr" resultType="Mgr">
+		SELECT l_code, 
+			   l_name
+		FROM SITE
+		WHERE 1=1
+		AND l_code = #{l_code}
+		AND l_name = #{l_name}
+	</select>
+	<update id="siteUpdate" parameterType="Mgr">
+		MERGE INTO SITE A
+		USING (SELECT L_CODE,L_NAME 
+	           FROM SITE
+	           WHERE L_CODE = #{l_code}
+          ) B
+		ON ( A.l_code = B.l_code
+		   ) 
+   		WHEN MATCHED THEN
+        	UPDATE SET A.l_name=#{l_name} 
+	</update>
 	<delete id="siteDelete" parameterType="int">
 		 MERGE INTO SITE A
 		  USING DUAL
-		  ON (A.L_CODE = #{l_code})
+		  ON (A.L_CODE = #{l_code}
+		  AND (  SELECT COUNT(*)
+				 FROM M_WORK A, SITE B
+				 WHERE 1=1
+				 AND A.L_CODE = B.L_CODE
+				 AND A.L_CODE = #{l_code} )=0)
 		  WHEN MATCHED THEN
 		    UPDATE SET A.L_NAME = 'D'
 		    WHERE A.L_CODE = #{l_code}
@@ -165,6 +189,16 @@
 		INSERT INTO PLACE(P_NAME,P_ADDR) 
 		VALUES (#{p_name},#{p_addr})
 	</insert>
+	<select id="workPlaceUpdateForm">
+		SELECT p_name,
+			   p_addr
+		FROM PLACE
+		WHERE p_name = #{p_name}
+		AND p_addr = #{p_addr}
+	</select>
+	<update id="workPlaceUpdate">
+	
+	</update>
 	<delete id="workPlaceDelete" parameterType="int">
 		 MERGE INTO PLACE A
 		  USING DUAL

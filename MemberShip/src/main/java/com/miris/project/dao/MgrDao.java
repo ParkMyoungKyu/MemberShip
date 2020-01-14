@@ -24,12 +24,16 @@ public interface MgrDao {
 	
 	List<MgrVO> siteList(MgrVO mgrVO);
 	int siteInput(MgrVO mgrVO);
+	List<MgrVO> siteUpdateForm(MgrVO mgrVO);
+	int siteUpdate(MgrVO mgrVO);
 	int siteDelete(MgrVO mgrVO);
 	int siteDeleteError(MgrVO mgrVO);
 	
 	
 	List<MgrVO> workPlaceList(MgrVO mgrVO);
 	int workPlaceInput(MgrVO mgrVO);
+	List<MgrVO> workPlaceUpdateForm(MgrVO mgrVO);
+	int workPlaceUpdate(MgrVO mgrVO);
 	int workPlaceDelete(MgrVO mgrVO);
 	int workPlaceDeleteError(MgrVO mgrVO);
 	
@@ -38,6 +42,8 @@ public interface MgrDao {
 	int mgrMemberInput(MgrVO mgrVO);
 	int mgrMemberDelete(MgrVO mgrVO);
 	int mgrMemberDeleteError(MgrVO mgrVO);
+	
+	
 	
 	
 	
