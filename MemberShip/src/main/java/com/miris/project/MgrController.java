@@ -264,8 +264,8 @@ public class MgrController {
 	@RequestMapping(value = "mgrWorkPlaceUpdateForm")
 	public String mgrWorkPlaceUpdateForm(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrWorkPlaceUpdateForm=====================");
-		System.out.println("수정하고자 하는 근무지명 : " + mgrVO.getL_code());
-		System.out.println("수정하고자 하는 근무지주소 : " + mgrVO.getL_name());
+		System.out.println("수정하고자 하는 근무지명 : " + mgrVO.getP_name());
+		System.out.println("수정하고자 하는 근무지주소 : " + mgrVO.getP_addr());
 		
 		List<MgrVO> workPlaceUpdateForm = mgrService.workPlaceUpdateForm(mgrVO);
 		

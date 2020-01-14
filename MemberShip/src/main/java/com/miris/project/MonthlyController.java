@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.miris.project.dto.MonthlyWorkVO;
 import com.miris.project.service.MonthlyService;
 
@@ -65,10 +67,25 @@ public class MonthlyController {
 	@RequestMapping(value = "monthlyDetail")
 	private String monthlyDetail(MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("====================MonthlyContraller monthlyDetail=====================");
+		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getM_gubun());
+		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getD_code());
 		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getM_name());
+		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getM_position());
+		System.out.println("월별 투입이력 보고자 하는 사람 -> " + monthlyWorkVO.getM_notice());
+		
+		String m_gubun = monthlyWorkVO.getM_gubun();
+		String d_code = monthlyWorkVO.getD_code();
+		String m_name = monthlyWorkVO.getM_name();
+		String m_position = monthlyWorkVO.getM_position();
+		String m_notice = monthlyWorkVO.getM_notice();
 		
 		List<MonthlyWorkVO> monthlyDetail = monthlyService.monthlyDetail(monthlyWorkVO);
-				
+		
+		model.addAttribute("m_gubun",m_gubun);
+		model.addAttribute("d_code",d_code);
+		model.addAttribute("m_name",m_name);
+		model.addAttribute("m_position",m_position);
+		model.addAttribute("m_notice",m_notice);
 		model.addAttribute("monthlyDetail",monthlyDetail);
 		
 		return "inputStatus/monthlyDetail";
@@ -95,17 +112,34 @@ public class MonthlyController {
 	}
 	// 월별 투입 현황 입력
 	@RequestMapping(value = "monthlyStatusInputGo")
-	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
+	private String monthlyStatusInputGo(@RequestParam(value="m_gubun",required=true) List<String> m_gubun,
+										@RequestParam(value="m_name",required=true) List<String> m_name,
+										@RequestParam(value="m_position",required=true) List<String> m_position,
+										@RequestParam(value="mw_year",required=true) List<String> mw_year,
+										@RequestParam(value="mw_month",required=true) List<String> mw_month,
+										@RequestParam(value="w_name",required=true) List<String> w_name,
+										@RequestParam(value="l_code",required=true) List<String> l_code,
+										@RequestParam(value="w_except",required=true) List<String> w_except,
+										@RequestParam(value="mw_notice",required=true) List<String> mw_notice,
+			MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
-	
+		int i = 0;
+		for(String value : mw_year) {
+			System.out.println("mw_year => " + value);
+			i++;
+		}
+		
 		System.out.println("넣으려는 구분 : " + monthlyWorkVO.getM_gubun());
-		System.out.println("넣으려는 현업무 : " + monthlyWorkVO.getW_name());
 		System.out.println("넣으려는 성명 : "  + monthlyWorkVO.getM_name());
 		System.out.println("넣으려는 직급 : " + monthlyWorkVO.getM_position());
-		System.out.println("넣으려는 비고 : " + monthlyWorkVO.getMw_notice());
-		System.out.println("넣으려는 년도 : " + monthlyWorkVO.getMw_year());
-		System.out.println("넣으려는 월 : " + monthlyWorkVO.getMw_month());
 		
+		System.out.println("넣으려는 년도 : " + monthlyWorkVO.getMw_year());
+		System.out.println("넣으려는 업무명 : " + monthlyWorkVO.getW_name());
+		System.out.println("넣으려는 월 : " + monthlyWorkVO.getMw_month());
+		System.out.println("넣으려는 지역코드 : " + monthlyWorkVO.getL_code());
+		System.out.println("넣으려는 제외여부 : " + monthlyWorkVO.getW_except());
+		
+		System.out.println("넣으려는 비고 : " + monthlyWorkVO.getMw_notice());
 		
 		return "inputStatus/monthlyList";
 	}

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
@@ -30,19 +30,17 @@
 			<th>비고</th>
 		</tr>
 		<tr>
-			<td>구분</td>
-			<td>부서</td>
-			<td>성명</td>
-			<td>직급</td>
-			<td>비고</td>
+			<td>
+				<c:choose>
+					<c:when test="${m_gubun == 'G1'}">내부</c:when>
+					<c:when test="${m_gubun == 'G2'}">외부</c:when>
+				</c:choose>
+			</td>
+			<td>${d_code}</td>
+			<td>${m_name}</td>
+			<td>${m_position}</td>
+			<td>${m_notice}</td>
 		</tr>
-		<%-- <tr>
-			<td>${monthlyDetail.m_gubun}</td>
-			<td>${monthlyDetail.d_code}</td>
-			<td>${monthlyDetail.m_name}</td>
-			<td>${monthlyDetail.m_position}</td>
-			<td></td>
-		</tr> --%>
 	</table>
 	
 	<div class="monthlyInfo">■ 월별 인력 투입이력 (최근1년)</div>

@@ -34,6 +34,7 @@
 </head>
 <body>
 <div>
+
 		<div>직원 등록</div>
 		<form action="mgrMemberInput.do">
 			<div>아이디 : <input type="text" name="m_id" required="required"></div>
@@ -48,7 +49,7 @@
 							<option value="D06">핀테크서비스4부</option>
 					     </select>
 			</div>
-			<div>직급 : <select class="positionSelect" name="m_position">
+			<div>직급 : <select name="m_position">
 				 			<option value="사원">사원</option>
 				 			<option value="대리">대리</option>
 				 			<option value="과장">과장</option>
@@ -66,7 +67,7 @@
 			<div>입사일 : <input type="text" id="m_joindate" name="m_joindate" readonly="readonly" required="required"></div>
 			<div>비고 : <input type="text" name="m_notice"> </div>
 			<input type="submit" value="등록" onclick="ref()">
-		</form>
+			</form>
 	</div>
 </body>
 </html>

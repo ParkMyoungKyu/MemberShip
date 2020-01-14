@@ -199,7 +199,7 @@
 							<c:when test="${monthlyList.m_gubun == 'G2'}">외부</c:when>
 						</c:choose>
 					</td>
-					<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
+					<td><a href="monthlyDetail.do?m_name=${monthlyList.m_name}&m_gubun=${monthlyList.m_gubun}&d_code=${monthlyList.d_code}&m_position=${monthlyList.m_position}&m_notice=${monthlyList.m_notice}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${monthlyList.m_name}</a></td>
 					<td>${monthlyList.m_position}</td>
 					<td>${monthlyList.w_name}</td>
 					<td>${monthlyList.l_name}</td>

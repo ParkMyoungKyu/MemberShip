@@ -65,11 +65,7 @@
 				        data : {d_code:d_code,d_name:d_name},
 				        dataType : 'text',
 				        success : function(data) {
-				          if(d_code == 'E99'){
-				        	  //alert("해당 부서에 배치된 인원이 있어 삭제가 불가능합니다.")
-				          } else {
-				        	  //alert("선택하신 부서가 삭제되었습니다.");
-				          }
+				        	  alert("해당 부서에 배치된 인원이 있어 삭제가 불가능합니다." + d_code)
 				          window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 
@@ -89,7 +85,7 @@
 		<div class="mDeptBox">
 			<div class="mDeptBox2">
 			<div class="title">부서관리</div>
-			<div class="insertBtn"><button onclick="window.open('mgrDeptInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
+			<div class="insertBtn"><button type="button" id="" onclick="window.open('mgrDeptInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
 			<div class="updateBtn"><button type="button" id="deptUpdate">수정</button></div>			
 			<div class="deleteBtn"><button type="button" id="deptDelete">삭제</button></div>
 				<table class="mDeptTable">

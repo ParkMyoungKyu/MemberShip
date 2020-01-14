@@ -189,15 +189,23 @@
 		INSERT INTO PLACE(P_NAME,P_ADDR) 
 		VALUES (#{p_name},#{p_addr})
 	</insert>
-	<select id="workPlaceUpdateForm">
+	<select id="workPlaceUpdateForm" parameterType="Mgr" resultType="Mgr">
 		SELECT p_name,
 			   p_addr
 		FROM PLACE
 		WHERE p_name = #{p_name}
 		AND p_addr = #{p_addr}
 	</select>
-	<update id="workPlaceUpdate">
-	
+	<update id="workPlaceUpdate" parameterType="Mgr">
+		MERGE INTO PLACE A
+		USING (SELECT P_NAME,P_ADDR 
+	           FROM PLACE
+	           WHERE P_NAME = #{p_name}
+          ) B
+		ON ( A.p_name = B.p_name
+		   ) 
+   		WHEN MATCHED THEN
+        	UPDATE SET A.p_addr= #{p_addr}
 	</update>
 	<delete id="workPlaceDelete" parameterType="int">
 		 MERGE INTO PLACE A

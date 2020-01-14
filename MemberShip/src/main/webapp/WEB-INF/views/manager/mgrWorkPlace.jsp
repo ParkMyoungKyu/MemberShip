@@ -12,18 +12,17 @@
 <script type="text/javascript">
 	//체크된 리스트 값 넘기는 부분	
 	$(document).ready(function(){
-		$("#deptUpdate").on("click",function(){
-			if($(".deptCheck:checked").size()<1){
-				alert("수정하고자 하는 부서를 선택해주세요");
+		$("#workPlaceUpdate").on("click",function(){
+			if($(".workPlaceCheck:checked").size()<1){
+				alert("수정하고자 하는 근무지를 선택해주세요");
 				return;
 			} else {
-				$("#deptCheck:checked").each(function(){
+				$("#workPlaceCheck:checked").each(function(){
 					var	p_name = $(this).parent().children("#p_name").val();
 					var	p_addr = $(this).parent().children("#p_addr").val();
-					alert("수정할 부서코드 : " + d_code +"\n수정할 부서명 : " + p_addr);
-					window.open('mgrDeptUpdateForm.do?d_code='+d_code+"&d_name="+d_name, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+					alert("수정할 근무지명 : " + p_name +"\n수정할 근무지 주소 : " + p_addr);
+					window.open('mgrWorkPlaceUpdateForm.do?p_name='+p_name+"&p_addr="+p_addr, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
 				});
-				
 			}
 		})
 	}); 
@@ -45,7 +44,7 @@
 						p_addr = $(this).parent().children("#p_addr").val();
 						alert("삭제 근무지 : " + p_name +"\n삭제 근무지 주소 : " + p_addr);
 					});
-					
+
 					$.ajax({
 				        url : 'mgrWorkPlaceDelete.do',
 				        type : 'post',
@@ -72,7 +71,7 @@
 			<div class="mWorkPlaceBox2">	
 				<div class="title">근무지관리</div>
 				<div class="insertBtn"><button onclick="window.open('mgrWorkPlaceInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
-				<div class="updateBtn"><button onclick="window.open('mgrDeptUpdateForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">수정</button></div>
+				<div class="updateBtn"><button type="button" id="workPlaceUpdate">수정</button></div>
 				<div class="deleteBtn"><button type="button" id="workPlaceDelete">삭제</button></div>
 			<table class="mWorkPlaceTable">
 				<tr class="mWorkPlaceTable-rowheader">
