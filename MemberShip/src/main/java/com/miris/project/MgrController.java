@@ -77,6 +77,8 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
 		
 		mgrService.DeptDelete(mgrVO);
+		System.out.println("삭제하고자 하는 부서코드 : " + mgrVO.getD_code());
+		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
 		mgrService.DeptDeleteError(mgrVO);
 		
 		return "manager/mgrDept";

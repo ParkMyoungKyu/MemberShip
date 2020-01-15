@@ -39,7 +39,7 @@
    		WHEN MATCHED THEN
         	UPDATE SET A.d_name=#{d_name}
 	</update>
-	<delete id="deptDelete" parameterType="int">
+	<!-- <delete id="deptDelete" parameterType="int">
 		MERGE INTO DEPT A
 			USING DUAL
 			ON (A.D_CODE = #{d_code}
@@ -57,6 +57,12 @@
 		WHEN NOT MATCHED THEN
 			INSERT (A.D_CODE,A.D_NAME)
 			VALUES ('E99','ERROR')	
+	</delete> -->
+	<delete id="deptDelete" parameterType="int">
+		DELETE FROM DEPT
+		WHERE 1=1
+		AND D_CODE = #{d_code} 
+		AND D_NAME = #{d_name}
 	</delete>
 	<delete id="deptDeleteError" parameterType="int">
 		DELETE 
