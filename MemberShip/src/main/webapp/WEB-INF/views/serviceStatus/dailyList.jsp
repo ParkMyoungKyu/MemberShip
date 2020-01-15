@@ -47,15 +47,13 @@ $(function(){
 					성명 : <input type="text" name="m_name">
 				</div>
 				<div class="deptSearch">
-					부서 : <select class="dept" name="d_code">
-							<option value="D00">전체</option>
-							<option value="D01">경영지원실</option>
-							<option value="D02">부설연구소</option>
-							<option value="D03">핀테크서비스1부</option>
-							<option value="D04">핀테크서비스2부</option>
-							<option value="D05">핀테크서비스3부</option>
-							<option value="D06">핀테크서비스4부</option>
+					부서 :<select class="dept" name="d_code">
+						 <option value="D00">전체</option>
+						 <c:forEach var="deptList" items="${deptList}">
+						 	<option value="${deptList.d_code}">${deptList.d_name}</option>
+							</c:forEach>
 					     </select>
+					     
 				</div>
 				<div class="searchDate">
 					날짜 : <input type="text" id="searchDate" name="searchDate" readonly="readonly" required="required"> 

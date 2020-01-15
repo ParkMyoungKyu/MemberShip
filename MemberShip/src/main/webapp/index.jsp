@@ -10,7 +10,6 @@
 
 	<%
 		response.sendRedirect("loginForm.do");
-		//response.sendRedirect("dailyList.do");
 	%>
 	
 </body>

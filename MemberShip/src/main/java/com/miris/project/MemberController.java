@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.miris.project.dto.DailyWorkVO;
+import com.miris.project.dto.MgrVO;
 import com.miris.project.dto.MonthlyWorkVO;
 import com.miris.project.dto.Paging;
 import com.miris.project.service.MemberService;
+import com.miris.project.service.MgrService;
 import com.miris.project.service.MonthlyService;
 
 @Controller
@@ -24,6 +26,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MonthlyService monthlyService;
+	@Autowired
+	private MgrService mgrService;
 	
 	@RequestMapping(value = "main")
 	public String main(DailyWorkVO dailyWorkVO ,MonthlyWorkVO monthlyWorkVO, Model model) {
@@ -60,7 +64,7 @@ public class MemberController {
 	}	
 	
 	@RequestMapping(value = "dailyList")
-	public String dailyList(DailyWorkVO dailyWorkVO,String currentPage, Model model) {
+	public String dailyList(MgrVO mgrVO, DailyWorkVO dailyWorkVO,String currentPage, Model model) {
 		System.out.println("===================MemberContraller dailyList page start===================");
 		
 		System.out.println("전 구분 -> " + dailyWorkVO.getDw_status());
@@ -109,10 +113,14 @@ public class MemberController {
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
 		List<DailyWorkVO> dailyList = memberService.dailyList(dailyWorkVO);
+		List<MgrVO> deptList = mgrService.deptList(mgrVO);
+		
 		
 		model.addAttribute("dailySum",dailySum);
 		model.addAttribute("dailyList",dailyList);
+		model.addAttribute("deptList",deptList);
 		model.addAttribute("pg",pg);
+		
 				
 		return "serviceStatus/dailyList";
 	}

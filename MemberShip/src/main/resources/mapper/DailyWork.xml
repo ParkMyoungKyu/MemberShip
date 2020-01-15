@@ -112,46 +112,77 @@
 	</select>
 	
 	<select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
-		select rn, A.* 
-		FROM (
-		   select ROWNUM rn, 
-				   a.m_id,
-		           a.m_pw,
-		           a.m_name,
-		           a.d_code,
-		           a.m_position,
-		           a.m_gubun,
-		           a.m_joindate,
-		           a.m_leavedate,
-		           a.m_notice,
-		           c.dw_status,
-		           c.dw_day,
-		           c.dw_time,
-		           c.dw_notice,
-		           c.p_name,
-		           c.p_addr
-	          from member a
-	    	inner join (
-			   select  rownum rn,
-			   		   a.m_id,
-			           a.dw_status,
-			           a.dw_day,
-			           a.dw_time,
-			           a.dw_notice,
-			           b.p_name,
-			           b.p_addr
-			          from d_work a
-			    inner join place b
-			    on a.p_name = b.p_name
-			    WHERE 1=1
-			    AND to_char(a.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-			    <if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
-		    ) c
-		    on a.m_id = c.m_id
-		    WHERE 1=1
-		    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
-		    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>) A
-		    WHERE rn between #{start} and #{end}
+		SELECT RN, H.* FROM 
+			(SELECT ROWNUM RN,
+			       F.m_id,
+			       F.m_pw,
+			       F.m_name,
+			       F.d_code,
+			       G.d_name,
+			       F.m_position,
+			       F.m_gubun,
+			       F.m_joindate,
+			       F.m_leavedate,
+			       F.m_notice,
+			       F.dw_status,
+			       F.dw_day,
+			       F.dw_time,
+			       F.dw_notice,
+			       F.p_name,
+			       F.p_addr
+			FROM DEPT G
+			INNER JOIN
+			( select ROWNUM rn, 
+							       a.m_id,
+					           a.m_pw,
+					           a.m_name,
+					           a.d_code,
+					           a.m_position,
+					           a.m_gubun,
+					           a.m_joindate,
+					           a.m_leavedate,
+					           a.m_notice,
+					           E.dw_status,
+					           E.dw_day,
+					           E.dw_time,
+					           E.dw_notice,
+					           E.p_name,
+					           E.p_addr
+				          from member A
+				    	inner join(
+			select  rownum rn,
+						   		    C.m_id,
+						           C.dw_status,
+						           C.dw_day,
+						           C.dw_time,
+						           C.dw_notice,
+						           D.p_name,
+						           D.p_addr
+						          from d_work C
+			INNER JOIN PLACE D
+			ON  C.p_name = D.p_name
+			WHERE 1=1
+			AND to_char(C.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
+			<if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
+			) E
+			ON E.M_ID = A.M_ID
+			WHERE 1=1
+			<if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
+			<if test='m_name != ""'>AND a.m_name = #{m_name}</if>
+			ORDER BY 
+			CASE 
+			  WHEN A.m_position = '상무' THEN 1
+			  WHEN A.m_position = '부장' THEN 2
+			  WHEN A.m_position = '차장' THEN 3
+			  WHEN A.m_position = '과장' THEN 4
+			  WHEN A.m_position = '대리' THEN 5
+			  WHEN A.m_position = '사원' THEN 6
+			ELSE 30
+			END
+			) F 
+			ON F.D_CODE = G.D_CODE
+			) H
+			WHERE rn between #{start} and #{end}
 	</select>
 	
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
