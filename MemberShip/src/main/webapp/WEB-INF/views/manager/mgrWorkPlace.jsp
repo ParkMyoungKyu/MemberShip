@@ -43,22 +43,25 @@
 						p_name = $(this).parent().children("#p_name").val();
 						p_addr = $(this).parent().children("#p_addr").val();
 						//alert("삭제 근무지 : " + p_name +"\n삭제 근무지 주소 : " + p_addr);
+						
+						$.ajax({
+					        url : 'mgrWorkPlaceDelete.do',
+					        type : 'post',
+					        data : {p_name:p_name,p_addr:p_addr},
+					        dataType : 'text',
+					        success : function(data) {
+					        	alert("근무지 : " + p_name +"\n근무지 주소 : " + p_addr +"\n삭제되었습니다");
+					            window.location.reload(true)			//reload : 새로고침
+					        },
+					        error : function() { 
+					        	 alert("'"+p_name+"'의 근무지에 배치된 인원이 있어 삭제가 불가능합니다.");
+					        	 window.location.reload(true)
+					        	}
+					      });
+						
 					});
 
-					$.ajax({
-				        url : 'mgrWorkPlaceDelete.do',
-				        type : 'post',
-				        data : {p_name:p_name,p_addr:p_addr},
-				        dataType : 'text',
-				        success : function(data) {
-				        	alert("근무지 : " + p_name +"\n근무지 주소 : " + p_addr +"\n삭제되었습니다");
-				            window.location.reload(true)			//reload : 새로고침
-				        },
-				        error : function() { 
-				        	 alert("해당 근무지에 배치된 인원이 있어 삭제가 불가능합니다.");
-				        	 window.location.reload(true)
-				        	}
-				      });
+					
 				}
 			}
 		});

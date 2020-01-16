@@ -6,24 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	function ref(){
-		window.opener.location.reload(true);
-		window.close();
-	}
+	function deptUpdate(){
+		var d_code = $("#d_code").val();
+		var d_name = $("#d_name").val();
+		
+		//alert("d_code" + d_code +"d_name"+ d_name);
+		
+		$.ajax({
+			url:'mgrDeptUpdate.do',
+			type : 'post',
+			data : {d_code:d_code,d_name:d_name},
+			dataType : 'text',
+			success : function(data){
+				alert("'"+d_name+"'(으)로 부서가 수정되었습니다.");
+				opener.parent.location.reload();
+				window.close();
+			},
+			error : function(){
+				window.location.reload(true)
+			}
+		})
+	}	
 </script>
 </head>
 <body>
 	<div>
 		<div>부서 수정</div>
-		<form action="mgrDeptUpdate.do">
+		<div>
 			<c:forEach var="deptUpdateForm" items="${deptUpdateForm}">
-				<div> 부서 코드 : <input type="text" name="d_code" placeholder="${deptUpdateForm.d_code}" value="${deptUpdateForm.d_code}"></div>
-				<div> 부서 명 : <input type="text" name="d_name" placeholder="${deptUpdateForm.d_name}"></div>
-				<input type="submit" value="수정" onclick="ref()">
+				<div> 부서 코드 : <input type="text" id="d_code" placeholder="${deptUpdateForm.d_code}" value="${deptUpdateForm.d_code}" readonly="readonly"></div>
+				<div> 부서 명 : <input type="text" id="d_name" placeholder="${deptUpdateForm.d_name}"></div>
+				<input type="submit" value="수정" onclick="deptUpdate()">
 			</c:forEach>
-		</form>
+		</div>
 	</div>
 </body>
 </html>

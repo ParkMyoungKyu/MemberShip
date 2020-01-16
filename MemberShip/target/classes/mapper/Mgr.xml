@@ -10,15 +10,8 @@
 		FROM DEPT
 	</select>	
 	<insert id="deptInput" parameterType="Mgr">
-		MERGE INTO DEPT a 
-		USING DUAL
-		ON (a.d_code = #{d_code}
-		    or a.d_name = #{d_name}
-		    or #{d_code} NOT LIKE 'D%'
-		   ) 
-		WHEN NOT MATCHED THEN
-			INSERT (a.d_code,a.d_name)
-			VALUES (#{d_code},#{d_name})
+		INSERT INTO DEPT(d_code,d_name)
+		VALUES (#{d_code},#{d_name})
 	</insert>
 	<select id="deptUpdateForm" parameterType="Mgr" resultType="Mgr" >
 		SELECT d_code,
@@ -39,6 +32,22 @@
    		WHEN MATCHED THEN
         	UPDATE SET A.d_name=#{d_name}
 	</update>
+	<delete id="deptDelete" parameterType="int">
+		DELETE FROM DEPT
+		WHERE 1=1
+		AND D_CODE = #{d_code} 
+		AND D_NAME = #{d_name}
+	</delete>
+	<!-- <insert id="deptInput" parameterType="Mgr">
+		MERGE INTO DEPT a 
+		USING DUAL
+		ON (a.d_code = #{d_code}
+		    or #{d_code} NOT LIKE 'D%'
+		   ) 
+		WHEN NOT MATCHED THEN
+			INSERT (a.d_code,a.d_name)
+			VALUES (#{d_code},#{d_name})
+	</insert> -->
 	<!-- <delete id="deptDelete" parameterType="int">
 		MERGE INTO DEPT A
 			USING DUAL
@@ -64,14 +73,6 @@
 		WHERE D_CODE = 'E99'
 		AND   D_NAME = 'ERROR'
 	</delete> -->
-	<delete id="deptDelete" parameterType="int">
-		DELETE FROM DEPT
-		WHERE 1=1
-		AND D_CODE = #{d_code} 
-		AND D_NAME = #{d_name}
-	</delete>
-	
-	
 	
 	
 	<select id="workList" parameterType="Mgr" resultType="Mgr">
@@ -80,14 +81,8 @@
 		FROM WORK
 	</select>
 	<insert id="workInput" parameterType="Mgr">
-		MERGE INTO WORK a 
-		USING DUAL
-		ON (a.W_NAME = #{w_name}
-		    AND #{w_except} IN ('Y','N')
-		   ) 
-		WHEN NOT MATCHED THEN
-			INSERT (a.w_name,a.w_except)
-			VALUES (#{w_name},#{w_except})
+		INSERT INTO WORK(w_name,w_except)
+		VALUES (#{w_name},#{w_except})
 	</insert>
 	<select id="workUpdateForm" parameterType="Mgr" resultType="Mgr" >
 		SELECT w_name,
@@ -98,11 +93,32 @@
 		AND w_except = #{w_except}
 	</select>
 	<update id="workUpdate" parameterType="Mgr">
-		UPDATE WORK SET W_NAME = '앱고지2'
-		WHERE 1=1
-		AND W_NAME = '앱고지'
-		AND W_EXCEPT = 'Y'
+		MERGE INTO WORK A
+		USING (SELECT W_NAME,W_EXCEPT 
+	           FROM WORK
+	           WHERE W_NAME = #{w_name}
+          ) B
+		ON ( A.W_NAME = B.W_NAME
+		   ) 
+   		WHEN MATCHED THEN
+        	UPDATE SET A.W_EXCEPT = #{w_except}
 	</update>
+	<delete id="workDelete" parameterType="int">
+		DELETE FROM WORK 
+		WHERE 1=1
+		AND W_NAME = #{w_name}
+		AND W_EXCEPT = #{w_except}	
+	</delete>
+	<!-- <insert id="workInput" parameterType="Mgr">
+		MERGE INTO WORK a 
+		USING DUAL
+		ON (a.W_NAME = #{w_name}
+		    AND #{w_except} IN ('Y','N')
+		   ) 
+		WHEN NOT MATCHED THEN
+			INSERT (a.w_name,a.w_except)
+			VALUES (#{w_name},#{w_except})
+	</insert> -->
 	<!-- <delete id="workDelete" parameterType="int">
 		MERGE INTO WORK A
 		  USING DUAL
@@ -123,13 +139,6 @@
 		WHERE W_NAME = 'E99'
 		AND   W_EXCEPT = 'ERROR'
 	</delete> -->
-	<delete id="workDelete" parameterType="int">
-		DELETE FROM WORK 
-		WHERE 1=1
-		AND W_NAME = #{w_name}
-		AND W_EXCEPT = #{w_except}	
-	</delete>
-	
 	
 	
 	
@@ -139,12 +148,8 @@
 		FROM SITE
 	</select>
 	<insert id="siteInput" parameterType="Mgr">
-		MERGE INTO SITE A
-		 USING DUAL
-		 ON( l_code = #{l_code})
-		WHEN NOT MATCHED THEN
-		  INSERT (A.l_code,A.l_name)
-		  VALUES (#{l_code},#{l_name})
+		INSERT INTO SITE(l_code,l_name)
+		VALUES (#{l_code},#{l_name})
 	</insert>
 	<select id="siteUpdateForm" parameterType="Mgr" resultType="Mgr">
 		SELECT l_code, 
@@ -165,6 +170,21 @@
    		WHEN MATCHED THEN
         	UPDATE SET A.l_name=#{l_name} 
 	</update>
+	<delete id="siteDelete" parameterType="int">
+		 DELETE 
+		 FROM SITE
+		 WHERE 1=1
+		 AND L_CODE = #{l_code}
+		 AND L_NAME = #{l_name}
+	</delete>
+	<!-- <insert id="siteInput" parameterType="Mgr">
+		MERGE INTO SITE A
+		 USING DUAL
+		 ON( l_code = #{l_code})
+		WHEN NOT MATCHED THEN
+		  INSERT (A.l_code,A.l_name)
+		  VALUES (#{l_code},#{l_name})
+	</insert> -->
 	<!-- <delete id="siteDelete" parameterType="int">
 		 MERGE INTO SITE A
 		  USING DUAL
@@ -190,14 +210,6 @@
 		WHERE L_CODE = 'E99'
 		AND   L_NAME = 'ERROR'
 	</delete> -->
-	<delete id="siteDelete" parameterType="int">
-		 DELETE 
-		 FROM SITE
-		 WHERE 1=1
-		 AND L_CODE = #{l_code}
-		 AND L_NAME = #{l_name}
-	</delete>
-	
 	
 	
 	
@@ -230,6 +242,12 @@
         	UPDATE SET A.p_addr= #{p_addr}
 	</update>
 	<delete id="workPlaceDelete" parameterType="int">
+		 DELETE FROM PLACE
+		 WHERE 1=1
+		 AND P_NAME = #{p_name}
+		 AND P_ADDR = #{p_addr}
+	</delete>
+	<!-- <delete id="workPlaceDelete" parameterType="int">
 		 MERGE INTO PLACE A
 		  USING DUAL
 		  ON (A.P_NAME = #{p_name})
@@ -248,7 +266,7 @@
 		FROM PLACE
 		WHERE P_NAME = 'E99'
 		AND   P_ADDR = 'ERROR'
-	</delete>
+	</delete> -->
 	
 	
 	<select id="memberList" parameterType="Mgr" resultType="Mgr">
@@ -271,10 +289,13 @@
 		  USING DUAL
 		  ON (A.M_ID = #{m_id})
 		  WHEN NOT MATCHED THEN
-		    INSERT(A.M_ID,A.M_PW,A.M_NAME,A.D_CODE,A.M_POSITION,A.M_GUBUN,A.M_JOINDATE,M_NOTICE)
-		    VALUES (#{m_id},#{m_pw},#{m_name},#{d_code},#{m_position},#{m_gubun}.#{m_joindate},#{m_notice})
+		    INSERT(A.M_ID,A.M_NAME,A.D_CODE,A.M_POSITION,A.M_GUBUN,A.M_JOINDATE,M_NOTICE)
+		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun}.TO_DATE(#{m_joindate},'YYYYMMDD'),#{m_notice})
 	</insert>
 	<delete id="mgrMemberDelete" parameterType="int">
+		 
+	</delete>
+	<!-- <delete id="mgrMemberDelete" parameterType="int">
 		 MERGE INTO MEMBER A
 			  USING DUAL
 			  ON (A.M_ID = #{m_id}
@@ -305,5 +326,5 @@
         AND   A.M_NAME = 'ERROR'
         AND   A.D_CODE = 'E99'
         AND   A.M_POSITION = 'ERROR'
-	</delete>
+	</delete> -->
 </mapper>

@@ -48,23 +48,20 @@
 			}
 		})
 	}); 
+	
 	 $(document).ready(function(){
 		$("#deptDelete").on("click",function(){
 			var sign = confirm("해당 부서를 삭제하시겠습니까?");
 			
 			if(sign){
-				if($(".deptCheck:checked").size()<1){
+				if($("#deptCheck:checked").size()<1){
 					alert("삭제하고자 하는 부서를 선택해주세요");
 					return;
 				} else {
-						var d_code = "";
-						var d_name = "";
 					$("#deptCheck:checked").each(function(){
-						d_code = $(this).parent().children("#d_code").val();
-						d_name = $(this).parent().children("#d_name").val();
-						//alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
-					});
-					//var allData = {"d_code":d_code,"d_name":d_name};
+						var	d_code = $(this).parent().children("#d_code").val();
+						var	d_name = $(this).parent().children("#d_name").val();
+						alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
 					
 					$.ajax({
 				        url : 'mgrDeptDelete.do',
@@ -76,14 +73,15 @@
 				          window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 
-				        	alert("해당 부서에 배치된 인원이 있어 삭제가 불가능합니다.");
+				        	alert("'"+d_name+"' 부서에 배치된 인원이 있어 삭제가 불가능합니다.");
 				        	window.location.reload(true)			//reload : 새로고침
 				        	}
-				      });
+				       })
+					});
+				   }
 				}
-			}
-		});
-	}); 
+			});
+		}); 
 </script>
 </head>
 <%@ include file="../common/header.jsp" %>

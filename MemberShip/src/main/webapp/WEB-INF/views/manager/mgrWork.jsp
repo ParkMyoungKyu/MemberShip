@@ -32,7 +32,7 @@
 				$("#workCheck:checked").each(function(){
 					var	w_name = $(this).parent().children("#w_name").val();
 					var	w_except = $(this).parent().children("#w_except").val();
-					alert("수정할 업무명 : " + w_name +"\n수정할 제외여부 : " + w_except);
+					//alert("수정할 업무명 : " + w_name +"\n수정할 제외여부 : " + w_except);
 					window.open('mgrWorkUpdateForm.do?w_name='+w_name+"&w_except="+w_except, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
 				});
 				
@@ -53,24 +53,25 @@
 					$("#workCheck:checked").each(function(){
 						w_name = $(this).parent().children("#w_name").val();
 						w_except = $(this).parent().children("#w_except").val();
-						alert("삭제 업무명 : " + w_name +"\n업무 제외여부 : " + w_except);
+						//alert("삭제 업무명 : " + w_name +"\n업무 제외여부 : " + w_except);
+						
+						$.ajax({
+					        url : 'mgrWorkDelete.do',
+					        type : 'post',
+					        data : {w_name:w_name,w_except:w_except},
+					        dataType : 'text',
+					        success : function(data) {
+					        	 alert("업무명 : " + w_name +"\n업무 제외여부 : " + w_except +"\n삭제되었습니다");
+					             window.location.reload(true)			//reload : 새로고침
+					        },
+					        error : function() { 
+					        	alert("'"+w_name+"' 업무에 배치된 인원이 있어 삭제가 불가능합니다.");
+					        	 window.location.reload(true)	
+					        	}
+					      });
 					});
-					//var allData = {"d_code":d_code,"d_name":d_name};
 					
-					$.ajax({
-				        url : 'mgrWorkDelete.do',
-				        type : 'post',
-				        data : {w_name:w_name,w_except:w_except},
-				        dataType : 'text',
-				        success : function(data) {
-				        	 alert("업무명 : " + w_name +"\n업무 제외여부 : " + w_except +"\n삭제되었습니다");
-				             window.location.reload(true)			//reload : 새로고침
-				        },
-				        error : function() { 
-				        	alert("해당 업무에 배치된 인원이 있어 삭제가 불가능합니다.");
-				        	 window.location.reload(true)	
-				        	}
-				      });
+					
 				}
 			}
 		});

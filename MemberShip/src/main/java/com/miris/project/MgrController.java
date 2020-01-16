@@ -2,10 +2,15 @@ package com.miris.project;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.miris.project.dto.MgrVO;
 import com.miris.project.service.MgrService;
@@ -279,8 +284,8 @@ public class MgrController {
 	@RequestMapping(value = "mgrWorkPlaceUpdate")
 	public String mgrWorkPlaceUpdate(MgrVO mgrVO,Model model) {
 		System.out.println("=====================MgrController mgrWorkPlaceUpdate=====================");
-		System.out.println("수정입력한 근무지명 : " + mgrVO.getL_code());
-		System.out.println("수정입력한 근무지주소 : " + mgrVO.getL_name());
+		System.out.println("수정입력한 근무지명 : " + mgrVO.getP_name());
+		System.out.println("수정입력한 근무지주소 : " + mgrVO.getP_addr());
 		mgrService.workPlaceUpdate(mgrVO);
 		
 		return "redirect:mgrWorkPlace.do";
@@ -321,6 +326,9 @@ public class MgrController {
 	@RequestMapping(value = "mgrMemberInputForm")
 	public String mgrMemberInputForm(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberInputForm=====================");
+		List<MgrVO> deptList = mgrService.deptList(mgrVO);
+		
+		model.addAttribute("deptList",deptList);
 		return "manager/mgrMemberInputForm";
 	}
 	//추가할 직원 입력 후 부모페이지로 다시 이동
@@ -328,14 +336,16 @@ public class MgrController {
 	public String mgrMemberInput(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberInput=====================");
 		
-		System.out.println("아이디 : " + mgrVO.getM_id());
-		System.out.println("비밀번호 : " + mgrVO.getM_pw());
-		System.out.println("이름 : " + mgrVO.getM_name());
-		System.out.println("부서명 : " + mgrVO.getD_code());
-		System.out.println("직급 : " + mgrVO.getM_position());
-		System.out.println("내부/외부 : " + mgrVO.getM_gubun());
-		System.out.println("입사일 : " + mgrVO.getM_joindate());
-		System.out.println("비고 : " + mgrVO.getM_notice());
+		System.out.println("추가할 아이디 : " + mgrVO.getM_id());
+		System.out.println("추가할 이름 : " + mgrVO.getM_name());
+		System.out.println("추가할 부서명 : " + mgrVO.getD_code());
+		System.out.println("추가할 직급 : " + mgrVO.getM_position());
+		System.out.println("추가할 내부/외부 : " + mgrVO.getM_gubun());
+		System.out.println("추가할 입사일 : " + mgrVO.getM_joindate());
+		System.out.println("추가할 비고 : " + mgrVO.getM_notice());
+		
+		List<MgrVO> deptList = mgrService.deptList(mgrVO);
+		model.addAttribute("deptList",deptList);
 		
 		mgrService.mgrMemberInput(mgrVO);
 		
@@ -343,6 +353,7 @@ public class MgrController {
 	}
 	// 직원 삭제
 	@RequestMapping(value="mgrMemberDelete")
+	@ResponseBody
 	public String mgrMemberDelete(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberDelete=====================");
 		System.out.println("삭제하고자 하는 아이디 : " + mgrVO.getM_id());
@@ -354,8 +365,10 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 입사일 : " + mgrVO.getM_joindate());
 		System.out.println("삭제하고자 하는 비고 : " + mgrVO.getM_notice());
 		
+	
+		
 		mgrService.mgrMemberDelete(mgrVO);
-		mgrService.mgrMemberDeleteError(mgrVO);
+		//mgrService.mgrMemberDeleteError(mgrVO);
 		
 		return "manager/mgrMember";
 	}

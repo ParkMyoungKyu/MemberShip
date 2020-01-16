@@ -28,36 +28,38 @@ $(document).ready(function(){
 					var m_gubun = $(this).parent().children("#m_gubun").val();
 					var	m_joindate = $(this).parent().children("#m_joindate").val();
 					var m_notice = $(this).parent().children("#m_notice").val();
-					alert("삭제 부서코드 : " + m_id 
-						+ "\n삭제 부서명 : " + m_pw
-						+ "\n삭제  : " + m_name
+					alert("삭제 아이디 : " + m_id 
+						+ "\n삭제 비밀번호 : " + m_pw
+						+ "\n삭제  이름: " + m_name
 						+ "\n삭제 부서명 : " + d_name
-						+ "\n삭제 부서명 : " + m_position
-						+ "\n삭제 부서명 : " + m_gubun
-						+ "\n삭제 부서명 : " + m_joindate
-						+ "\n삭제 부서명 : " + m_notice
+						+ "\n삭제 직급 : " + m_position
+						+ "\n삭제 내부/외부 : " + m_gubun
+						+ "\n삭제 입사일 : " + m_joindate
+						+ "\n삭제 비고 : " + m_notice
 						);
+					
+					$.ajax({
+				        url : 'mgrMemberDelete.do',
+				        type : 'json',
+				        data : { m_id:m_id,
+				        	     m_pw:m_pw,
+				        	     m_name:m_name,
+				        	     d_name:d_name,
+				        	     m_position:m_position,
+				        	     m_gubun:m_gubun,
+				        	     m_joindate:m_joindate,
+				        	     m_notice:m_notice
+				        		},
+				        dataType : 'text',
+				        success : function(data) {
+				          window.location.reload(true)			//reload : 새로고침
+				        },
+				        error : function() { 
+				        	alert("error");
+				        	}
+				      });
 				});
-				$.ajax({
-			        url : 'mgrMemberDelete.do',
-			        type : 'post',
-			        data : { m_id:m_id,
-			        	     m_pw:m_pw,
-			        	     m_name:m_name,
-			        	     d_name:d_name,
-			        	     m_position:m_position,
-			        	     m_gubun:m_gubun,
-			        	     m_joindate:m_joindate,
-			        	     m_notice:m_notice
-			        		},
-			        dataType : 'text',
-			        success : function(data) {
-			          window.location.reload(true)			//reload : 새로고침
-			        },
-			        error : function() { 
-			        	alert("error");
-			        	}
-			      });
+				
 			}
 		}
 	});

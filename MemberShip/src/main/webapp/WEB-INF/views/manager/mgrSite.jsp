@@ -38,27 +38,26 @@ $(document).ready(function(){
 				alert("삭제하고자 하는 사이트를 선택해주세요");
 				return;
 			} else {
-					var l_code = "";
-					var l_name = "";
 				$("#siteCheck:checked").each(function(){
-					l_code = $(this).parent().children("#l_code").val();
-					l_name = $(this).parent().children("#l_name").val();
+					var l_code = $(this).parent().children("#l_code").val();
+					var l_name = $(this).parent().children("#l_name").val();
 					//alert("삭제 사이트코드 : " + l_code +"\n삭제 사이트명 : " + l_name);
+					$.ajax({
+				        url : 'mgrSiteDelete.do',
+				        type : 'post',
+				        data : {l_code:l_code,l_name:l_name},
+				        dataType : 'text',
+				        success : function(data) {
+				          alert("사이트코드 : " + l_code +"\n사이트명 : " + l_name +"\n삭제되었습니다");
+				          window.location.reload(true)			//reload : 새로고침
+				        },
+				        error : function() { 
+				        	alert("'"+l_name+"' 사이트에 배치된 인원이 있어 삭제가 불가능합니다.");
+				        	window.location.reload(true)
+				        	}
+				      });
 				});
-				$.ajax({
-			        url : 'mgrSiteDelete.do',
-			        type : 'post',
-			        data : {l_code:l_code,l_name:l_name},
-			        dataType : 'text',
-			        success : function(data) {
-			          alert("사이트코드 : " + l_code +"\n사이트명 : " + l_name +"\n삭제되었습니다");
-			          window.location.reload(true)			//reload : 새로고침
-			        },
-			        error : function() { 
-			        	alert("해당 사이트에 배치된 인원이 있어 삭제가 불가능합니다.");
-			        	window.location.reload(true)
-			        	}
-			      });
+				
 			}
 		}
 	});
