@@ -79,7 +79,7 @@ public class MgrController {
 		mgrService.DeptDelete(mgrVO);
 		System.out.println("삭제하고자 하는 부서코드 : " + mgrVO.getD_code());
 		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
-		mgrService.DeptDeleteError(mgrVO);
+		//mgrService.DeptDeleteError(mgrVO);
 		
 		return "manager/mgrDept";
 	}
@@ -149,7 +149,7 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 업무 제외여부 : " + mgrVO.getW_except());
 		
 		mgrService.workDelete(mgrVO);
-		mgrService.workDeleteError(mgrVO);
+		//mgrService.workDeleteError(mgrVO);
 		
 	
 		return "manager/mgrWork";
@@ -222,7 +222,7 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 사이트명 : " + mgrVO.getL_name());
 		
 		mgrService.siteDelete(mgrVO);
-		mgrService.siteDeleteError(mgrVO);
+		//mgrService.siteDeleteError(mgrVO);
 		
 	
 		return "manager/mgrSite";
@@ -294,7 +294,7 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 사이트명 : " + mgrVO.getP_addr());
 		
 		mgrService.workPlaceDelete(mgrVO);
-		mgrService.workPlaceDeleteError(mgrVO);
+		//mgrService.workPlaceDeleteError(mgrVO);
 		
 	
 		return "manager/mgrWorkPlace";

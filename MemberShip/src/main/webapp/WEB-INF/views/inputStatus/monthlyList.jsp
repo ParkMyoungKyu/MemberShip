@@ -24,6 +24,31 @@
 			$("#monthlyAllCheck").prop("checked",false);
 		}
 	}
+	//인력 수정 부분
+	
+	$(document).ready(function(){
+		$("#monthlyWorkUpdate").on("click",function(){
+			if($(".monthlyCheck:checked").size()<1){
+				alert("수정하고자 하는 인력을 선택해주세요");
+				return;
+			} else {
+				$("#monthlyCheck:checked").each(function(){
+					var	m_id = $(this).parent().children("#m_id").val();
+					var	m_gubun = $(this).parent().children("#m_gubun").val();
+					var	m_name = $(this).parent().children("#m_name").val();
+					var	m_position = $(this).parent().children("#m_position").val();
+					alert("수정할 부서명 : " + m_id
+					   +"\n수정할 부서명 : " + m_name
+					   +"\n수정할 부서명 : " + m_position);
+					window.open('monthlyWorkUpdateForm.do?&m_id='+m_id
+														+"&m_name="+m_name
+														+"&m_position="+m_position, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+				});
+				
+			}
+		})
+	}); 
+	
 	// 체크된 리스트 값 넘기는 부분	
 	$(document).ready(function(){
 		$("#statusInput").on("click",function(){
@@ -97,7 +122,7 @@
 	<div class="monthlyListTable">
 	<div class="listText">월별 인력 투입현황</div>
 	<div class="btn">
-		<button class="workBtn" onclick="window.open('monthlyWorkInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');">인력등록</button>
+		<button type="button" class="workBtn" id="monthlyWorkUpdate">인력수정</button>
 		<button type="button" class="statusBtn" id="statusInput">현황등록</button>
 		<button class="copyBtn">일괄복사</button>
 	</div>
@@ -185,6 +210,7 @@
 				<tr class="monthlyList-row">
 					<td>
 						<input type="checkbox" id="monthlyCheck" class="monthlyCheck" onclick="monthlyCheck()">
+						<input type="hidden" id="m_id" value="${monthlyList.m_id}">
 						<input type="hidden" id="m_gubun" value="${monthlyList.m_gubun}">
 						<input type="hidden" id="w_name" value="${monthlyList.w_name}">
 						<input type="hidden" id="m_name" value="${monthlyList.m_name}">

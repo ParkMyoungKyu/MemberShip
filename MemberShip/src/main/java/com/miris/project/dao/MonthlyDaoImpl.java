@@ -39,8 +39,14 @@ public class MonthlyDaoImpl implements MonthlyDao {
 	}
 
 	@Override
-	public int monthlyWorkInput(MonthlyWorkVO monthlyWorkVO) {
+	public List<MonthlyWorkVO> monthlyWorkUpdateSelect(MonthlyWorkVO monthlyWorkVO) {
 		System.out.println("=====================MonthlyDaoImpl monthlyWorkInput=====================");
-		return session.insert("monthlyWorkInput",monthlyWorkVO);
+		return session.selectList("monthlyWorkUpdateSelect",monthlyWorkVO);
+	}
+
+	@Override
+	public int monthlyWorkUpdate(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyDaoImpl monthlyWorkUpdate=====================");
+		return session.update("monthlyWorkUpdate",monthlyWorkVO);
 	}
 }

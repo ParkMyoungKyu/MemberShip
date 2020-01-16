@@ -36,7 +36,7 @@
 <div>
 
 		<div>직원 등록</div>
-		<form action="mgrMemberInput.do">
+		<form action="mgrMemberInput.do" >
 			<div>아이디 : <input type="text" name="m_id" required="required"></div>
 			<div>비밀번호 : <input type="text" name="m_pw"></div>
 			<div>이름 : <input type="text" name="m_name"> </div>

@@ -62,7 +62,7 @@
 					$("#deptCheck:checked").each(function(){
 						d_code = $(this).parent().children("#d_code").val();
 						d_name = $(this).parent().children("#d_name").val();
-						alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
+						//alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
 					});
 					//var allData = {"d_code":d_code,"d_name":d_name};
 					
@@ -72,7 +72,7 @@
 				        data : {d_code:d_code,d_name:d_name},
 				        dataType : 'text',
 				        success : function(data) {
-				        	//  alert("해당 부서에 배치된 인원이 있어 삭제가 불가능합니다.")
+				          alert("부서코드 : " + d_code +"\n부서명 : " + d_name +"\n삭제되었습니다");
 				          window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 

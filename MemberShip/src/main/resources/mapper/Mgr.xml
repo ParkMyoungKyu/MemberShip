@@ -58,18 +58,19 @@
 			INSERT (A.D_CODE,A.D_NAME)
 			VALUES ('E99','ERROR')	
 	</delete> -->
+	<!-- <delete id="deptDeleteError" parameterType="int">
+		DELETE 
+		FROM DEPT
+		WHERE D_CODE = 'E99'
+		AND   D_NAME = 'ERROR'
+	</delete> -->
 	<delete id="deptDelete" parameterType="int">
 		DELETE FROM DEPT
 		WHERE 1=1
 		AND D_CODE = #{d_code} 
 		AND D_NAME = #{d_name}
 	</delete>
-	<delete id="deptDeleteError" parameterType="int">
-		DELETE 
-		FROM DEPT
-		WHERE D_CODE = 'E99'
-		AND   D_NAME = 'ERROR'
-	</delete>
+	
 	
 	
 	
@@ -102,7 +103,7 @@
 		AND W_NAME = '앱고지'
 		AND W_EXCEPT = 'Y'
 	</update>
-	<delete id="workDelete" parameterType="int">
+	<!-- <delete id="workDelete" parameterType="int">
 		MERGE INTO WORK A
 		  USING DUAL
 		  ON (A.W_NAME = #{w_name})
@@ -115,13 +116,20 @@
 		  WHEN NOT MATCHED THEN
 		    INSERT(A.W_NAME,A.W_EXCEPT)
 		    VALUES ('E99','ERROR')	
-	</delete>
-	<delete id="workDeleteError" parameterType="int">
+	</delete> -->
+	<!-- <delete id="workDeleteError" parameterType="int">
 		DELETE 
 		FROM WORK
 		WHERE W_NAME = 'E99'
 		AND   W_EXCEPT = 'ERROR'
+	</delete> -->
+	<delete id="workDelete" parameterType="int">
+		DELETE FROM WORK 
+		WHERE 1=1
+		AND W_NAME = #{w_name}
+		AND W_EXCEPT = #{w_except}	
 	</delete>
+	
 	
 	
 	
@@ -157,7 +165,7 @@
    		WHEN MATCHED THEN
         	UPDATE SET A.l_name=#{l_name} 
 	</update>
-	<delete id="siteDelete" parameterType="int">
+	<!-- <delete id="siteDelete" parameterType="int">
 		 MERGE INTO SITE A
 		  USING DUAL
 		  ON (A.L_CODE = #{l_code}
@@ -175,13 +183,21 @@
 		  WHEN NOT MATCHED THEN
 		    INSERT(A.L_CODE,A.L_NAME)
 		    VALUES ('E99','ERROR')
-	</delete>
-	<delete id="siteDeleteError" parameterType="int">
+	</delete> -->
+	<!-- <delete id="siteDeleteError" parameterType="int">
 		DELETE 
 		FROM SITE
 		WHERE L_CODE = 'E99'
 		AND   L_NAME = 'ERROR'
+	</delete> -->
+	<delete id="siteDelete" parameterType="int">
+		 DELETE 
+		 FROM SITE
+		 WHERE 1=1
+		 AND L_CODE = #{l_code}
+		 AND L_NAME = #{l_name}
 	</delete>
+	
 	
 	
 	

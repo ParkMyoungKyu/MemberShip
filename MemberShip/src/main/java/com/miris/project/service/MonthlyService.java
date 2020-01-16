@@ -14,6 +14,8 @@ public interface MonthlyService {
 
 	List<MonthlyWorkVO> monthlyStatusInput(MonthlyWorkVO monthlyWorkVO);
 
-	int monthlyWorkInput(MonthlyWorkVO monthlyWorkVO);
+	int monthlyWorkUpdate(MonthlyWorkVO monthlyWorkVO);
+
+	List<MonthlyWorkVO> monthlyWorkUpdateSelect(MonthlyWorkVO monthlyWorkVO);
 
 }

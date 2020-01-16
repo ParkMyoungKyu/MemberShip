@@ -1,0 +1,109 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/monthlyWorkInput.css" type="text/css">
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>Insert title here</title>
+<script type="text/javascript">
+	function closePopup(){
+		window.opener.location.reload();
+		window.close();	
+	};
+</script>
+</head>
+<body class="monthlyWorkUpdate">
+<form action="monthlyWorkUpdate.do">
+	<div class="inputBox">
+		<div class="inputTitle">인력 수정</div>
+		<table class="inputTable">
+			<tr>
+				<th>구분</th>
+				<th>부서</th>
+				<th>성명</th>
+				<th>직급</th>
+			</tr>
+			<c:forEach var="WUSelect" items="${monthlyWorkUpdateSelect}">
+			<tr>
+				<td>
+					<select class="gbnSelect" name="m_gubun">
+						<c:choose>
+							<c:when test="${WUSelect.m_gubun == 'G1'}">
+								<option value="G1">내부</option>
+								<option value="G2">외부</option>
+							</c:when>
+							<c:when test="${WUSelect.m_gubun == 'G2'}">
+								<option value="G2">외부</option>
+								<option value="G1">내부</option>
+							</c:when>
+						</c:choose>
+					</select>
+				</td>
+				<td>
+					<select class="deptSelect" name="d_code">
+							
+						<c:forEach var="deptList" items="${deptList}">	
+						 <c:if test="${WUSelect.d_code == deptList.d_code}">
+						 	<option value="${deptList.d_code}" selected="selected">${deptList.d_name}</option>
+						 </c:if>
+						 <c:if test="${WUSelect.d_code != deptList.d_code}">
+						 	<option value="${deptList.d_code}">${deptList.d_name}</option>
+						 </c:if>
+						</c:forEach>
+					    
+					</select>
+				</td>
+				<td>
+					<input type="text" name="m_name" required="required" value="${WUSelect.m_name}" placeholder="${WUSelect.m_name}">
+					<input type="hidden" name="m_id" value="${WUSelect.m_id}">
+				</td>
+				<td>
+					<select name="m_position">
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '사원'}"><option value="사원" selected="selected">사원</option></c:when>
+							<c:when test="${WUSelect.m_position != '사원'}"><option value="사원">사원</option></c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '대리'}"><option value="대리" selected="selected">대리</option></c:when>
+							<c:when test="${WUSelect.m_position != '대리'}"><option value="대리">대리</option></c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '과장'}"><option value="과장" selected="selected">과장</option></c:when>
+							<c:when test="${WUSelect.m_position != '과장'}"><option value="과장">과장</option></c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '차장'}"><option value="차장" selected="selected">차장</option></c:when>
+							<c:when test="${WUSelect.m_position != '차장'}"><option value="차장">차장</option></c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '부장'}"><option value="부장" selected="selected">부장</option></c:when>
+							<c:when test="${WUSelect.m_position != '부장'}"><option value="부장">부장</option></c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${WUSelect.m_position == '상무'}"><option value="상무" selected="selected">상무</option></c:when>
+							<c:when test="${WUSelect.m_position != '상무'}"><option value="상무">상무</option></c:when>
+						</c:choose>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>비고</th>
+				<td colspan="3">
+					<input type="text" name="m_notice" placeholder="${WUSelect.m_notice}">
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<div class="inputBtn">
+		<input type="submit" class="pushBtn" value="등록">
+		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
+	</div>
+	</form>
+</body>
+</html>

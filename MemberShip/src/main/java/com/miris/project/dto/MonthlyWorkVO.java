@@ -22,7 +22,7 @@ public class MonthlyWorkVO {
 	
 		
 	//조회하기 위한
-	private String m_pw;
+	private String m_id;
 	private String m_name;
 	private String m_gubun;
 	private String d_code;
@@ -69,87 +69,6 @@ public class MonthlyWorkVO {
 	//페이징용
     private int start;
     private int end;
-    
-    
-    
-	public String getJAN_EXCEPT() {
-		return JAN_EXCEPT;
-	}
-	public void setJAN_EXCEPT(String jAN_EXCEPT) {
-		JAN_EXCEPT = jAN_EXCEPT;
-	}
-	public String getFEB_EXCEPT() {
-		return FEB_EXCEPT;
-	}
-	public void setFEB_EXCEPT(String fEB_EXCEPT) {
-		FEB_EXCEPT = fEB_EXCEPT;
-	}
-	public String getMAR_EXCEPT() {
-		return MAR_EXCEPT;
-	}
-	public void setMAR_EXCEPT(String mAR_EXCEPT) {
-		MAR_EXCEPT = mAR_EXCEPT;
-	}
-	public String getAPR_EXCEPT() {
-		return APR_EXCEPT;
-	}
-	public void setAPR_EXCEPT(String aPR_EXCEPT) {
-		APR_EXCEPT = aPR_EXCEPT;
-	}
-	public String getMAY_EXCEPT() {
-		return MAY_EXCEPT;
-	}
-	public void setMAY_EXCEPT(String mAY_EXCEPT) {
-		MAY_EXCEPT = mAY_EXCEPT;
-	}
-	public String getJUN_EXCEPT() {
-		return JUN_EXCEPT;
-	}
-	public void setJUN_EXCEPT(String jUN_EXCEPT) {
-		JUN_EXCEPT = jUN_EXCEPT;
-	}
-	public String getJUL_EXCEPT() {
-		return JUL_EXCEPT;
-	}
-	public void setJUL_EXCEPT(String jUL_EXCEPT) {
-		JUL_EXCEPT = jUL_EXCEPT;
-	}
-	public String getAUG_EXCEPT() {
-		return AUG_EXCEPT;
-	}
-	public void setAUG_EXCEPT(String aUG_EXCEPT) {
-		AUG_EXCEPT = aUG_EXCEPT;
-	}
-	public String getSEPT_EXCEPT() {
-		return SEPT_EXCEPT;
-	}
-	public void setSEPT_EXCEPT(String sEPT_EXCEPT) {
-		SEPT_EXCEPT = sEPT_EXCEPT;
-	}
-	public String getOCT_EXCEPT() {
-		return OCT_EXCEPT;
-	}
-	public void setOCT_EXCEPT(String oCT_EXCEPT) {
-		OCT_EXCEPT = oCT_EXCEPT;
-	}
-	public String getNOV_EXCEPT() {
-		return NOV_EXCEPT;
-	}
-	public void setNOV_EXCEPT(String nOV_EXCEPT) {
-		NOV_EXCEPT = nOV_EXCEPT;
-	}
-	public String getDEC_EXCEPT() {
-		return DEC_EXCEPT;
-	}
-	public void setDEC_EXCEPT(String dEC_EXCEPT) {
-		DEC_EXCEPT = dEC_EXCEPT;
-	}
-	public String getM_notice() {
-		return m_notice;
-	}
-	public void setM_notice(String m_notice) {
-		this.m_notice = m_notice;
-	}
 	public String getMw_id() {
 		return mw_id;
 	}
@@ -204,11 +123,11 @@ public class MonthlyWorkVO {
 	public void setW_except(String w_except) {
 		this.w_except = w_except;
 	}
-	public String getM_pw() {
-		return m_pw;
+	public String getM_id() {
+		return m_id;
 	}
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 	public String getM_name() {
 		return m_name;
@@ -233,6 +152,12 @@ public class MonthlyWorkVO {
 	}
 	public void setM_position(String m_position) {
 		this.m_position = m_position;
+	}
+	public String getM_notice() {
+		return m_notice;
+	}
+	public void setM_notice(String m_notice) {
+		this.m_notice = m_notice;
 	}
 	public String getTotal() {
 		return total;
@@ -342,6 +267,78 @@ public class MonthlyWorkVO {
 	public void setDEC(String dEC) {
 		DEC = dEC;
 	}
+	public String getJAN_EXCEPT() {
+		return JAN_EXCEPT;
+	}
+	public void setJAN_EXCEPT(String jAN_EXCEPT) {
+		JAN_EXCEPT = jAN_EXCEPT;
+	}
+	public String getFEB_EXCEPT() {
+		return FEB_EXCEPT;
+	}
+	public void setFEB_EXCEPT(String fEB_EXCEPT) {
+		FEB_EXCEPT = fEB_EXCEPT;
+	}
+	public String getMAR_EXCEPT() {
+		return MAR_EXCEPT;
+	}
+	public void setMAR_EXCEPT(String mAR_EXCEPT) {
+		MAR_EXCEPT = mAR_EXCEPT;
+	}
+	public String getAPR_EXCEPT() {
+		return APR_EXCEPT;
+	}
+	public void setAPR_EXCEPT(String aPR_EXCEPT) {
+		APR_EXCEPT = aPR_EXCEPT;
+	}
+	public String getMAY_EXCEPT() {
+		return MAY_EXCEPT;
+	}
+	public void setMAY_EXCEPT(String mAY_EXCEPT) {
+		MAY_EXCEPT = mAY_EXCEPT;
+	}
+	public String getJUN_EXCEPT() {
+		return JUN_EXCEPT;
+	}
+	public void setJUN_EXCEPT(String jUN_EXCEPT) {
+		JUN_EXCEPT = jUN_EXCEPT;
+	}
+	public String getJUL_EXCEPT() {
+		return JUL_EXCEPT;
+	}
+	public void setJUL_EXCEPT(String jUL_EXCEPT) {
+		JUL_EXCEPT = jUL_EXCEPT;
+	}
+	public String getAUG_EXCEPT() {
+		return AUG_EXCEPT;
+	}
+	public void setAUG_EXCEPT(String aUG_EXCEPT) {
+		AUG_EXCEPT = aUG_EXCEPT;
+	}
+	public String getSEPT_EXCEPT() {
+		return SEPT_EXCEPT;
+	}
+	public void setSEPT_EXCEPT(String sEPT_EXCEPT) {
+		SEPT_EXCEPT = sEPT_EXCEPT;
+	}
+	public String getOCT_EXCEPT() {
+		return OCT_EXCEPT;
+	}
+	public void setOCT_EXCEPT(String oCT_EXCEPT) {
+		OCT_EXCEPT = oCT_EXCEPT;
+	}
+	public String getNOV_EXCEPT() {
+		return NOV_EXCEPT;
+	}
+	public void setNOV_EXCEPT(String nOV_EXCEPT) {
+		NOV_EXCEPT = nOV_EXCEPT;
+	}
+	public String getDEC_EXCEPT() {
+		return DEC_EXCEPT;
+	}
+	public void setDEC_EXCEPT(String dEC_EXCEPT) {
+		DEC_EXCEPT = dEC_EXCEPT;
+	}
 	public int getStart() {
 		return start;
 	}
@@ -356,6 +353,5 @@ public class MonthlyWorkVO {
 	}
     
     
-    
-	
+  	
 }

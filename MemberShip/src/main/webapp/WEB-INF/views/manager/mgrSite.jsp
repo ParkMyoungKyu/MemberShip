@@ -43,7 +43,7 @@ $(document).ready(function(){
 				$("#siteCheck:checked").each(function(){
 					l_code = $(this).parent().children("#l_code").val();
 					l_name = $(this).parent().children("#l_name").val();
-					alert("삭제 사이트코드 : " + l_code +"\n삭제 사이트명 : " + l_name);
+					//alert("삭제 사이트코드 : " + l_code +"\n삭제 사이트명 : " + l_name);
 				});
 				$.ajax({
 			        url : 'mgrSiteDelete.do',
@@ -51,10 +51,12 @@ $(document).ready(function(){
 			        data : {l_code:l_code,l_name:l_name},
 			        dataType : 'text',
 			        success : function(data) {
+			          alert("사이트코드 : " + l_code +"\n사이트명 : " + l_name +"\n삭제되었습니다");
 			          window.location.reload(true)			//reload : 새로고침
 			        },
 			        error : function() { 
-			        	alert("error");
+			        	alert("해당 사이트에 배치된 인원이 있어 삭제가 불가능합니다.");
+			        	window.location.reload(true)
 			        	}
 			      });
 			}

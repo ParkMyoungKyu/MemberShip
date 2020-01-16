@@ -63,10 +63,12 @@
 				        data : {w_name:w_name,w_except:w_except},
 				        dataType : 'text',
 				        success : function(data) {
-				          window.location.reload(true)			//reload : 새로고침
+				        	 alert("업무명 : " + w_name +"\n업무 제외여부 : " + w_except +"\n삭제되었습니다");
+				             window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 
-				        	alert("error");
+				        	alert("해당 업무에 배치된 인원이 있어 삭제가 불가능합니다.");
+				        	 window.location.reload(true)	
 				        	}
 				      });
 				}
