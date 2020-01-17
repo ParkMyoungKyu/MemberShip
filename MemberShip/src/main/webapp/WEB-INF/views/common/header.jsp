@@ -21,7 +21,15 @@
 			</div>
 			
 			<div class="btnAll">
-				<input class="mbtn" type="button" value="관리자" onclick="location.href = 'mgrDept.do'">
+			<input class="mbtn" type="button" value="관리자" onclick="location.href = 'mgrDept.do'">
+				<%-- <c:choose>
+					<c:when test="${member.mgr_level == 'A'}">
+					<input class="mbtn" type="button" value="관리자" onclick="location.href = 'mgrDept.do'">
+					</c:when>
+					<c:when test="${member.mgr_level == 'B'}">
+					<input class="mbtn2" type="button" value="관리자2" disabled>
+					</c:when>
+				</c:choose> --%>
 				<input class="btn1" type="button" value="투입현황" onclick="location.href = 'monthlyList.do'">
 				<input class="btn2" type="button" value="근무상태" onclick="location.href = 'dailyList.do'">
 			</div>
@@ -29,8 +37,8 @@
 			<div class="loginBox">
 				<div class="loginBox2">
 					<c:choose>
-						<c:when test="${member.m_id != null}">
-							<span class="loginUser">${member.m_name} ${member.m_position }</span>
+						<c:when test="${member.mgr_id != null}">
+							<p class="loginUser">${member.mgr_id}관리자 <span class="level"> ( 권한등급 : ${member.mgr_level} )</span></p>
 							<button class="logoutBtn" type="button" onclick="logout()">로그아웃</button>
 						</c:when>
 					</c:choose>

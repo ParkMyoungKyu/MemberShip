@@ -16,11 +16,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int login(MemberVO memberVO) {
 		System.out.println("=====================UserDaoImpl login=====================");
-		System.out.println("로그인한 아이디 정보 : " + memberVO.getM_id());
+		System.out.println("로그인한 아이디 정보 : " + memberVO.getMgr_id());
 		
 		int result = 0;
 		
-		if(memberVO.getM_id() != null) {
+		if(memberVO.getMgr_id() != null) {
 			String memberLogin = session.selectOne("memberLogin",memberVO);
 			
 			if(memberLogin == null) {

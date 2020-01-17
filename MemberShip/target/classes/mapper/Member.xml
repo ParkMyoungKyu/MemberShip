@@ -5,6 +5,25 @@
 <mapper namespace="Member">
 	
 	<select id="memeberSession" parameterType="Member" resultType="Member">
+		SELECT mgr_id,
+               mgr_pw,
+               mgr_level
+	    FROM manager
+	    WHERE 1=1
+	    AND mgr_id = #{mgr_id}
+	    AND mgr_pw = #{mgr_pw}
+	</select>
+	
+	<select id="memberLogin" parameterType="String" resultType="String">
+		SELECT mgr_id,
+           	   mgr_pw,
+               mgr_level
+	    FROM manager
+	    WHERE 1=1
+	    AND mgr_id = #{mgr_id}
+	    AND mgr_pw = #{mgr_pw}
+	</select>
+	<!-- <select id="memeberSession" parameterType="Member" resultType="Member">
 		SELECT a.m_id,
             a.m_pw,
             a.m_name,
@@ -38,7 +57,7 @@
 	    AND a.d_code = b.d_code
 	    AND a.m_id = #{m_id}
 	    AND a.m_pw = #{m_pw}
-	</select>
+	</select> -->
 	
 	
 	

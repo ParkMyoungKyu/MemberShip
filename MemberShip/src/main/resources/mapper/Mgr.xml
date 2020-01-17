@@ -271,7 +271,6 @@
 	
 	<select id="memberList" parameterType="Mgr" resultType="Mgr">
 		SELECT A.m_id,
-               A.m_pw,
                A.m_name,
                A.d_code,
                A.m_position,
@@ -285,16 +284,24 @@
     	AND A.D_CODE = B.D_CODE
 	</select>
 	<insert id="mgrMemberInput" parameterType="Mgr">
+		    INSERT INTO MEMBER(M_ID,M_NAME,D_CODE,M_POSITION,M_GUBUN,M_JOINDATE,M_NOTICE)
+		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun},TO_DATE(#{searchDate},'YYYY-MM-DD'),#{m_notice})
+	</insert>
+	<delete id="mgrMemberDelete" parameterType="int">
+		 DELETE FROM MEMBER
+		 WHERE 1=1
+		 AND M_ID = #{m_id}
+		 AND M_NAME = #{m_name}
+		 AND M_POSITION = #{m_position} 
+	</delete>
+	<!-- <insert id="mgrMemberInput" parameterType="Mgr">
 		MERGE INTO MEMBER A
 		  USING DUAL
 		  ON (A.M_ID = #{m_id})
 		  WHEN NOT MATCHED THEN
-		    INSERT(A.M_ID,A.M_NAME,A.D_CODE,A.M_POSITION,A.M_GUBUN,A.M_JOINDATE,M_NOTICE)
-		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun}.TO_DATE(#{m_joindate},'YYYYMMDD'),#{m_notice})
-	</insert>
-	<delete id="mgrMemberDelete" parameterType="int">
-		 
-	</delete>
+		    INSERT(A.M_ID,A.M_NAME,A.D_CODE,A.M_POSITION,A.M_GUBUN,A.M_JOINDATE,A.M_NOTICE)
+		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun},TO_DATE(#{searchDate},'YYYY-MM-DD'),#{m_notice})
+	</insert> -->
 	<!-- <delete id="mgrMemberDelete" parameterType="int">
 		 MERGE INTO MEMBER A
 			  USING DUAL

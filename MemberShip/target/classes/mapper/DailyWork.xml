@@ -16,7 +16,7 @@
 	    AND ROWNUM = 1
 	</select>
 	
-	<select id="dailyNowUpdate" parameterType="DailyWork" resultType="DailyWork">          
+	<!-- <select id="dailyNowUpdate" parameterType="DailyWork" resultType="DailyWork">          
 		 MERGE INTO D_WORK A
 		 USING (SELECT 
 			         A.M_ID,
@@ -55,7 +55,7 @@
 			         '매칭안된것',
 			         B.P_NAME
 			       )
-	</select>
+	</select> -->
 	
 	<!-- <select id="dailyList" parameterType="DailyWork" resultType="DailyWork">
 		 select * from (
@@ -115,7 +115,6 @@
 		SELECT RN, H.* FROM 
 			(SELECT ROWNUM RN,
 			       F.m_id,
-			       F.m_pw,
 			       F.m_name,
 			       F.d_code,
 			       G.d_name,
@@ -134,7 +133,6 @@
 			INNER JOIN
 			( SELECT ROWNUM rn, 
 							       a.m_id,
-					           a.m_pw,
 					           a.m_name,
 					           a.d_code,
 					           a.m_position,
@@ -163,7 +161,7 @@
 			ON  C.p_name = D.p_name
 			WHERE 1=1
 			AND to_char(C.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
-			<if test="dw_status != 0">AND a.dw_status = #{dw_status}</if>
+			<if test="dw_status != 0">AND C.dw_status = #{dw_status}</if>
 			) E
 			ON E.M_ID = A.M_ID
 			WHERE 1=1
@@ -184,11 +182,10 @@
 			) H
 			WHERE rn between #{start} and #{end}
 	</select>
-	
+	<!-- 
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
 		select rn, 
 			   a.m_id,
-	           a.m_pw,
 	           a.m_name,
 	           a.d_code,
 	           a.m_position,
@@ -224,7 +221,7 @@
 	    and rn between #{start} and #{end}
 	    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
 	    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
-	</select>
+	</select> -->
 	
 	
 </mapper>

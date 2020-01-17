@@ -31,9 +31,11 @@ public class UserServiceImpl implements UserService {
 			MemberVO userInfo = (MemberVO) session.getAttribute("member");
 			
 			System.out.println("세션에 담긴 맴버 ID : " + userInfo.getM_id());
-			System.out.println("세션에 담긴 맴버 PW : " + userInfo.getM_pw());
 			System.out.println("세션에 담긴 맴버 이름 : " + userInfo.getM_name());
 			System.out.println("세션에 담긴 맴버 직급 : " + userInfo.getM_position());
+			System.out.println("세션에 담긴 관리자 ID : " + userInfo.getMgr_id());
+			System.out.println("세션에 담긴 관리자 PW : " + userInfo.getMgr_pw());
+			System.out.println("세션에 담긴 관리자 권한 : " + userInfo.getMgr_level());
 	
 		}	
 		return result;

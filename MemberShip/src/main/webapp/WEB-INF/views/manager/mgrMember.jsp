@@ -21,37 +21,27 @@ $(document).ready(function(){
 			} else {
 				$("#memberCheck:checked").each(function(){
 					var m_id = $(this).parent().children("#m_id").val();
-					var m_pw = $(this).parent().children("#m_pw").val();
 					var m_name = $(this).parent().children("#m_name").val();
 					var d_name = $(this).parent().children("#d_name").val();
 					var m_position = $(this).parent().children("#m_position").val();
-					var m_gubun = $(this).parent().children("#m_gubun").val();
-					var	m_joindate = $(this).parent().children("#m_joindate").val();
-					var m_notice = $(this).parent().children("#m_notice").val();
+
 					alert("삭제 아이디 : " + m_id 
-						+ "\n삭제 비밀번호 : " + m_pw
 						+ "\n삭제  이름: " + m_name
 						+ "\n삭제 부서명 : " + d_name
 						+ "\n삭제 직급 : " + m_position
-						+ "\n삭제 내부/외부 : " + m_gubun
-						+ "\n삭제 입사일 : " + m_joindate
-						+ "\n삭제 비고 : " + m_notice
 						);
 					
 					$.ajax({
 				        url : 'mgrMemberDelete.do',
-				        type : 'json',
+				        type : 'post',
 				        data : { m_id:m_id,
-				        	     m_pw:m_pw,
 				        	     m_name:m_name,
 				        	     d_name:d_name,
-				        	     m_position:m_position,
-				        	     m_gubun:m_gubun,
-				        	     m_joindate:m_joindate,
-				        	     m_notice:m_notice
+				        	     m_position:m_position
 				        		},
 				        dataType : 'text',
 				        success : function(data) {
+				          alert(m_name +"의 정보가 삭제되었습니다.");
 				          window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 
@@ -80,7 +70,6 @@ $(document).ready(function(){
 			<tr class="mMemberTable-rowheader">
 				<th><input type="checkbox" id="memberAllCheck" onclick="memberAllCheck()"></th>
 				<th>ID</th>
-				<th>PW</th>
 				<th>이름</th>
 				<th>부서명</th>
 				<th>직급</th>
@@ -97,16 +86,11 @@ $(document).ready(function(){
 					<td>
 						<input type="checkbox" class="memberCheck" id="memberCheck" onclick="memberCheck()">
 						<input type="hidden" id="m_id" value="${memberList.m_id}">
-						<input type="hidden" id="m_pw" value="${memberList.m_pw}">
 						<input type="hidden" id="m_name" value="${memberList.m_name}">
 						<input type="hidden" id="d_name" value="${memberList.d_name}">
 						<input type="hidden" id="m_position" value="${memberList.m_position}">
-						<input type="hidden" id="m_gubun" value="${memberList.m_gubun}">
-						<input type="hidden" id="m_joindate" value="${join}">
-						<input type="hidden" id="m_notice" value="${memberList.m_notice}">
 					</td>
 					<td>${memberList.m_id}</td>
-					<td>${memberList.m_pw}</td>
 					<td>${memberList.m_name}</td>
 					<td>${memberList.d_name}</td>
 					<td>${memberList.m_position}</td>

@@ -47,7 +47,19 @@
 .mbtn:hover{
 	color:#c0c0c0;
 }
-
+.mbtn2 {
+	width:80px;
+	height:25px;
+    background-color: #24292e;
+    border: 1px;
+    color:#24292e;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0 5px;
+    font-weight: bold;
+	
+}
 .btn1 {
 	width:80px;
 	height:25px;
@@ -99,8 +111,11 @@
 .loginUser{
 	color: white;
 	font-size: 13px;
+	display: inline-block;
 }
-
+.level{
+	font-size: 12px;
+}
 .logoutBtn{
 	width:80px;
 	height:25px;

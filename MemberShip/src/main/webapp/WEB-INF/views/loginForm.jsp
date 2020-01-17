@@ -13,8 +13,8 @@
 		<div class="mainName">HRM System</div>
 		<div class="subName">Human Resource Management System</div>
 		<form action="login.do" method="post">
-			<div><input type="text" class="idInput" name="m_id" placeholder="ID"></div>
-			<div><input type="password" class="pwInput" name="m_pw" placeholder="PASSWORD"></div>
+			<div><input type="text" class="idInput" name="mgr_id" placeholder="ID"></div>
+			<div><input type="password" class="pwInput" name="mgr_pw" placeholder="PASSWORD"></div>
 			<div><input type="submit" class="loginBtn" value="Login"></div>
 		</form>
 		<c:if test="${msg != null }">${msg}</c:if><br><br>

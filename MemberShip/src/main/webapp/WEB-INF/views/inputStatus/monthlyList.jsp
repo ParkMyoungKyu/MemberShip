@@ -37,9 +37,9 @@
 					var	m_gubun = $(this).parent().children("#m_gubun").val();
 					var	m_name = $(this).parent().children("#m_name").val();
 					var	m_position = $(this).parent().children("#m_position").val();
-					alert("수정할 부서명 : " + m_id
+					/* alert("수정할 부서명 : " + m_id
 					   +"\n수정할 부서명 : " + m_name
-					   +"\n수정할 부서명 : " + m_position);
+					   +"\n수정할 부서명 : " + m_position); */
 					window.open('monthlyWorkUpdateForm.do?&m_id='+m_id
 														+"&m_name="+m_name
 														+"&m_position="+m_position, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;

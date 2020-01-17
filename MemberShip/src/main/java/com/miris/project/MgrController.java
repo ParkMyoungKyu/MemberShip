@@ -1,5 +1,8 @@
 package com.miris.project;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -335,13 +338,14 @@ public class MgrController {
 	@RequestMapping(value = "mgrMemberInput")
 	public String mgrMemberInput(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberInput=====================");
-		
+	
 		System.out.println("추가할 아이디 : " + mgrVO.getM_id());
 		System.out.println("추가할 이름 : " + mgrVO.getM_name());
 		System.out.println("추가할 부서명 : " + mgrVO.getD_code());
 		System.out.println("추가할 직급 : " + mgrVO.getM_position());
 		System.out.println("추가할 내부/외부 : " + mgrVO.getM_gubun());
-		System.out.println("추가할 입사일 : " + mgrVO.getM_joindate());
+		System.out.println("추가할 입사일(joindate) : " + mgrVO.getM_joindate());
+		System.out.println("추가할 입사일(searchdate) : " + mgrVO.getSearchDate());
 		System.out.println("추가할 비고 : " + mgrVO.getM_notice());
 		
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
@@ -357,15 +361,10 @@ public class MgrController {
 	public String mgrMemberDelete(MgrVO mgrVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberDelete=====================");
 		System.out.println("삭제하고자 하는 아이디 : " + mgrVO.getM_id());
-		System.out.println("삭제하고자 하는 비밀번호 : " + mgrVO.getM_pw());
 		System.out.println("삭제하고자 하는 이름 : " + mgrVO.getM_name());
-		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_code());
+		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
 		System.out.println("삭제하고자 하는 직급 : " + mgrVO.getM_position());
-		System.out.println("삭제하고자 하는 내부/외부 : " + mgrVO.getM_gubun());
-		System.out.println("삭제하고자 하는 입사일 : " + mgrVO.getM_joindate());
-		System.out.println("삭제하고자 하는 비고 : " + mgrVO.getM_notice());
-		
-	
+
 		
 		mgrService.mgrMemberDelete(mgrVO);
 		//mgrService.mgrMemberDeleteError(mgrVO);

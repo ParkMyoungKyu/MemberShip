@@ -99,14 +99,11 @@ $(function(){
 					<tr class="dailyList-row">
 						<td><a href="dailyDetail.do?m_id=${dailyList.m_id}" onclick="window.open(this.href, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">${dailyList.m_name}</a></td>
 						<td>
+						<c:forEach var="deptList" items="${deptList}">
 							<c:choose>
-								<c:when test="${dailyList.d_code == 'D01'}">경영지원실</c:when>	
-								<c:when test="${dailyList.d_code == 'D02'}">부설연구소</c:when>
-								<c:when test="${dailyList.d_code == 'D03'}">핀테크서비스1부</c:when>
-								<c:when test="${dailyList.d_code == 'D04'}">핀테크서비스2부</c:when>
-								<c:when test="${dailyList.d_code == 'D05'}">핀테크서비스3부</c:when>
-								<c:when test="${dailyList.d_code == 'D06'}">핀테크서비스4부</c:when>
+								<c:when test="${dailyList.d_code == deptList.d_code}">${deptList.d_name}</c:when>	
 							</c:choose>
+						</c:forEach>
 						</td>
 						<td>${dailyList.m_position}</td>
 						<td>

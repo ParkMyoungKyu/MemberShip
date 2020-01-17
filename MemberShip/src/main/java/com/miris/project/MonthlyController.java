@@ -97,8 +97,8 @@ public class MonthlyController {
 	
 	//현황등록
 	@RequestMapping(value = "monthlyStatusInputForm")
-	private String monthlyStatusInput(MonthlyWorkVO monthlyWorkVO, Model model){
-		System.out.println("====================MonthlyContraller monthlyStatusInput=====================");
+	private String monthlyStatusInputForm(MonthlyWorkVO monthlyWorkVO, Model model){
+		System.out.println("====================MonthlyContraller monthlyStatusInputForm=====================");
 		System.out.println("선택한 구분 : " + monthlyWorkVO.getM_gubun());
 		System.out.println("선택한 현업무 : " + monthlyWorkVO.getW_name());
 		System.out.println("선택한 성명 : "  + monthlyWorkVO.getM_name());
@@ -108,9 +108,9 @@ public class MonthlyController {
 		System.out.println("선택한 월 : " + monthlyWorkVO.getMw_month());
 		
 		
-		List<MonthlyWorkVO> monthlyStatusInput = monthlyService.monthlyStatusInput(monthlyWorkVO);
+		List<MonthlyWorkVO> monthlyStatusInputForm = monthlyService.monthlyStatusInput(monthlyWorkVO);
 		
-		model.addAttribute("monthlyStatusInput",monthlyStatusInput);
+		model.addAttribute("monthlyStatusInputForm",monthlyStatusInputForm);
 		
 		return "inputStatus/monthlyStatusInput";
 	}
@@ -170,7 +170,7 @@ public class MonthlyController {
 		System.out.println("수정하고자하는 이름값 : " + monthlyWorkVO.getM_name());
 		System.out.println("수정하고자하는 직급값 : " + monthlyWorkVO.getM_position());
 		System.out.println("수정하고자하는 비고값 : " + monthlyWorkVO.getM_notice());
-		System.out.println("수정하고자하는 비고값 : " + monthlyWorkVO.getM_id());
+		System.out.println("수정하고자하는 아이디값 : " + monthlyWorkVO.getM_id());
 		
 		monthlyService.monthlyWorkUpdate(monthlyWorkVO);
 		

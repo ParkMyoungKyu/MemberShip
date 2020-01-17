@@ -12,26 +12,51 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 //datepicker 사용
-
+	/* $(function(){
+		$.datepicker.setDefaults({
+				showOtherMonths: true,
+				dateFormat: 'yy-mm-dd',
+				dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
+	            showMonthAfterYear: true,
+			});
+		$("#m_joindate").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
+	});	 */
+	$(function () {
+        $("#m_joindate").datepicker({
+        	showOtherMonths: true,
+			dateFormat: 'yy-mm-dd',
+			dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
+            showMonthAfterYear: true,
+        });
+    });
+	</script>
+	<script type="text/javascript">
 	function memberInsert(){
 		var m_id = $("#m_id").val();
 		var m_name = $("#m_name").val();
-		var d_code = $("#d_code").val();
-		var m_position = $("#m_position").val();
-		var m_gubun = $("#m_gubun").val();
-		var m_joindate = $("#m_joindate").val();
-		var m_notice = $("#m_notice").val();
-		alert(m_id +"   "+ m_name+"   "+d_code+"   "+m_position+"   "+m_gubun);
-		
+	 	var d_code = $("#d_code").val();
+	 	var m_position = $("#m_position").val();
+	 	var m_gubun = $("#m_gubun").val();
+	 	var m_joindate = $("#m_joindate").val(); 
+	 	var m_notice = $("#m_notice").val();
+	 	
+		alert(m_joindate+"     "+m_id +"   "+ m_name+"   "+d_code+"   "+m_position+"   "+m_gubun);
+		  
 		$.ajax({
 			url:'mgrMemberInput.do',
-			type : 'json',
+			type : 'post',
 			data : {m_id:m_id,
 				    m_name:m_name,
 				    d_code:d_code,
 				    m_position:m_position,
 				    m_gubun:m_gubun,
-				    m_joindate:m_joindate,
+				    searchDate:m_joindate,
 				    m_notice:m_notice
 				    },
 			dataType : 'text',
@@ -47,7 +72,7 @@
 		})
 	};
 	
-
+	
 </script>
 </head>
 <body>
@@ -78,7 +103,7 @@
 					  	 	  <option value="G2">외부</option>
 				  	 	  </select>
 		  	</div>
-			<div>입사일 : <input type="text" id="m_joindate" name="m_joindate" readonly="readonly" required="required"></div>
+			<div>입사일 : <input type="text" id="m_joindate" placeholder="입사일 선택"></div>
 			<div>비고 : <input type="text" id="m_notice"> </div>
 			<input type="submit" value="등록" onclick="memberInsert()">
 			</div>

@@ -21,7 +21,6 @@ public class MgrVO {
 	
 	// 직원 관리
 	private String m_id;
-	private String m_pw;
 	private String m_name;
 	//private String d_code;
 	private String m_position;
@@ -35,7 +34,15 @@ public class MgrVO {
 	private String mgr_pw;
 	private String mgr_level;
 	
+	private String searchDate;
 	
+	
+	public String getSearchDate() {
+		return searchDate;
+	}
+	public void setSearchDate(String searchDate) {
+		this.searchDate = searchDate;
+	}
 	public String getD_code() {
 		return d_code;
 	}
@@ -89,12 +96,6 @@ public class MgrVO {
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
-	}
-	public String getM_pw() {
-		return m_pw;
-	}
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
 	}
 	public String getM_name() {
 		return m_name;

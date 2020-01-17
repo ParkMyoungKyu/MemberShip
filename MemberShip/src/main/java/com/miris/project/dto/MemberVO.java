@@ -6,7 +6,6 @@ public class MemberVO {
 	
 	//직원
 	private String m_id;
-	private String m_pw;
 	private String m_name;
 	//private String d_code;
 	private String m_position;
@@ -19,11 +18,34 @@ public class MemberVO {
     private String d_name;
     private String d_code;
     
+    //관리자
+    private String mgr_id;
+	private String mgr_pw;
+	private String mgr_level;
+    
     //페이징용
     private int start;
     private int end;
     
     
+	public String getMgr_id() {
+		return mgr_id;
+	}
+	public void setMgr_id(String mgr_id) {
+		this.mgr_id = mgr_id;
+	}
+	public String getMgr_pw() {
+		return mgr_pw;
+	}
+	public void setMgr_pw(String mgr_pw) {
+		this.mgr_pw = mgr_pw;
+	}
+	public String getMgr_level() {
+		return mgr_level;
+	}
+	public void setMgr_level(String mgr_level) {
+		this.mgr_level = mgr_level;
+	}
 	public int getStart() {
 		return start;
 	}
@@ -41,12 +63,6 @@ public class MemberVO {
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
-	}
-	public String getM_pw() {
-		return m_pw;
-	}
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
 	}
 	public String getM_name() {
 		return m_name;
