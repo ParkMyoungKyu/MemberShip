@@ -164,6 +164,11 @@ public class MgrServiceImpl implements MgrService {
 		return mgrDao.mgrMemberInput(mgrVO);
 	}
 	@Override
+	public List<MgrVO> memberUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrServiceImpl memberUpdateForm=====================");
+		return mgrDao.memberUpdateForm(mgrVO);
+	}
+	@Override
 	public int mgrMemberDelete(MgrVO mgrVO) {
 		System.out.println("=====================MgrServiceImpl mgrMemberDelete=====================");
 		return mgrDao.mgrMemberDelete(mgrVO);
@@ -173,6 +178,7 @@ public class MgrServiceImpl implements MgrService {
 		System.out.println("=====================MgrServiceImpl mgrMemberDeleteError=====================");
 		return mgrDao.mgrMemberDeleteError(mgrVO);
 	}
+	
 	
 	
 	

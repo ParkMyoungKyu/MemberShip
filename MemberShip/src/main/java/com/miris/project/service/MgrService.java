@@ -40,8 +40,10 @@ public interface MgrService {
 	
 	List<MgrVO> memberList(MgrVO mgrVO);
 	int mgrMemberInput(MgrVO mgrVO);
+	List<MgrVO> memberUpdateForm(MgrVO mgrVO);
 	int mgrMemberDelete(MgrVO mgrVO);
 	int mgrMemberDeleteError(MgrVO mgrVO);
+	
 	
 	
 	

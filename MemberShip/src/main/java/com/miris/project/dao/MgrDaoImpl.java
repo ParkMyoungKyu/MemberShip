@@ -156,6 +156,11 @@ public class MgrDaoImpl implements MgrDao {
 		return session.insert("mgrMemberInput",mgrVO);
 	}
 	@Override
+	public List<MgrVO> memberUpdateForm(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl memberUpdateForm=====================");
+		return session.selectList("memberUpdateForm",mgrVO);
+	}
+	@Override
 	public int mgrMemberDelete(MgrVO mgrVO) {
 		System.out.println("=====================MgrDaoImpl mgrMemberDelete=====================");
 		return session.delete("mgrMemberDelete",mgrVO);
@@ -170,6 +175,7 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl siteUpdate=====================");
 		return session.update("siteUpdate",mgrVO);
 	}
+	
 	
 	
 }

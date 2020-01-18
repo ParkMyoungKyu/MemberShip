@@ -21,7 +21,7 @@ $(document).ready(function(){
 				var	l_code = $(this).parent().children("#l_code").val();
 				var	l_name = $(this).parent().children("#l_name").val();
 				alert("수정할 사이트 코드 : " + l_code +"\n수정할 사이트명 : " + l_name);
-				window.open('mgrSiteUpdateForm.do.do?l_code='+l_code+"&l_name="+l_name, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+				window.open('mgrSiteUpdateForm.do?l_code='+l_code+"&l_name="+l_name, '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
 			});
 			
 		}

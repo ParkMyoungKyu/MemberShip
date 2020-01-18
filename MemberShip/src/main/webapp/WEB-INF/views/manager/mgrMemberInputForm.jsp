@@ -56,7 +56,7 @@
 				    d_code:d_code,
 				    m_position:m_position,
 				    m_gubun:m_gubun,
-				    searchDate:m_joindate,
+				    m_joindate:m_joindate,
 				    m_notice:m_notice
 				    },
 			dataType : 'text',

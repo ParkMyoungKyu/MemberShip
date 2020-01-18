@@ -1,18 +1,12 @@
 package com.miris.project;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.miris.project.dto.MgrVO;
@@ -345,7 +339,6 @@ public class MgrController {
 		System.out.println("추가할 직급 : " + mgrVO.getM_position());
 		System.out.println("추가할 내부/외부 : " + mgrVO.getM_gubun());
 		System.out.println("추가할 입사일(joindate) : " + mgrVO.getM_joindate());
-		System.out.println("추가할 입사일(searchdate) : " + mgrVO.getSearchDate());
 		System.out.println("추가할 비고 : " + mgrVO.getM_notice());
 		
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
@@ -355,6 +348,40 @@ public class MgrController {
 		
 		return "redirect:mgrMember.do";
 	}
+	
+	// 직원 수정 페이지 이동
+		@RequestMapping(value = "mgrMemberUpdateForm")
+		public String mgrMemberUpdateForm(MgrVO mgrVO, Model model) {
+			System.out.println("=====================MgrController mgrWorkPlaceUpdateForm=====================");
+			System.out.println("수정하고자 하는 직원명 : " + mgrVO.getM_name());
+			System.out.println("수정하고자 하는 직원아이디 : " + mgrVO.getM_id());
+			System.out.println("수정하고자 하는 직원부서 : " + mgrVO.getD_name());
+			System.out.println("수정하고자 하는 직원직급 : " + mgrVO.getM_position());
+			System.out.println("수정하고자 하는 직원내부/외부 : " + mgrVO.getM_gubun());
+			System.out.println("수정하고자 하는 직원입사일 : " + mgrVO.getM_joindate());
+			System.out.println("수정하고자 하는 직원퇴사일 : " + mgrVO.getM_leavedate());
+			
+			List<MgrVO> memberUpdateForm = mgrService.memberUpdateForm(mgrVO);
+			List<MgrVO> deptList = mgrService.deptList(mgrVO);
+			
+			
+			model.addAttribute("memberUpdateForm",memberUpdateForm);
+			model.addAttribute("deptList",deptList);
+			
+			
+			return "manager/mgrMemberUpdateForm";
+		}
+		//수정할 근무지 입력 후 부모페이지로 다시 이동
+		@RequestMapping(value = "mgrMemberUpdate")
+		public String mgrMemberUpdate(MgrVO mgrVO,Model model) {
+			System.out.println("=====================MgrController mgrWorkPlaceUpdate=====================");
+			System.out.println("수정입력한 근무지명 : " + mgrVO.getP_name());
+			System.out.println("수정입력한 근무지주소 : " + mgrVO.getP_addr());
+			mgrService.workPlaceUpdate(mgrVO);
+			
+			return "redirect:mgrWorkPlace.do";
+		}
+	
 	// 직원 삭제
 	@RequestMapping(value="mgrMemberDelete")
 	@ResponseBody

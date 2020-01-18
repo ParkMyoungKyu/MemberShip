@@ -10,6 +10,51 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+// 직원 등록
+	$(document).ready(function(){
+		$("#memberInsert").on("click",function(){
+			window.open('mgrMemberInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+		})
+	})
+// 직원 수정
+	$(document).ready(function(){
+		$("#memberUpdate").on("click",function(){
+			if($("#memberCheck:checked").size()<1){
+				alert("수정하고자 하는 부서를 선택해주세요");
+				return;
+			} else {
+				$("#memberCheck:checked").each(function(){
+					var m_name = $(this).parent().children("#m_name").val();
+					var m_id = $(this).parent().children("#m_id").val();
+					var d_name = $(this).parent().children("#d_name").val();
+					var m_position = $(this).parent().children("#m_position").val();
+					var m_gubun = $(this).parent().children("#m_gubun").val();
+					var m_joindate = $(this).parent().children("#m_joindate").val();
+					var m_leavedate = $(this).parent().children("#m_leavedate").val();
+					
+					alert("수정할 직원명 : " + m_name 
+							+ "\n수정할 직원아이디 : " + m_id
+							+ "\n수정할 직원부서 : " + d_name
+							+ "\n수정할 직원직급 : " + m_position
+							+ "\n수정할 직원내부/외부 : " + m_gubun
+							+ "\n수정할 직원입사일 : " + m_joindate
+							+ "\n수정할 직원퇴사일 : " + m_leavedate
+							);
+					window.open('mgrMemberUpdateForm.do?m_name='+m_name
+													  +'&m_id='+m_id
+													  +'&d_name='+d_name
+													  +'&m_position='+m_position
+													  +'&m_gubun='+m_gubun
+													  +'&m_joindate='+m_joindate
+													  +'&m_leavedate='+m_leavedate
+													  , '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+				});
+				
+			}
+		})
+	}); 
+	
+// 직원 삭제
 $(document).ready(function(){
 	$("#memberDelete").on("click",function(){
 		var sign = confirm("해당 인원을 삭제하시겠습니까?");
@@ -63,8 +108,8 @@ $(document).ready(function(){
 	<div class="mMemberBox">
 		<div class="mMemberBox2">	
 			<div class="title">인원관리</div>
-			<div class="insertBtn"><button onclick="window.open('mgrMemberInputForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">등록</button></div>
-			<div class="updateBtn"><button onclick="window.open('mgrMemberUpdateForm.do', '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;">수정</button></div>
+			<div class="insertBtn"><button type="button" id="memberInsert">등록</button></div>
+			<div class="updateBtn"><button type="button" id="memberUpdate">수정</button></div>
 			<div class="deleteBtn"><button type="button" id="memberDelete">삭제</button></div>
 		<table class="mMemberTable">
 			<tr class="mMemberTable-rowheader">
@@ -80,8 +125,8 @@ $(document).ready(function(){
 			</tr>
 			
 			<c:forEach var="memberList" items="${memberList}">
-				<fmt:formatDate var="join" value="${memberList.m_joindate}" pattern="yyyy-MM-dd"/>
-				<fmt:formatDate var="leave" value="${memberList.m_leavedate}" pattern="yyyy-MM-dd"/>
+				<%-- <fmt:formatDate var="join" value="${memberList.m_joindate}" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate var="leave" value="${memberList.m_leavedate}" pattern="yyyy-MM-dd"/> --%>
 				<tr class="mMemberTable-row">
 					<td>
 						<input type="checkbox" class="memberCheck" id="memberCheck" onclick="memberCheck()">
@@ -89,6 +134,9 @@ $(document).ready(function(){
 						<input type="hidden" id="m_name" value="${memberList.m_name}">
 						<input type="hidden" id="d_name" value="${memberList.d_name}">
 						<input type="hidden" id="m_position" value="${memberList.m_position}">
+						<input type="hidden" id="m_gubun" value="${memberList.m_gubun}">
+						<input type="hidden" id="m_joindate" value="${memberList.m_joindate}">
+						<input type="hidden" id="m_leavedate" value="${memberList.m_leavedate}">
 					</td>
 					<td>${memberList.m_id}</td>
 					<td>${memberList.m_name}</td>
@@ -100,11 +148,11 @@ $(document).ready(function(){
 					</c:choose>
 					<c:choose>
 						<c:when test="${memberList.m_joindate == null}"><td>-</td></c:when>
-						<c:when test="${memberList.m_joindate != null}"><td>${join}</td></c:when>
+						<c:when test="${memberList.m_joindate != null}"><td>${memberList.m_joindate}</td></c:when>
 					</c:choose>
 					<c:choose>
 						<c:when test="${memberList.m_leavedate == null}"><td>-</td></c:when>
-						<c:when test="${memberList.m_leavedate != null}"><td>${leave}</td></c:when>
+						<c:when test="${memberList.m_leavedate != null}"><td>${memberList.m_leavedate}</td></c:when>
 					</c:choose>
 					<td>${memberList.m_notice}</td>
 				</tr>

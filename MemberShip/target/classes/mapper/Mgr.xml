@@ -275,8 +275,8 @@
                A.d_code,
                A.m_position,
                A.m_gubun,
-               A.m_joindate,
-               A.m_leavedate,
+               to_char(A.m_joindate,'yyyy-mm-dd') AS m_joindate,
+               to_char(A.m_leavedate,'yyyy-mm-dd') AS m_leavedate,
                A.m_notice,
                B.d_name 
 		FROM MEMBER A, DEPT B
@@ -285,8 +285,22 @@
 	</select>
 	<insert id="mgrMemberInput" parameterType="Mgr">
 		    INSERT INTO MEMBER(M_ID,M_NAME,D_CODE,M_POSITION,M_GUBUN,M_JOINDATE,M_NOTICE)
-		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun},TO_DATE(#{searchDate},'YYYY-MM-DD'),#{m_notice})
+		    VALUES (#{m_id},#{m_name},#{d_code},#{m_position},#{m_gubun},TO_DATE(#{m_joindate},'YYYY-MM-DD'),#{m_notice})
 	</insert>
+	<select id="memberUpdateForm" parameterType="Mgr" resultType="Mgr">
+		SELECT *
+		FROM MEMBER A, DEPT B
+		WHERE 1=1
+		AND A.D_CODE = B.D_CODE
+		AND A.M_ID = #{m_id}
+		AND A.M_NAME = #{m_name}
+		AND B.D_NAME = #{d_name}
+		AND A.M_GUBUN = #{m_gubun}
+		AND A.M_POSITION = #{m_position}
+		AND TO_CHAR(A.M_JOINDATE,'YYYY-MM-DD') = #{m_joindate}
+		 <if test="m_leavedate != ''"> AND TO_CHAR(A.M_LEAVEDATE,'YYYY-MM-DD') = #{m_leavedate}</if>
+	</select>
+	
 	<delete id="mgrMemberDelete" parameterType="int">
 		 DELETE FROM MEMBER
 		 WHERE 1=1
