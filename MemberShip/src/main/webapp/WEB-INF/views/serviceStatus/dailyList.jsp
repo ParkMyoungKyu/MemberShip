@@ -23,7 +23,7 @@ $(function(){
             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
             showMonthAfterYear: true,
 		});
-	$("#searchDate").datepicker().datepicker("setDate",new Date());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
+	$("#searchDate").datepicker().datepicker("setDate",$("#searchDate").val());		// id가 startDate에 datepicker 적용 후 현재 날짜로 기본 셋팅
 });	
 
 </script>
@@ -56,7 +56,7 @@ $(function(){
 					     
 				</div>
 				<div class="searchDate">
-					날짜 : <input type="text" id="searchDate" name="searchDate" readonly="readonly" required="required"> 
+					날짜 : <input type="text" id="searchDate" name="searchDate" readonly="readonly" value="${searchDate}" required="required"> 
 				</div>  
 				<input class="searchBtn" type="submit" value="조회">
 			</form>
@@ -141,7 +141,7 @@ $(function(){
 			<hr class="line">
 			<!-- 페이지 넘김 -->
 			<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-				<a href="dailyList.do?currentPage=${i}&w_status=${pg.dw_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}&d_code=${pg.d_code}">[${i}]</a>
+				<a href="dailyList.do?currentPage=${i}&dw_status=${pg.dw_status}&m_name=${pg.m_name}&searchDate=${pg.searchDate}&d_code=${pg.d_code}">[${i}]</a>
 			</c:forEach>
 		</div>
 	</div>

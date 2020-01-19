@@ -109,12 +109,16 @@ public class MemberController {
 		System.out.println("startPage -> " + dailyWorkVO.getStart());
 		System.out.println("endPage -> " + dailyWorkVO.getEnd());
 		
+		String searchDate = dailyWorkVO.getSearchDate();
+		
 		
 		//List<DailyWorkVO> dailyNowUpdate = memberService.dailyNowUpdate(dailyWorkVO);
 		List<DailyWorkVO> dailySum = memberService.dailySum(dailyWorkVO);
 		List<DailyWorkVO> dailyList = memberService.dailyList(dailyWorkVO);
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
 		
+		
+		model.addAttribute("searchDate",searchDate);
 		
 		model.addAttribute("dailySum",dailySum);
 		model.addAttribute("dailyList",dailyList);
