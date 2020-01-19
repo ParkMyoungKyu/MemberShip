@@ -18,4 +18,6 @@ public interface MonthlyService {
 
 	List<MonthlyWorkVO> monthlyWorkUpdateSelect(MonthlyWorkVO monthlyWorkVO);
 
+	int totalPage(MonthlyWorkVO monthlyWorkVO);
+
 }

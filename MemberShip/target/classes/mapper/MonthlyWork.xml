@@ -19,7 +19,10 @@
   	</select>
   	
   	<select id="monthlyList" parameterType="MonthlyWork" resultType="MonthlyWork">
-  		SELECT b.m_id,
+  		SELECT RN,B.* FROM(
+  		SELECT ROWNUM RN,A.* FROM(
+  		SELECT 
+  			   b.m_id,
   			   b.m_gubun,
   			   b.m_name,
   			   b.m_position,
@@ -63,8 +66,33 @@
         <if test="m_name != '전체'">and B.m_name like '%'||#{m_name}||'%'</if>
         <if test="m_position != '전체'">AND B.m_position = #{m_position}</if>
         <if test="w_name != '전체'">AND A.w_name = #{w_name}</if>
+        ORDER BY 
+			CASE 
+			  WHEN B.m_position = '상무' THEN 1
+			  WHEN B.m_position = '부장' THEN 2
+			  WHEN B.m_position = '차장' THEN 3
+			  WHEN B.m_position = '과장' THEN 4
+			  WHEN B.m_position = '대리' THEN 5
+			  WHEN B.m_position = '사원' THEN 6
+			ELSE 30
+			END
+       	) A
+       	) B
+       	WHERE RN BETWEEN #{start} AND #{end}
   	</select>
-  	
+  	<select id="totalPage2" resultType="int" >
+  		SELECT COUNT(*)
+  		FROM M_WORK A, member B, site c
+        WHERE 1=1
+        AND A.M_ID = b.m_id
+        AND A.L_CODE = c.L_CODE
+       	and to_char(a.mw_year,'yyyy') = #{mw_year}
+        and to_char(a.mw_month,'MM') = LPAD(#{mw_month},2,'0')
+        <if test="m_gubun != 'G0'">AND B.M_GUBUN = #{m_gubun}</if>
+        <if test="m_name != '전체'">AND B.M_NAME = #{m_name}</if>
+        <if test="m_position != '전체'">AND B.M_POSITION = #{m_position}</if>
+        <if test="w_name != '전체'">AND A.W_NAME = #{w_name}</if>
+  	</select>
   	<select id="monthlyDetail" parameterType="MonthlyWork" resultType="MonthlyWork">
   		select a.m_gubun,
              a.d_code,

@@ -175,6 +175,11 @@ public class MgrDaoImpl implements MgrDao {
 		System.out.println("=====================MgrDaoImpl siteUpdate=====================");
 		return session.update("siteUpdate",mgrVO);
 	}
+	@Override
+	public int totalPage(MgrVO mgrVO) {
+		System.out.println("=====================MgrDaoImpl totalPage=====================");
+		return session.selectOne("totalPage3",mgrVO);
+	}
 	
 	
 	

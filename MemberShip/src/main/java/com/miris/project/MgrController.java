@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.miris.project.dto.MgrVO;
+import com.miris.project.dto.Paging;
 import com.miris.project.service.MgrService;
 
 @Controller
@@ -310,12 +311,24 @@ public class MgrController {
 	//-------------------직원 관련 작업들-------------------
 	//직원 목록
 	@RequestMapping(value="mgrMember")
-	public String mgrMember(MgrVO mgrVO,Model model) {
+	public String mgrMember(MgrVO mgrVO,String currentPage,Model model) {
 		System.out.println("=====================MgrController mgrMember page=====================");
+		
+		int total = mgrService.totalPage(mgrVO);
+		System.out.println("total -> " + total);
+		System.out.println("currentPage -> " + currentPage);
+		Paging pg = new Paging(total, currentPage);
+		
+		mgrVO.setStart(pg.getStart());
+		mgrVO.setEnd(pg.getEnd());
+		
+		System.out.println("startPage -> " + mgrVO.getStart());
+		System.out.println("endPage -> " + mgrVO.getEnd());
 		
 		List<MgrVO> memberList = mgrService.memberList(mgrVO);
 		
 		model.addAttribute("memberList",memberList);
+		model.addAttribute("pg",pg);
 		
 		return "manager/mgrMember";
 	}

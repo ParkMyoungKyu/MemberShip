@@ -45,6 +45,9 @@ public interface MgrDao {
 	int mgrMemberDeleteError(MgrVO mgrVO);
 	
 	
+	int totalPage(MgrVO mgrVO);
+	
+	
 	
 	
 	

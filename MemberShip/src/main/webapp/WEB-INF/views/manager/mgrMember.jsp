@@ -159,8 +159,15 @@ $(document).ready(function(){
 			</c:forEach>
 		</table>
 		</div>
+			<div class="paging">
+				<hr class="line">
+				<!-- 페이지 넘김 -->
+				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+					<a href="mgrMember.do?currentPage=${i}">[${i}]</a>
+				</c:forEach>
+			</div>
+		</div>
 	</div>
-</div>
 </body>
 <%@ include file="../common/footer.jsp" %>
 </html>

@@ -49,4 +49,10 @@ public class MonthlyServiceImpl implements MonthlyService {
 		System.out.println("=====================MonthlyServiceImpl monthlyWorkUpdateSelect=====================");
 		return monthlyDao.monthlyWorkUpdateSelect(monthlyWorkVO);
 	}
+
+	@Override
+	public int totalPage(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyServiceImpl totalPage=====================");
+		return monthlyDao.totalPage(monthlyWorkVO);
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.miris.project.dto.MgrVO;
 import com.miris.project.dto.MonthlyWorkVO;
+import com.miris.project.dto.Paging;
 import com.miris.project.service.MgrService;
 import com.miris.project.service.MonthlyService;
 
@@ -24,7 +25,7 @@ public class MonthlyController {
 	private MgrService mgrService;
 	
 	@RequestMapping(value = "monthlyList")
-	private String monthlyList(MgrVO mgrVO,MonthlyWorkVO monthlyWorkVO,Model model) {
+	private String monthlyList(MgrVO mgrVO,MonthlyWorkVO monthlyWorkVO,String currentPage,Model model) {
 		
 		System.out.println("====================MonthlyContraller monthlyList=====================");
 		
@@ -50,6 +51,24 @@ public class MonthlyController {
 		if(monthlyWorkVO.getM_position() == null ) {
 			monthlyWorkVO.setM_position("전체");
 		}
+		
+		int total = monthlyService.totalPage(monthlyWorkVO);
+		System.out.println("total -> " + total);
+		System.out.println("currentPage -> " + currentPage);
+		Paging pg = new Paging(total, currentPage);
+		
+		pg.setMw_year(monthlyWorkVO.getMw_year());
+		pg.setMw_month(monthlyWorkVO.getMw_month());
+		pg.setM_name(monthlyWorkVO.getM_name());
+		pg.setM_position(monthlyWorkVO.getM_position());
+		pg.setW_name(monthlyWorkVO.getW_name());
+		
+		monthlyWorkVO.setStart(pg.getStart());
+		monthlyWorkVO.setEnd(pg.getEnd());
+		
+		System.out.println("startPage -> " + monthlyWorkVO.getStart());
+		System.out.println("endPage -> " + monthlyWorkVO.getEnd());
+		System.out.println("----------검색한 내역----------");
 		System.out.println("선택한 년도 -> " + monthlyWorkVO.getMw_year());
 		System.out.println("선택한 월  -> " + monthlyWorkVO.getMw_month());
 		System.out.println("선택한 구분 -> " + monthlyWorkVO.getM_gubun());
@@ -57,13 +76,17 @@ public class MonthlyController {
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
 		System.out.println("선택한 업무 -> " + monthlyWorkVO.getW_name());
 		
+		
+		
 		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);		
 		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
-		model.addAttribute("deptList",deptList);
+		
 		model.addAttribute("monthlySum",monthlySum);
 		model.addAttribute("monthlyList",monthlyList);
+		model.addAttribute("deptList",deptList);
+		model.addAttribute("pg",pg);
 		
 		return "inputStatus/monthlyList";
 	}

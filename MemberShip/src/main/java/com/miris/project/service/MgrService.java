@@ -46,6 +46,10 @@ public interface MgrService {
 	
 	
 	
+	int totalPage(MgrVO mgrVO);
+	
+	
+	
 	
 	
 	

@@ -182,6 +182,15 @@ public class MgrServiceImpl implements MgrService {
 	
 	
 	
+	@Override
+	public int totalPage(MgrVO mgrVO) {
+		// TODO Auto-generated method stub
+		return mgrDao.totalPage(mgrVO);
+	}
+	
+	
+	
+	
 	
 	
 	

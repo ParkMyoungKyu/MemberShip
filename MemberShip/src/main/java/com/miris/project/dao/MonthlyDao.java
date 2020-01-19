@@ -18,4 +18,6 @@ public interface MonthlyDao {
 
 	List<MonthlyWorkVO> monthlyWorkUpdateSelect(MonthlyWorkVO monthlyWorkVO);
 
+	int totalPage(MonthlyWorkVO monthlyWorkVO);
+
 }

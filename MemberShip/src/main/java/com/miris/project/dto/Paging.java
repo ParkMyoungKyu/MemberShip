@@ -13,10 +13,20 @@ public class Paging {
 	private int total;
 	private int totalPage;
 	
+	//일별 조회성
 	private String dw_status;
 	private String searchDate;
 	private String m_name;
 	private String d_code;
+	
+	//월별 조회성
+	private String mw_year;
+	private String mw_month;
+	//private String m_name;
+	private String m_position;
+	private String w_name;
+	private String m_gubun;
+	
 	
 	public Paging(int total, String currentPage1) {
 		this.total = total;
@@ -43,6 +53,76 @@ public class Paging {
 	
 	
 	
+	public String getMw_year() {
+		return mw_year;
+	}
+
+
+
+
+	public void setMw_year(String mw_year) {
+		this.mw_year = mw_year;
+	}
+
+
+
+
+	public String getMw_month() {
+		return mw_month;
+	}
+
+
+
+
+	public void setMw_month(String mw_month) {
+		this.mw_month = mw_month;
+	}
+
+
+
+
+	public String getM_position() {
+		return m_position;
+	}
+
+
+
+
+	public void setM_position(String m_position) {
+		this.m_position = m_position;
+	}
+
+
+
+
+	public String getW_name() {
+		return w_name;
+	}
+
+
+
+
+	public void setW_name(String w_name) {
+		this.w_name = w_name;
+	}
+
+
+
+
+	public String getM_gubun() {
+		return m_gubun;
+	}
+
+
+
+
+	public void setM_gubun(String m_gubun) {
+		this.m_gubun = m_gubun;
+	}
+
+
+
+
 	public String getD_code() {
 		return d_code;
 	}

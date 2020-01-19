@@ -70,7 +70,7 @@
 	font-size:30px;
 	text-align:center;
 	margin: 0 auto;
-	padding: 50px 0 30px;
+	padding: 50px 0 15px;
 	width: 800px;
 	color: #24292e;
 }
@@ -172,4 +172,14 @@
 .green{
 	background-color: #b3ffc6;
 }
-.
+
+.paging{
+	width: 100%;
+    text-align: center;
+    bottom: 200px;
+}
+.line{
+	width: 1200px;
+	border-bottom: 0px;
+	color: #666666
+}

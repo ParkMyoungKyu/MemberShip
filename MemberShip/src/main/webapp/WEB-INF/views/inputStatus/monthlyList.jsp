@@ -415,6 +415,13 @@
 			</c:forEach>
 		</table>
 	</div>
+	<div class="paging">
+		<hr class="line">
+		<!-- 페이지 넘김 -->
+		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+			<a href="monthlyList.do?currentPage=${i}&mw_year=${pg.mw_year}&mw_month=${pg.mw_month}&m_name=${pg.m_name}&m_position=${pg.m_position}&w_name=${pg.w_name}">[${i}]</a>
+		</c:forEach>
+	</div>
 </div>	
 </body>
 <%@ include file="../common/footer.jsp" %>
