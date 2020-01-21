@@ -116,6 +116,7 @@
   		SELECT b.m_id,
   			   b.m_gubun,
   			   b.m_name,
+			   b.d_code,
   			   b.m_position,
 	           a.w_name,
 	           c.l_name,
@@ -143,6 +144,47 @@
         AND B.m_position = #{m_position}
         AND A.w_name = #{w_name}
   	</select>
+  	<select id="monthlyStatusUpdate" parameterType="MonthlyWork">
+  		MERGE INTO M_WORK D
+        USING (SELECT
+               B.M_ID,
+               A.MW_MONTH,
+               A.MW_YEAR,
+               A.W_NAME,
+               B.M_NAME,
+	           C.L_CODE,
+               A.MW_STATUS,
+               A.MW_NOTICE,
+               B.M_POSITION,
+               B.M_GUBUN
+  		FROM M_WORK A, MEMBER B, SITE C
+        WHERE 1=1
+        AND A.M_ID = b.m_id
+        AND A.L_CODE = c.L_CODE
+        and to_char(a.mw_year,'yyyy') = #{mw_year}
+        and to_char(a.mw_month,'MM') = LPAD(REPLACE(#{mw_month},'월',''),2,'0')
+        and B.m_gubun = #{m_gubun}
+        and B.m_name = #{m_name}
+        AND B.m_position = #{m_position}
+        ) E
+        
+        ON ( E.M_NAME = #{m_name}
+        AND  E.L_CODE = #{l_code}
+        AND  E.M_ID = #{m_id}   
+        ) 
+        WHEN MATCHED THEN
+        UPDATE SET D.W_NAME = #{w_name}
+        		  ,D.L_CODE = #{l_code}
+        		  ,D.MW_STATUS = #{mw_status}
+        WHERE 1=1
+        and to_char(D.mw_year,'yyyy') = #{mw_year}
+        and to_char(D.mw_month,'MM') = LPAD(REPLACE(#{mw_month},'월',''),2,'0')
+        and E.m_gubun = #{m_gubun}
+        and E.m_name = #{m_name}
+        AND E.m_position = #{m_position}
+        AND D.M_ID = #{m_id}
+  	</select>
+  	
   	<select id="monthlyWorkUpdateSelect"  parameterType="MonthlyWork" resultType="MonthlyWork">
   		SELECT *
   		FROM member

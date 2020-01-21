@@ -20,4 +20,6 @@ public interface MonthlyService {
 
 	int totalPage(MonthlyWorkVO monthlyWorkVO);
 
+	List<MonthlyWorkVO> monthlyStatusUpdate(MonthlyWorkVO monthlyWorkVO);
+
 }

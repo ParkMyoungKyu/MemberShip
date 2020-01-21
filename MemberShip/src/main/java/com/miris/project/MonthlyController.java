@@ -139,24 +139,12 @@ public class MonthlyController {
 	}
 	// 월별 투입 현황 입력
 	@RequestMapping(value = "monthlyStatusInputGo")
-	private String monthlyStatusInputGo(
-			MonthlyWorkVO monthlyWorkVO, Model model) {
+	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
-//		int i = 0;
-//		for(String value : mw_year) {
-//			System.out.println("mw_year => " + value);
-//			i++;
-//		}
-//		@RequestParam(value="m_gubun",required=true) List<String> m_gubun,
-//		@RequestParam(value="m_name",required=true) List<String> m_name,
-//		@RequestParam(value="m_position",required=true) List<String> m_position,
-//		@RequestParam(value="mw_year",required=true) List<String> mw_year,
-//		@RequestParam(value="mw_month",required=true) List<String> mw_month,
-//		@RequestParam(value="w_name",required=true) List<String> w_name,
-//		@RequestParam(value="l_code",required=true) List<String> l_code,
-//		@RequestParam(value="w_except",required=true) List<String> w_except,
-//		@RequestParam(value="mw_notice",required=true) List<String> mw_notice,
+
+		System.out.println("넣으려는 아이디: " + monthlyWorkVO.getM_id());
 		System.out.println("넣으려는 구분 : " + monthlyWorkVO.getM_gubun());
+		System.out.println("넣으려는 부서 : "  + monthlyWorkVO.getD_code());
 		System.out.println("넣으려는 성명 : "  + monthlyWorkVO.getM_name());
 		System.out.println("넣으려는 직급 : " + monthlyWorkVO.getM_position());
 		
@@ -164,9 +152,11 @@ public class MonthlyController {
 		System.out.println("넣으려는 업무명 : " + monthlyWorkVO.getW_name());
 		System.out.println("넣으려는 월 : " + monthlyWorkVO.getMw_month());
 		System.out.println("넣으려는 지역코드 : " + monthlyWorkVO.getL_code());
-		System.out.println("넣으려는 제외여부 : " + monthlyWorkVO.getW_except());
+		System.out.println("넣으려는 제외여부 : " + monthlyWorkVO.getMw_status());
 		
 		System.out.println("넣으려는 비고 : " + monthlyWorkVO.getMw_notice());
+		
+		List<MonthlyWorkVO> monthlyStatuseUpdate = monthlyService.monthlyStatusUpdate(monthlyWorkVO);
 		
 		return "inputStatus/monthlyList";
 	}

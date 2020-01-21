@@ -55,4 +55,10 @@ public class MonthlyDaoImpl implements MonthlyDao {
 		System.out.println("=====================MonthlyDaoImpl totalPage=====================");
 		return session.selectOne("totalPage2",monthlyWorkVO);
 	}
+
+	@Override
+	public List<MonthlyWorkVO> monthlyStatusUpdate(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyDaoImpl monthlyStatusUpdate=====================");
+		return session.selectList("monthlyStatusUpdate",monthlyWorkVO);
+	}
 }

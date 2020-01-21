@@ -79,7 +79,7 @@
 														+"&mw_year="+mw_year
 														+"&mw_month="+mw_month,
 								'_blank',
-								'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no');
+								'width=600px,height=700px,top=100,left=300,toolbars=no,scrollbars=no');
 					return false;
 					
 				});

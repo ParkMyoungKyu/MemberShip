@@ -14,23 +14,39 @@
 var count = 1;
 //최대 행개수
 var full_count = 12;
+
+
     $(function() {
 	     //추가 버튼 클릭시
 	     $('#addRow').click(function() {
     	  //행추가할때마다 행개수 +1
        	  ++count;
 	      //최대 행개수보다 크면 리턴
+	      
 	      if(count>full_count){
 	       alert("최대12개까지만 가능합니다.");
 	       return;
 	      } else {
 	       //행추가
-	       $("#inputTable").append('<tr id=tr'+count+'>'+
+	        
+	       var m_idAll = $("#m_id1").val();
+	        var m_gubunAll =$("#m_gubun1").val();
+			var d_codeAll =  $("#d_code1").val();
+			var m_nameAll =  $("#m_name1").val();
+			var m_positionAll =  $("#m_position1").val();
+			
+			
+			$("#inputTable").append('<tr id=tr'+count+'>'+
 		    		'  <td>'+
-		       		'       <input type="checkbox" class="deptCheck" id="deptCheck" checked="checked">'+
+		       		'       <input type="checkbox" class="statusCheck" id="statusCheck" checked="checked">'+
+		       		'       <input type="hidden" id="m_id'+count+'" name="m_gubun" value="'+m_idAll+'">'+
+				    '   	<input type="hidden" id="m_gubun'+count+'" name="m_gubun" value="'+m_gubunAll+'">' +
+					'		<input type="hidden" id="d_code'+count+'" name="d_code" value="'+d_codeAll+'">'+
+					'		<input type="hidden" id="m_name'+count+'" name="m_name" value="'+m_nameAll+'">'+
+					'  	    <input type="hidden" id="m_position'+count+'" name="m_position" value="'+m_positionAll+'">'+
 	       			'  </td>'+
 	    		    '	<td>'+
-					'		<select name="mw_year">'+
+					'		<select name="mw_year" id= "mw_year'+count+'">'+
 					'			<option value="2020">2020</option>'+
 					'			<option value="2019">2019</option>'+
 					'			<option value="2018">2018</option>'+
@@ -39,10 +55,10 @@ var full_count = 12;
 					'		</select>'+
 					'	</td>'+
 					'	<td>'+
-					'		<input type="text" name="mw_month">'+
+					'		<input type="text" name="mw_month" id="mw_month'+count+'"  value='+count+'월>'+
 					'	</td>'+
 					'	<td>'+
-					'		<select name="w_name">'+
+					'		<select name="w_name" id="w_name'+count+'">'+
 					'			<option value="경영지원,영업">경영지원,영업</option>'+
 					'			<option value="시스템운영">시스템운영</option>'+
 					'			<option value="시금고운영">시금고운영</option>'+
@@ -52,7 +68,7 @@ var full_count = 12;
 					'		</select>'+
 					'	</td>'+
 					'	<td>'+
-					'		<select name="l_code">'+
+					'		<select name="l_code" id="l_code'+count+'">'+
 					'			<option value="L01">서울</option>'+
 					'			<option value="L02">서울</option>'+
 					'			<option value="L03">인천</option>'+
@@ -62,7 +78,7 @@ var full_count = 12;
 					'		</select>'+
 					'	</td>'+
 					'	<td>'+
-					'		<select name="w_except">'+
+					'		<select name="mw_status" id="mw_status'+count+'">'+
 					'			<option value="P">P</option>'+
 					'			<option value="C">C</option>'+
 					'		</select>'+
@@ -87,90 +103,74 @@ var full_count = 12;
      });
     });
     
- // 체크된 리스트 값 넘기는 부분
- 	/* $(document).ready(function(){
- 		$("#pushBtn").on("click",function(){
- 			var sign = confirm("등록하시겠습니까?");
- 			
- 			if(sign){
- 				
- 			}
- 			
- 		})
- 	}) */
-	$(document).ready(function(){
+	var i = 0;
+ 	  $(document).ready(function(){
 		$("#pushBtn").on("click",function(){
 			var sign = confirm("현황 등록하시겠습니까?");
-			
 			if(sign){
-				if($("#statusCheck:checked").size()<1){
-					alert("현황등록을 해주세요");
-					return;
-				} else {
-					$(".inputBox").each(function(){
-						var m_gubun = $("#m_gubun").val();
-				        var m_name = $("#m_name").val();
-				        var m_position =$("#m_position").val();
-				        var mw_year = $("#mw_year").val();
-				        var mw_month = $("#mw_month").val();
-				        var w_name = $("#w_name").val();
-				        var l_code = $("#l_code").val();
-				        var w_except = $("#w_except").val();
-				        var mw_notice = $("#mw_notice").val();
-				        alert(m_gubun+"_____" + m_name+"_____" + m_position);
-					
-				      $.ajax({
+					if($("#statusCheck:checked").size()<1){
+						alert("현황등록을 해주세요");
+						return;
+					} else {
+						
+				$("#statusCheck:checked").each(function(){
+					//행추가할때마다 행개수 +1
+					//alert($("#statusCheck:checked").size());
+			       	++i;
+					//alert(i);
+					var m_id = $("#m_id"+i).val();
+					var m_gubun = $("#m_gubun"+i).val();
+					var d_code = $("#d_code"+i).val();
+			        var m_name = $("#m_name"+i).val();
+			        var m_position = $("#m_position"+i).val();
+			        
+			        var w_name = $("#w_name"+i).val();
+			        var mw_year =  $("#mw_year"+i).val();
+			        var mw_month =$("#mw_month"+i).val();
+			        var l_code = $("#l_code"+i).val();
+			        var mw_status =$("#mw_status"+i).val();
+			        
+			        var mw_notice =$("#mw_notice1").val();
+			        
+			        /* alert("기준년 -> "+mw_year+
+			        		"\n기준월 -> " + mw_month+
+			        		"\n투입업무 -> " + w_name+
+			        		"\n사이트 -> " + l_code+
+			        		"\n현업무 -> " + mw_status+
+			        		"\n비고 -> " + mw_notice+
+			        		"\n이름 -> " + m_name); */
+				
+			        $.ajax({
 				        url : 'monthlyStatusInputGo.do',
 				        type : 'post',
-				        data : m_gubun,
+				        data : {m_id:m_id
+				        	   ,d_code:d_code
+				        	   ,mw_year:mw_year
+				        	   ,mw_month:mw_month
+				        	   ,w_name:w_name
+				        	   ,m_gubun:m_gubun
+				        	   ,m_name:m_name
+				        	   ,m_position:m_position
+				        	   ,l_code:l_code
+				        	   ,mw_status:mw_status
+				        	   ,mw_notice:mw_notice},
 				        dataType : 'text',
 				        success : function(data) {
-				       	  alert("return string : " + m_gubun);
+				       	  alert("return string : " );
 				          window.location.reload(true)			//reload : 새로고침
 				        },
 				        error : function() { 
 				        	alert("error");
 				        	}
 				      });
-					});
-				   }
-				}
-			});
-		});
- 	 /* $(document).ready(function(){
-		$("#pushBtn").on("click",function(){
-			var sign = confirm("현황 등록하시겠습니까?");
-			if(sign){
-				$(".inputBox").each(function(){
-					var m_gubun = m_gubun + "&m_gubun="+$(this).parent().children("#m_gubun").val();
-			        var m_name = mw_year + "&m_name="+$(this).parent().children("#m_name").val();
-			        var m_position = m_position + "&m_position="+$(this).parent().children("#m_position").val();
-			        var mw_year = mw_year + "&mw_year="+$(this).parent().children("#mw_year").val();
-			        var mw_month = mw_month + "&mw_month="+$(this).parent().children("#mw_month").val();
-			        var w_name = w_name + "&w_name="+$(this).parent().children("#w_name").val();
-			        var l_code = l_code + "&l_code="+$(this).parent().children("#l_code").val();
-			        var w_except = w_except + "&w_except="+$(this).parent().children("#w_except").val();
-			        var mw_notice = mw_notice + "&mw_notice="+$(this).parent().children("#mw_notice").val();
-			        alert(m_gubun + m_name + m_position);
 				});
-			      $.ajax({
-			        url : 'monthlyStatusInputGo.do',
-			        type : 'post',
-			        data : m_gubun,
-			        dataType : 'text',
-			        success : function(data) {
-			       	  alert("return string : " + m_gubun);
-			          window.location.reload(true)			//reload : 새로고침
-			        },
-			        error : function() { 
-			        	alert("error");
-			        	}
-			      });
+			}
+			        
 			
 			}
 		})
  	}); 
-     */
+     
    // 팝업창 닫을 시 부모창 새로고침
 	function closePopup(){
 		window.opener.location.reload();
@@ -195,7 +195,7 @@ var full_count = 12;
 			</tr>
 			<tr>
 				<td>${monthlyStatusInputForm.m_gubun}</td>
-				<td>${monthlyStatusInputForm.w_name}</td>
+				<td>${monthlyStatusInputForm.d_code}</td>
 				<td>${monthlyStatusInputForm.m_name}</td>
 				<td>${monthlyStatusInputForm.m_position}</td>
 				<td>${monthlyStatusInputForm.mw_notice}</td>
@@ -207,10 +207,7 @@ var full_count = 12;
 		<div class="inputTitle">■ 투입정보</div>
 		<button id="addRow" class="addRow" onclick="addRow()">+</button>
 		<button id="deleteRow" class="deleteRow" onclick="deleteRow()">-</button>
-		<form action="monthlyStatusInputGo.do">
-		<input type="hidden" id="m_gubun" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
-		<input type="hidden" id="m_name" name="m_name" value="${monthlyStatusInputForm.m_name}">
-		<input type="hidden" id="m_position" name="m_position" value="${monthlyStatusInputForm.m_position}">
+		<!-- <form action="monthlyStatusInputGo.do"> -->
 		<table id="inputTable" class="inputTable">
 			<tr>	
 				<th><input type="checkbox"></th>
@@ -221,9 +218,16 @@ var full_count = 12;
 				<th>P/C</th>
 			</tr>
 			<tr>
-				<td><input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked"> </td>
 				<td>
-					<select name="mw_year" id="mw_year">
+					<input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked">
+					<input type="hidden" id="m_id1" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
+					<input type="hidden" id="m_gubun1" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
+					<input type="hidden" id="m_name1" name="m_name" value="${monthlyStatusInputForm.m_name}">
+					<input type="hidden" id="d_code1" name="d_code" value="${monthlyStatusInputForm.d_code}">
+					<input type="hidden" id="m_position1" name="m_position" value="${monthlyStatusInputForm.m_position}">
+				</td>
+				<td>
+					<select name="mw_year" id="mw_year1">
 						<option value="2020">2020</option>
 						<option value="2019">2019</option>
 						<option value="2018">2018</option>
@@ -232,10 +236,11 @@ var full_count = 12;
 					</select>
 				</td>
 				<td>
-					<input type="text" name="mw_month" id="mw_month">
+					<!-- <select name="mw_month" id="mw_month"> </select> -->
+					<input type="text" name="mw_month" id="mw_month1" value="1월">
 				</td>
 				<td>
-					<select name="w_name" id="w_name">
+					<select name="w_name" id="w_name1">
 						<option value="경영지원,영업">경영지원,영업</option>
 						<option value="시스템운영">시스템운영</option>
 						<option value="시금고운영">시금고운영</option>
@@ -245,7 +250,7 @@ var full_count = 12;
 					</select>
 				</td>
 				<td>
-					<select name="l_code" id="l_code">
+					<select name="l_code" id="l_code1">
 						<option value="L01">서울</option>
 						<option value="L02">광주</option>
 						<option value="L03">인천</option>
@@ -255,7 +260,7 @@ var full_count = 12;
 					</select>
 				</td>
 				<td>
-					<select name="w_except" id="w_except">
+					<select name="mw_status" id="mw_status1">
 						<option value="P">P</option>
 						<option value="C">C</option>
 					</select>
@@ -264,7 +269,7 @@ var full_count = 12;
 			<tbody></tbody>
 			<tr>
 				<th>비고</th>
-				<td colspan="5"><input type="text" name="mw_notice" id="mw_notice"></td>
+				<td colspan="5"><input type="text" name="mw_notice" id="mw_notice1"></td>
 			</tr>
 		</table>
 		
@@ -272,7 +277,7 @@ var full_count = 12;
 		<input type="submit" class="pushBtn" id="pushBtn" value="등록">
 		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
 	</div>
-	</form>
+	<!-- </form> -->
 	</div>
 	</div>
 	</c:forEach>
