@@ -285,6 +285,13 @@
         	<artifactId>scala-library</artifactId>
         	<version>2.10.4</version>
         </dependency>
+        
+<!--         https://mvnrepository.com/artifact/org.json/json
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20190722</version>
+		</dependency> -->
 	</dependencies>
 	
 	<build>

@@ -236,7 +236,12 @@
 								<c:when test="${nowMonth >= '01'}"><td class="blue">${monthlyList.JAN}</td></c:when>
 								<c:when test="${nowMonth < '01'}">
 									<c:choose>
-										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}"><td class="white">${monthlyList.JAN}</td></c:when>
+										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}">
+											<c:choose>
+												<c:when test="${monthlyList.JAN == null}"><td class="white">C</td></c:when>
+												<c:when test="${monthlyList.JAN != null}"><td class="white">${monthlyList.JAN}</td></c:when>
+											</c:choose>
+										</c:when>
 										<c:when test="${monthlyList.w_name != 'SI 사업 발주 대기'}"><td class="red">${monthlyList.JAN}</td></c:when>
 									</c:choose>
 								</c:when>

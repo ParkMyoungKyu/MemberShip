@@ -127,8 +127,7 @@
 			       F.dw_day,
 			       F.dw_time,
 			       F.dw_notice,
-			       F.p_name,
-			       F.p_addr
+			       F.p_name
 			FROM DEPT G
 			INNER JOIN
 			( SELECT ROWNUM rn, 
@@ -144,8 +143,7 @@
 					           E.dw_day,
 					           E.dw_time,
 					           E.dw_notice,
-					           E.p_name,
-					           E.p_addr
+					           E.p_name
 				          from member A
 				    	inner join(
 			SELECT  ROWNUM rn,
@@ -154,11 +152,8 @@
 						           C.dw_day,
 						           C.dw_time,
 						           C.dw_notice,
-						           D.p_name,
-						           D.p_addr
+						           C.p_name
 						          from d_work C
-			INNER JOIN PLACE D
-			ON  C.p_name = D.p_name
 			WHERE 1=1
 			AND to_char(C.DW_DAY,'YYYYMMDD') = TO_CHAR(TO_DATE(#{searchDate}),'YYYYMMDD')
 			<if test="dw_status != 0">AND C.dw_status = #{dw_status}</if>
@@ -182,6 +177,11 @@
 			) H
 			WHERE rn between #{start} and #{end}
 	</select>
+	
+	<insert id="dailyAdd">
+		INSERT into d_work(m_id,dw_status,dw_day,p_name,dw_notice)
+        VALUES (#{m_id},'',TO_CHAR(SYSDATE,'YYYYMMDD'),'','')
+	</insert>
 	<!-- 
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
 		select rn, 

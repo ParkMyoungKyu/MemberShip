@@ -51,6 +51,7 @@ public class MonthlyController {
 		if(monthlyWorkVO.getM_position() == null ) {
 			monthlyWorkVO.setM_position("전체");
 		}
+
 		
 		int total = monthlyService.totalPage(monthlyWorkVO);
 		System.out.println("total -> " + total);
@@ -66,6 +67,7 @@ public class MonthlyController {
 		monthlyWorkVO.setStart(pg.getStart());
 		monthlyWorkVO.setEnd(pg.getEnd());
 		
+		
 		System.out.println("startPage -> " + monthlyWorkVO.getStart());
 		System.out.println("endPage -> " + monthlyWorkVO.getEnd());
 		System.out.println("----------검색한 내역----------");
@@ -75,14 +77,12 @@ public class MonthlyController {
 		System.out.println("선택한 이름 -> " + monthlyWorkVO.getM_name());
 		System.out.println("선택한 직급 -> " + monthlyWorkVO.getM_position());
 		System.out.println("선택한 업무 -> " + monthlyWorkVO.getW_name());
-		
-		
-		
+
 		//List<MonthlyWorkVO> monthlySearch = monthlyService.monthlySearch(monthlyWorkVO);
 		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);		
 		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
-		
+		System.out.println("DMADMA" + monthlyWorkVO.getJAN());
 		model.addAttribute("monthlySum",monthlySum);
 		model.addAttribute("monthlyList",monthlyList);
 		model.addAttribute("deptList",deptList);

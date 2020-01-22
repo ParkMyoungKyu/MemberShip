@@ -56,6 +56,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("searchTotalPage");
 	}
 
+	@Override
+	public int dailyAdd(DailyWorkVO dailyWorkVO) {
+		System.out.println("=====================MemberDaoImpl dailyAdd=====================");
+		return session.insert("dailyAdd",dailyWorkVO);
+	}
+
 	
 
 	

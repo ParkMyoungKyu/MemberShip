@@ -9,15 +9,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.miris.project.dto.DailyWorkVO;
 import com.miris.project.dto.MgrVO;
+import com.miris.project.dto.MonthlyWorkVO;
 import com.miris.project.dto.Paging;
+import com.miris.project.service.MemberService;
 import com.miris.project.service.MgrService;
+import com.miris.project.service.MonthlyService;
 
 @Controller
 public class MgrController {
 
 	@Autowired
 	private MgrService mgrService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private MonthlyService monthlyService;
 
 	//-------------------부서 관련 작업들-------------------
 	//부서 목록
@@ -343,7 +353,7 @@ public class MgrController {
 	}
 	//추가할 직원 입력 후 부모페이지로 다시 이동
 	@RequestMapping(value = "mgrMemberInput")
-	public String mgrMemberInput(MgrVO mgrVO, Model model) {
+	public String mgrMemberInput(MgrVO mgrVO,DailyWorkVO dailyWorkVO,MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberInput=====================");
 	
 		System.out.println("추가할 아이디 : " + mgrVO.getM_id());
@@ -355,9 +365,13 @@ public class MgrController {
 		System.out.println("추가할 비고 : " + mgrVO.getM_notice());
 		
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
+		mgrService.mgrMemberInput(mgrVO);
+		
+		memberService.dailyAdd(dailyWorkVO);
+		monthlyService.monthlyAdd(monthlyWorkVO);
 		model.addAttribute("deptList",deptList);
 		
-		mgrService.mgrMemberInput(mgrVO);
+		
 		
 		return "redirect:mgrMember.do";
 	}

@@ -20,6 +20,8 @@ public interface MemberDao {
 
 	int searchTotalPage();
 
+	int dailyAdd(DailyWorkVO dailyWorkVO);
+
 		
 
 }

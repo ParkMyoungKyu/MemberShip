@@ -21,6 +21,8 @@ public interface MemberService {
 
 	int searchTotalPage();
 
+	int dailyAdd(DailyWorkVO dailyWorkVO);
+
 	
 	
 }

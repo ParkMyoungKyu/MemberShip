@@ -22,4 +22,6 @@ public interface MonthlyDao {
 
 	List<MonthlyWorkVO> monthlyStatusUpdate(MonthlyWorkVO monthlyWorkVO);
 
+	int monthlyAdd(MonthlyWorkVO monthlyWorkVO);
+
 }

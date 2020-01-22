@@ -13,17 +13,17 @@
 //행개수	
 var count = 1;
 //최대 행개수
-var full_count = 12;
+var full_count = 12 - 1;
 
 
     $(function() {
 	     //추가 버튼 클릭시
 	     $('#addRow').click(function() {
-    	  //행추가할때마다 행개수 +1
-       	  ++count;
-	      //최대 행개수보다 크면 리턴
+	    	 
+			var tbody = $("#inputTable").find("tbody");
+			var rowCount = tbody.find("tr").length;
 	      
-	      if(count>full_count){
+	      if(rowCount>full_count){
 	       alert("최대12개까지만 가능합니다.");
 	       return;
 	      } else {
@@ -34,72 +34,32 @@ var full_count = 12;
 			var d_codeAll =  $("#d_code1").val();
 			var m_nameAll =  $("#m_name1").val();
 			var m_positionAll =  $("#m_position1").val();
+
+			var tr = $("#hiddenTr").clone().removeAttr("id");
+			$("#inputTable").append(tr);
+
+			rowCount = tbody.find("tr").length;
+			console.log(rowCount);
+			tr.find("#mw_month").val(rowCount + tr.find("#mw_month").val());
 			
-			
-			$("#inputTable").append('<tr id=tr'+count+'>'+
-		    		'  <td>'+
-		       		'       <input type="checkbox" class="statusCheck" id="statusCheck" checked="checked">'+
-		       		'       <input type="hidden" id="m_id'+count+'" name="m_gubun" value="'+m_idAll+'">'+
-				    '   	<input type="hidden" id="m_gubun'+count+'" name="m_gubun" value="'+m_gubunAll+'">' +
-					'		<input type="hidden" id="d_code'+count+'" name="d_code" value="'+d_codeAll+'">'+
-					'		<input type="hidden" id="m_name'+count+'" name="m_name" value="'+m_nameAll+'">'+
-					'  	    <input type="hidden" id="m_position'+count+'" name="m_position" value="'+m_positionAll+'">'+
-	       			'  </td>'+
-	    		    '	<td>'+
-					'		<select name="mw_year" id= "mw_year'+count+'">'+
-					'			<option value="2020">2020</option>'+
-					'			<option value="2019">2019</option>'+
-					'			<option value="2018">2018</option>'+
-					'			<option value="2017">2017</option>'+
-					'			<option value="2016">2016</option>'+
-					'		</select>'+
-					'	</td>'+
-					'	<td>'+
-					'		<input type="text" name="mw_month" id="mw_month'+count+'"  value='+count+'월>'+
-					'	</td>'+
-					'	<td>'+
-					'		<select name="w_name" id="w_name'+count+'">'+
-					'			<option value="경영지원,영업">경영지원,영업</option>'+
-					'			<option value="시스템운영">시스템운영</option>'+
-					'			<option value="시금고운영">시금고운영</option>'+
-					'			<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>'+
-					'			<option value="신사업 발굴">신사업 발굴</option>'+
-					'			<option value="출산휴가">출산휴가</option>'+
-					'		</select>'+
-					'	</td>'+
-					'	<td>'+
-					'		<select name="l_code" id="l_code'+count+'">'+
-					'			<option value="L01">서울</option>'+
-					'			<option value="L02">서울</option>'+
-					'			<option value="L03">인천</option>'+
-					'			<option value="L04">제주</option>'+
-					'			<option value="L05">대전</option>'+
-					'			<option value="L06">경남</option>'+
-					'		</select>'+
-					'	</td>'+
-					'	<td>'+
-					'		<select name="mw_status" id="mw_status'+count+'">'+
-					'			<option value="P">P</option>'+
-					'			<option value="C">C</option>'+
-					'		</select>'+
-					'	</td>'+
-					'</tr>');
 	      }
 	     // alert(count);
     });
     
 	     //삭제 버튼 클릭시
      $('#deleteRow').click(function() {
-      //행이 하나밖에 없으면 삭제하지 않기
-      if(count<=0){
-       alert("더이상 삭제할수 없습니다");
-       return;
-      } else {
-        //마지막 라인 삭제
-        $('#tr'+count).remove();
-        //삭제할때마다 행개수 -1
-     	count--;
-      }
+		var tbody = $("#inputTable").find("tbody");
+		var rowCount = tbody.find("tr").length;
+		
+		if(rowCount == 1)
+		{
+			alert("그만지워");
+			return false;
+		}
+		
+		tbody.find("tr").eq(rowCount-1).remove();
+		
+		console.log(rowCount);
      });
     });
     
@@ -112,8 +72,19 @@ var full_count = 12;
 						alert("현황등록을 해주세요");
 						return;
 					} else {
+				
+				var arrData = [];
 						
-				$("#statusCheck:checked").each(function(){
+				$("#inputTable").find("#statusCheck:checked").each(function(){
+					
+					var objData = {};
+					
+					var tr = $(this).closest("tr");
+					
+					console.log(tr.find("#mw_month").val());
+					
+					objData["mw_month"] = tr.find("#mw_month").val()
+					
 					//행추가할때마다 행개수 +1
 					//alert($("#statusCheck:checked").size());
 			       	++i;
@@ -139,31 +110,28 @@ var full_count = 12;
 			        		"\n현업무 -> " + mw_status+
 			        		"\n비고 -> " + mw_notice+
 			        		"\n이름 -> " + m_name); */
-				
-			        $.ajax({
-				        url : 'monthlyStatusInputGo.do',
-				        type : 'post',
-				        data : {m_id:m_id
-				        	   ,d_code:d_code
-				        	   ,mw_year:mw_year
-				        	   ,mw_month:mw_month
-				        	   ,w_name:w_name
-				        	   ,m_gubun:m_gubun
-				        	   ,m_name:m_name
-				        	   ,m_position:m_position
-				        	   ,l_code:l_code
-				        	   ,mw_status:mw_status
-				        	   ,mw_notice:mw_notice},
-				        dataType : 'text',
-				        success : function(data) {
-				       	  alert("return string : " );
-				          window.location.reload(true)			//reload : 새로고침
-				        },
-				        error : function() { 
-				        	alert("error");
-				        	}
-				      });
+			        		
+	        		arrData.push(objData);
 				});
+				
+				console.log(arrData);
+				console.log(JSON.stringify(arrData));
+				
+				return;
+				
+				$.ajax({
+			        url : 'monthlyStatusInputGo.do',
+			        type : 'post',
+			        data : {param:JSON.stringify(arrData)},
+			        dataType : 'text',
+			        success : function(data) {
+			       	  alert("return string : " );
+			          window.location.reload(true)			//reload : 새로고침
+			        },
+			        error : function() { 
+			        	alert("error");
+			        	}
+			      });
 			}
 			        
 			
@@ -205,74 +173,129 @@ var full_count = 12;
 	
 	<div class="inputBox" id="inputBox">
 		<div class="inputTitle">■ 투입정보</div>
-		<button id="addRow" class="addRow" onclick="addRow()">+</button>
-		<button id="deleteRow" class="deleteRow" onclick="deleteRow()">-</button>
+		<button id="addRow" class="addRow">+</button>
+		<button id="deleteRow" class="deleteRow">-</button>
 		<!-- <form action="monthlyStatusInputGo.do"> -->
 		<table id="inputTable" class="inputTable">
-			<tr>	
-				<th><input type="checkbox"></th>
-				<th>기준년도</th>
-				<th>기준월</th>
-				<th>투입업무</th>
-				<th>site</th>
-				<th>P/C</th>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked">
-					<input type="hidden" id="m_id1" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
-					<input type="hidden" id="m_gubun1" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
-					<input type="hidden" id="m_name1" name="m_name" value="${monthlyStatusInputForm.m_name}">
-					<input type="hidden" id="d_code1" name="d_code" value="${monthlyStatusInputForm.d_code}">
-					<input type="hidden" id="m_position1" name="m_position" value="${monthlyStatusInputForm.m_position}">
-				</td>
-				<td>
-					<select name="mw_year" id="mw_year1">
-						<option value="2020">2020</option>
-						<option value="2019">2019</option>
-						<option value="2018">2018</option>
-						<option value="2017">2017</option>
-						<option value="2016">2016</option>
-					</select>
-				</td>
-				<td>
-					<!-- <select name="mw_month" id="mw_month"> </select> -->
-					<input type="text" name="mw_month" id="mw_month1" value="1월">
-				</td>
-				<td>
-					<select name="w_name" id="w_name1">
-						<option value="경영지원,영업">경영지원,영업</option>
-						<option value="시스템운영">시스템운영</option>
-						<option value="시금고운영">시금고운영</option>
-						<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
-						<option value="신사업 발굴">신사업 발굴</option>
-						<option value="출산휴가">출산휴가</option>
-					</select>
-				</td>
-				<td>
-					<select name="l_code" id="l_code1">
-						<option value="L01">서울</option>
-						<option value="L02">광주</option>
-						<option value="L03">인천</option>
-						<option value="L04">제주</option>
-						<option value="L05">대전</option>
-						<option value="L06">경남</option>
-					</select>
-				</td>
-				<td>
-					<select name="mw_status" id="mw_status1">
-						<option value="P">P</option>
-						<option value="C">C</option>
-					</select>
-				</td>
-			</tr>
-			<tbody></tbody>
-			<tr>
-				<th>비고</th>
-				<td colspan="5"><input type="text" name="mw_notice" id="mw_notice1"></td>
-			</tr>
+			<thead>
+				<tr>	
+					<th><input type="checkbox"></th>
+					<th>기준년도</th>
+					<th>기준월</th>
+					<th>투입업무</th>
+					<th>site</th>
+					<th>P/C</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked">
+						<input type="hidden" id="m_id1" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
+						<input type="hidden" id="m_gubun1" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
+						<input type="hidden" id="m_name1" name="m_name" value="${monthlyStatusInputForm.m_name}">
+						<input type="hidden" id="d_code1" name="d_code" value="${monthlyStatusInputForm.d_code}">
+						<input type="hidden" id="m_position1" name="m_position" value="${monthlyStatusInputForm.m_position}">
+					</td>
+					<td>
+						<select name="mw_year" id="mw_year1">
+							<option value="2020">2020</option>
+							<option value="2019">2019</option>
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+						</select>
+					</td>
+					<td>
+						<!-- <select name="mw_month" id="mw_month"> </select> -->
+						<input type="text" name="mw_month" id="mw_month" value="1월">
+					</td>
+					<td>
+						<select name="w_name" id="w_name1">
+							<option value="경영지원,영업">경영지원,영업</option>
+							<option value="시스템운영">시스템운영</option>
+							<option value="시금고운영">시금고운영</option>
+							<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
+							<option value="신사업 발굴">신사업 발굴</option>
+							<option value="출산휴가">출산휴가</option>
+						</select>
+					</td>
+					<td>
+						<select name="l_code" id="l_code1">
+							<option value="L01">서울</option>
+							<option value="L02">광주</option>
+							<option value="L03">인천</option>
+							<option value="L04">제주</option>
+							<option value="L05">대전</option>
+							<option value="L06">경남</option>
+						</select>
+					</td>
+					<td>
+						<select name="mw_status" id="mw_status1">
+							<option value="P">P</option>
+							<option value="C">C</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>비고</th>
+					<td colspan="5"><input type="text" name="mw_notice" id="mw_notice1"></td>
+				</tr>
+			<tfoot>
 		</table>
-		
+
+		<table style="display:none;">
+			<tr id="hiddenTr">
+	   		  <td>
+      		    <input type="checkbox" class="statusCheck" id="statusCheck" checked="checked">
+      		    <input type="hidden" id="m_id" name="m_gubun" value="m_idAll">
+	       		<input type="hidden" id="m_gubun" name="m_gubun" value="m_gubunAll"> 
+				<input type="hidden" id="d_code" name="d_code" value="d_codeAll">
+				<input type="hidden" id="m_name" name="m_name" value="m_nameAll">
+		  	    <input type="hidden" id="m_position" name="m_position" value="m_positionAll">
+     			  </td>
+  		    	<td>
+				<select name="mw_year" id= "mw_year">
+					<option value="2020">2020</option>
+					<option value="2019">2019</option>
+					<option value="2018">2018</option>
+					<option value="2017">2017</option>
+					<option value="2016">2016</option>
+				</select>
+			</td>
+			<td>
+				<input type="text" name="mw_month" id="mw_month" value="월">
+			</td>
+			<td>
+				<select name="w_name" id="w_name">
+					<option value="경영지원,영업">경영지원,영업</option>
+					<option value="시스템운영">시스템운영</option>
+					<option value="시금고운영">시금고운영</option>
+					<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
+					<option value="신사업 발굴">신사업 발굴</option>
+					<option value="출산휴가">출산휴가</option>
+				</select>
+			</td>
+			<td>
+				<select name="l_code" id="l_code">
+					<option value="L01">서울</option>
+					<option value="L02">서울</option>
+					<option value="L03">인천</option>
+					<option value="L04">제주</option>
+					<option value="L05">대전</option>
+					<option value="L06">경남</option>
+				</select>
+			</td>
+			<td>
+				<select name="mw_status" id="mw_status">
+					<option value="P">P</option>
+					<option value="C">C</option>
+				</select>
+			</td>
+		</tr>	
+	</table>		
 	<div class="inputBtn">
 		<input type="submit" class="pushBtn" id="pushBtn" value="등록">
 		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
