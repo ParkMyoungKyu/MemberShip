@@ -8,18 +8,13 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	//전체선택 버튼 클릭시 이벤트
-	function workAllCheck(){
-		if($("#workAllCheck").is(":checked")){
-			$(".workCheck").prop("checked",true);
-		}else{
-			$(".workCheck").prop("checked",false);
-		}
-	}
-	//전체선택 후 개별 선택시 전체선택 체크 해지
-	function workCheck(){
-		if($(".workCheck").is(":checked")){
-			$("#workAllCheck").prop("checked",false);
+	//단일 체크 
+	function workCheck(chk){
+		var obj = document.getElementsByName("workCheck");
+		for(var i=0; i<obj.length; i++){
+			if(obj[i] != chk){
+				obj[i].checked = false;
+			}
 		}
 	}
 	// 체크된 리스트 값 넘기는 부분	
@@ -90,14 +85,14 @@
 			<div class="deleteBtn"><button type="button" id="workDelete">삭제</button></div>
 		<table class="mWorkTable">
 			<tr class="mWorkTable-rowheader">
-				<th><input type="checkbox" id="workAllCheck" onclick="workAllCheck()"> </th>
+				<th></th>
 				<th>업무명</th>
 				<th>제외여부</th>
 			</tr>
 			<c:forEach var="workList" items="${workList}">
 			<tr class="mWorkTable-row">
 				<td>
-					<input type="checkbox" class="workCheck" id="workCheck" onclick="workCheck()">
+					<input type="checkbox" class="workCheck" name="workCheck" id="workCheck" onclick="workCheck(this)">
 					<input type="hidden" id="w_name" value="${workList.w_name}">
 					<input type="hidden" id="w_except" value="${workList.w_except}"> 
 				</td>

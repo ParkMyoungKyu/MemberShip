@@ -10,6 +10,16 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+// 단일 체크
+	function memberCheck(chk){
+		var obj = document.getElementsByName("memberCheck");
+		for(var i=0; i<obj.length; i++){
+			if(obj[i] != chk){
+				obj[i].checked = false;
+			}
+		}
+	}
+
 // 직원 등록
 	$(document).ready(function(){
 		$("#memberInsert").on("click",function(){
@@ -32,14 +42,14 @@
 					var m_joindate = $(this).parent().children("#m_joindate").val();
 					var m_leavedate = $(this).parent().children("#m_leavedate").val();
 					
-					alert("수정할 직원명 : " + m_name 
+					/* alert("수정할 직원명 : " + m_name 
 							+ "\n수정할 직원아이디 : " + m_id
 							+ "\n수정할 직원부서 : " + d_name
 							+ "\n수정할 직원직급 : " + m_position
 							+ "\n수정할 직원내부/외부 : " + m_gubun
 							+ "\n수정할 직원입사일 : " + m_joindate
 							+ "\n수정할 직원퇴사일 : " + m_leavedate
-							);
+							); */
 					window.open('mgrMemberUpdateForm.do?m_name='+m_name
 													  +'&m_id='+m_id
 													  +'&d_name='+d_name
@@ -47,7 +57,8 @@
 													  +'&m_gubun='+m_gubun
 													  +'&m_joindate='+m_joindate
 													  +'&m_leavedate='+m_leavedate
-													  , '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); return false;
+													  , '_blank', 'width=500px,height=600px,top=100,left=300,toolbars=no,scrollbars=no'); 
+							return false;
 				});
 				
 			}
@@ -113,7 +124,7 @@ $(document).ready(function(){
 			<div class="deleteBtn"><button type="button" id="memberDelete">삭제</button></div>
 		<table class="mMemberTable">
 			<tr class="mMemberTable-rowheader">
-				<th><input type="checkbox" id="memberAllCheck" onclick="memberAllCheck()"></th>
+				<th></th>
 				<th>ID</th>
 				<th>이름</th>
 				<th>부서명</th>
@@ -129,7 +140,7 @@ $(document).ready(function(){
 				<fmt:formatDate var="leave" value="${memberList.m_leavedate}" pattern="yyyy-MM-dd"/> --%>
 				<tr class="mMemberTable-row">
 					<td>
-						<input type="checkbox" class="memberCheck" id="memberCheck" onclick="memberCheck()">
+						<input type="checkbox" class="memberCheck" name="memberCheck" id="memberCheck" onclick="memberCheck(this)">
 						<input type="hidden" id="m_id" value="${memberList.m_id}">
 						<input type="hidden" id="m_name" value="${memberList.m_name}">
 						<input type="hidden" id="d_name" value="${memberList.d_name}">

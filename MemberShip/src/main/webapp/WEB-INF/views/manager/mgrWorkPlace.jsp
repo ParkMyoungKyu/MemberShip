@@ -10,6 +10,16 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
+	//단일 체크
+	function workPlaceCheck(chk){
+		var obj = document.getEkenebtsByName("workPlaceCheck");
+		for(var i=0; i<obj.length; i++){
+			if(obj[i] != chk){
+				obj[i].checked = false;
+			}
+		}
+	}
+
 	//체크된 리스트 값 넘기는 부분	
 	$(document).ready(function(){
 		$("#workPlaceUpdate").on("click",function(){
@@ -58,10 +68,7 @@
 					        	 window.location.reload(true)
 					        	}
 					      });
-						
 					});
-
-					
 				}
 			}
 		});
@@ -80,14 +87,14 @@
 				<div class="deleteBtn"><button type="button" id="workPlaceDelete">삭제</button></div>
 			<table class="mWorkPlaceTable">
 				<tr class="mWorkPlaceTable-rowheader">
-					<th><input type="checkbox" id="workPlaceAllCheck" onclick="workPlaceAllCheck()"></th>
+					<th></th>
 					<th>근무지명</th>
 					<th>근무지 주소</th>
 				</tr>
 				<c:forEach var="workPlaceList" items="${workPlaceList}">
 					<tr class="mWorkPlaceTable-row">
 						<td>
-							<input type="checkbox" class="workPlaceCheck" id="workPlaceCheck" onclick="workPlaceCheck()">
+							<input type="checkbox" class="workPlaceCheck" name="workPlaceCheck" id="workPlaceCheck" onclick="workPlaceCheck(this)">
 							<input type="hidden" id="p_name" value="${workPlaceList.p_name}">
 							<input type="hidden" id="p_addr" value="${workPlaceList.p_addr}">
 						</td>

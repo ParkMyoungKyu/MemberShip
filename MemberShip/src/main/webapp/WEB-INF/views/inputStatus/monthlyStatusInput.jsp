@@ -10,11 +10,8 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-//행개수	
-var count = 1;
 //최대 행개수
 var full_count = 12 - 1;
-
 
     $(function() {
 	     //추가 버튼 클릭시
@@ -29,12 +26,6 @@ var full_count = 12 - 1;
 	      } else {
 	       //행추가
 	        
-	       var m_idAll = $("#m_id1").val();
-	        var m_gubunAll =$("#m_gubun1").val();
-			var d_codeAll =  $("#d_code1").val();
-			var m_nameAll =  $("#m_name1").val();
-			var m_positionAll =  $("#m_position1").val();
-
 			var tr = $("#hiddenTr").clone().removeAttr("id");
 			$("#inputTable").append(tr);
 
@@ -68,10 +59,10 @@ var full_count = 12 - 1;
 		$("#pushBtn").on("click",function(){
 			var sign = confirm("현황 등록하시겠습니까?");
 			if(sign){
-					if($("#statusCheck:checked").size()<1){
-						alert("현황등록을 해주세요");
-						return;
-					} else {
+				if($("#statusCheck:checked").size()<1){
+					alert("현황등록을 해주세요");
+					return;
+				} else {
 				
 				var arrData = [];
 						
@@ -80,37 +71,23 @@ var full_count = 12 - 1;
 					var objData = {};
 					
 					var tr = $(this).closest("tr");
-					
+					var notice = $(this).find("tr")
 					console.log(tr.find("#mw_month").val());
 					
-					objData["mw_month"] = tr.find("#mw_month").val()
+					objData["m_id"] = tr.find("#m_id").val();
+					objData["m_gubun"] = tr.find("#m_gubun").val();
+					objData["d_code"] = tr.find("#d_code").val();
+					objData["m_name"] = tr.find("#m_name").val();
+					objData["m_position"] = tr.find("#m_position").val();
 					
-					//행추가할때마다 행개수 +1
-					//alert($("#statusCheck:checked").size());
-			       	++i;
-					//alert(i);
-					var m_id = $("#m_id"+i).val();
-					var m_gubun = $("#m_gubun"+i).val();
-					var d_code = $("#d_code"+i).val();
-			        var m_name = $("#m_name"+i).val();
-			        var m_position = $("#m_position"+i).val();
-			        
-			        var w_name = $("#w_name"+i).val();
-			        var mw_year =  $("#mw_year"+i).val();
-			        var mw_month =$("#mw_month"+i).val();
-			        var l_code = $("#l_code"+i).val();
-			        var mw_status =$("#mw_status"+i).val();
-			        
-			        var mw_notice =$("#mw_notice1").val();
-			        
-			        /* alert("기준년 -> "+mw_year+
-			        		"\n기준월 -> " + mw_month+
-			        		"\n투입업무 -> " + w_name+
-			        		"\n사이트 -> " + l_code+
-			        		"\n현업무 -> " + mw_status+
-			        		"\n비고 -> " + mw_notice+
-			        		"\n이름 -> " + m_name); */
-			        		
+					objData["w_name"] = tr.find("#w_name").val();
+					objData["mw_year"] = tr.find("#mw_year").val();
+					objData["mw_month"] = tr.find("#mw_month").val();
+					objData["l_code"] = tr.find("#l_code").val();
+					objData["mw_status"] = tr.find("#mw_status").val();
+					
+					objData["mw_notice"] = tr.find("#mw_notice").val();
+					
 	        		arrData.push(objData);
 				});
 				
@@ -131,10 +108,8 @@ var full_count = 12 - 1;
 			        error : function() { 
 			        	alert("error");
 			        	}
-			      });
-			}
-			        
-			
+		      		});
+				}
 			}
 		})
  	}); 
@@ -191,14 +166,14 @@ var full_count = 12 - 1;
 				<tr>
 					<td>
 						<input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked">
-						<input type="hidden" id="m_id1" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
-						<input type="hidden" id="m_gubun1" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
-						<input type="hidden" id="m_name1" name="m_name" value="${monthlyStatusInputForm.m_name}">
-						<input type="hidden" id="d_code1" name="d_code" value="${monthlyStatusInputForm.d_code}">
-						<input type="hidden" id="m_position1" name="m_position" value="${monthlyStatusInputForm.m_position}">
+						<input type="hidden" id="m_id" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
+						<input type="hidden" id="m_gubun" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
+						<input type="hidden" id="m_name" name="m_name" value="${monthlyStatusInputForm.m_name}">
+						<input type="hidden" id="d_code" name="d_code" value="${monthlyStatusInputForm.d_code}">
+						<input type="hidden" id="m_position" name="m_position" value="${monthlyStatusInputForm.m_position}">
 					</td>
 					<td>
-						<select name="mw_year" id="mw_year1">
+						<select name="mw_year" id="mw_year">
 							<option value="2020">2020</option>
 							<option value="2019">2019</option>
 							<option value="2018">2018</option>
@@ -211,7 +186,7 @@ var full_count = 12 - 1;
 						<input type="text" name="mw_month" id="mw_month" value="1월">
 					</td>
 					<td>
-						<select name="w_name" id="w_name1">
+						<select name="w_name" id="w_name">
 							<option value="경영지원,영업">경영지원,영업</option>
 							<option value="시스템운영">시스템운영</option>
 							<option value="시금고운영">시금고운영</option>
@@ -221,7 +196,7 @@ var full_count = 12 - 1;
 						</select>
 					</td>
 					<td>
-						<select name="l_code" id="l_code1">
+						<select name="l_code" id="l_code">
 							<option value="L01">서울</option>
 							<option value="L02">광주</option>
 							<option value="L03">인천</option>
@@ -231,7 +206,7 @@ var full_count = 12 - 1;
 						</select>
 					</td>
 					<td>
-						<select name="mw_status" id="mw_status1">
+						<select name="mw_status" id="mw_status">
 							<option value="P">P</option>
 							<option value="C">C</option>
 						</select>
@@ -241,7 +216,7 @@ var full_count = 12 - 1;
 			<tfoot>
 				<tr>
 					<th>비고</th>
-					<td colspan="5"><input type="text" name="mw_notice" id="mw_notice1"></td>
+					<td colspan="5"><input type="text" name="mw_notice" id="mw_notice" value=""></td>
 				</tr>
 			<tfoot>
 		</table>
@@ -250,11 +225,11 @@ var full_count = 12 - 1;
 			<tr id="hiddenTr">
 	   		  <td>
       		    <input type="checkbox" class="statusCheck" id="statusCheck" checked="checked">
-      		    <input type="hidden" id="m_id" name="m_gubun" value="m_idAll">
-	       		<input type="hidden" id="m_gubun" name="m_gubun" value="m_gubunAll"> 
-				<input type="hidden" id="d_code" name="d_code" value="d_codeAll">
-				<input type="hidden" id="m_name" name="m_name" value="m_nameAll">
-		  	    <input type="hidden" id="m_position" name="m_position" value="m_positionAll">
+      		    <input type="hidden" id="m_id" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
+				<input type="hidden" id="m_gubun" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
+				<input type="hidden" id="m_name" name="m_name" value="${monthlyStatusInputForm.m_name}">
+				<input type="hidden" id="d_code" name="d_code" value="${monthlyStatusInputForm.d_code}">
+				<input type="hidden" id="m_position" name="m_position" value="${monthlyStatusInputForm.m_position}">
      			  </td>
   		    	<td>
 				<select name="mw_year" id= "mw_year">
@@ -300,7 +275,6 @@ var full_count = 12 - 1;
 		<input type="submit" class="pushBtn" id="pushBtn" value="등록">
 		<input type="button" class="closeBtn" value="닫기" onclick="closePopup()">
 	</div>
-	<!-- </form> -->
 	</div>
 	</div>
 	</c:forEach>

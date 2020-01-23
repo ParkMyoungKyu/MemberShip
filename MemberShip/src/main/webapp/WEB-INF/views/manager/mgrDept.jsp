@@ -10,18 +10,13 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	//전체선택 버튼 클릭시 이벤트
-	function deptAllCheck(){
-		if($("#deptAllCheck").is(":checked")){
-			$(".deptCheck").prop("checked",true);
-		}else{
-			$(".deptCheck").prop("checked",false);
-		}
-	}
-	//전체선택 후 개별 선택시 전체선택 체크 해지
-	function deptCheck(){
-		if($(".deptCheck").is(":checked")){
-			$("#deptAllCheck").prop("checked",false);
+	//단일 체크
+	function deptCheck(chk){
+		var obj = document.getElementsByName("deptCheck");
+		for(var i=0; i<obj.length; i++){
+			if(obj[i] != chk){
+				obj[i].checked = false;
+			}
 		}
 	}
 	//등록하는 부분
@@ -61,7 +56,7 @@
 					$("#deptCheck:checked").each(function(){
 						var	d_code = $(this).parent().children("#d_code").val();
 						var	d_name = $(this).parent().children("#d_name").val();
-						alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
+						//alert("삭제 부서코드 : " + d_code +"\n삭제 부서명 : " + d_name);
 					
 					$.ajax({
 				        url : 'mgrDeptDelete.do',
@@ -96,14 +91,14 @@
 			<div class="deleteBtn"><button type="button" id="deptDelete">삭제</button></div>
 				<table class="mDeptTable">
 					<tr class="mDeptTable-rowheader">
-						<th><input type="checkbox" id="deptAllCheck" onclick="deptAllCheck()"></th>
+						<th></th>
 						<th>부서코드</th>
 						<th>부서명</th>
 					</tr>
 					<c:forEach var="deptList" items="${deptList}">
 						<tr class="mDeptTable-row">
 							<td>
-								<input type="checkbox" class="deptCheck" id="deptCheck" onclick="deptCheck()">
+								<input type="checkbox" class="deptCheck" name="deptCheck"  id="deptCheck" onclick="deptCheck(this)">
 								<input type="hidden" id="d_code" value="${deptList.d_code}">
 								<input type="hidden" id="d_name" value="${deptList.d_name}">
 							</td>

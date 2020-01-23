@@ -40,6 +40,10 @@
 			}
 		})
 	}
+	function closePopup(){
+		window.opener.location.reload();
+		window.close();	
+	};
 </script>
 </head>
 <body class="monthlyWorkUpdate">

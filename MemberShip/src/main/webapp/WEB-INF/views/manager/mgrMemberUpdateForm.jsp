@@ -18,8 +18,6 @@
 		var m_leavedate = $("#m_leavedate").val();
 		var m_notice = $("#m_notice").val();
 		
-		//alert("d_code" + d_code +"d_name"+ d_name);
-		
 		$.ajax({
 			url:'mgrMemberUpdate.do',
 			type : 'post',

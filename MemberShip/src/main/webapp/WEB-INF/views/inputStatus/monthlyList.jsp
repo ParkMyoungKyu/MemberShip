@@ -10,22 +10,16 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	//전체선택 버튼 클릭시 이벤트
-	function monthlyAllCheck(){
-		if($("#monthlyAllCheck").is(":checked")){
-			$(".monthlyCheck").prop("checked",true);
-		}else{
-			$(".monthlyCheck").prop("checked",false);
-		}
-	}
-	//전체선택 후 개별 선택시 전체선택 체크 해지
-	function monthlyCheck(){
-		if($(".monthlyCheck").is(":checked")){
-			$("#monthlyAllCheck").prop("checked",false);
+	//단일 체크 
+	function monthlyCheck(chk){
+		var obj = document.getElementsByName("monthlyCheck");
+		for(var i=0; i<obj.length; i++){
+			if(obj[i] != chk){
+				obj[i].checked = false;
+			}
 		}
 	}
 	//인력 수정 부분
-	
 	$(document).ready(function(){
 		$("#monthlyWorkUpdate").on("click",function(){
 			if($(".monthlyCheck:checked").size()<1){
@@ -179,7 +173,7 @@
 	</form>
 		<table class="monthlyList">
 			<tr class="monthlyList-rowheader">
-				<th><input type="checkbox" id="monthlyAllCheck" class="monthlyAllCheck" onclick="monthlyAllCheck()"></th>
+				<th></th>
 				<th>구분</th>
 				<th>성명</th>
 				<th>직급</th>
@@ -209,7 +203,7 @@
 				<fmt:formatDate var="month" value="${month}" pattern="MM"/> --%>
 				<tr class="monthlyList-row">
 					<td>
-						<input type="checkbox" id="monthlyCheck" class="monthlyCheck" onclick="monthlyCheck()">
+						<input type="checkbox" id="monthlyCheck" name="monthlyCheck" class="monthlyCheck" onclick="monthlyCheck(this)">
 						<input type="hidden" id="m_id" value="${monthlyList.m_id}">
 						<input type="hidden" id="m_gubun" value="${monthlyList.m_gubun}">
 						<input type="hidden" id="w_name" value="${monthlyList.w_name}">
