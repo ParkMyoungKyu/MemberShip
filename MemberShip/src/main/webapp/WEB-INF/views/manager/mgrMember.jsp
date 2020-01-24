@@ -30,7 +30,7 @@
 	$(document).ready(function(){
 		$("#memberUpdate").on("click",function(){
 			if($("#memberCheck:checked").size()<1){
-				alert("수정하고자 하는 부서를 선택해주세요");
+				alert("수정하고자 하는 인원을 선택해주세요");
 				return;
 			} else {
 				$("#memberCheck:checked").each(function(){

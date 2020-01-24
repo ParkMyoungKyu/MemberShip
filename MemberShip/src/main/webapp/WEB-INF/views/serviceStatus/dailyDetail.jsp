@@ -21,21 +21,21 @@
 		</tr>
 		<c:forEach var="dailyDetail" items="${dailyDetail}">
 		<tr class="tableContent">
-			<td><fmt:formatDate value="${dailyDetail.w_day}" pattern="yyyy-MM-dd"/> </td>
+			<td><fmt:formatDate value="${dailyDetail.dw_day}" pattern="yyyy-MM-dd"/> </td>
 			<td>
 				<c:choose>
-					<c:when test="${dailyDetail.w_status == '1'}">근무</c:when>
-					<c:when test="${dailyDetail.w_status == '2'}">휴가</c:when>
-					<c:when test="${dailyDetail.w_status == '3'}">출장</c:when>
-					<c:when test="${dailyDetail.w_status == '4'}">기타</c:when>
+					<c:when test="${dailyDetail.dw_status == '1'}">근무</c:when>
+					<c:when test="${dailyDetail.dw_status == '2'}">휴가</c:when>
+					<c:when test="${dailyDetail.dw_status == '3'}">출장</c:when>
+					<c:when test="${dailyDetail.dw_status == '4'}">기타</c:when>
 				</c:choose>
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="${dailyDetail.w_status == '1'}">${dailyDetail.p_name}</c:when>
-					<c:when test="${dailyDetail.w_status == '2'}">-</c:when>
-					<c:when test="${dailyDetail.w_status == '3'}">${dailyDetail.p_name}</c:when>
-					<c:when test="${dailyDetail.w_status == '4'}">-</c:when>
+					<c:when test="${dailyDetail.dw_status == '1'}">${dailyDetail.p_name}</c:when>
+					<c:when test="${dailyDetail.dw_status == '2'}">-</c:when>
+					<c:when test="${dailyDetail.dw_status == '3'}">${dailyDetail.p_name}</c:when>
+					<c:when test="${dailyDetail.dw_status == '4'}">-</c:when>
 				</c:choose>
 			</td>
 		</tr>

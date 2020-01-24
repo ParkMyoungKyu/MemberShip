@@ -53,7 +53,11 @@
 						      </select> 
 				</div>
 				<div> 직원 직급 : <input type="text" id="m_position" placeholder="${memberUpdateForm.m_position}"></div>
-				<div> 직원 내부/외부 : <input type="text" id="m_gubun" placeholder="${memberUpdateForm.m_gubun}"></div>
+				<div> 직원 내부/외부 : <select>
+									<option value="${memberUpdateForm.m_gubun == 'G1'}" >내부</option>
+									<option value="${memberUpdateForm.m_gubun == 'G2'}" >외부</option>
+								   </select>
+				</div>
 				<div> 직원 입사일 : <input type="text" id="m_joindate" placeholder="${m_joindate}"></div>
 				<div> 직원 퇴사일 : <input type="text" id="m_leavedate" placeholder="${memberUpdateForm.m_leavedate}"></div>
 				<div> 직원 비고 : <input type="text" id="m_notice" placeholder="${memberUpdateForm.m_notice}"></div>

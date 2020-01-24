@@ -154,7 +154,7 @@ var full_count = 12 - 1;
 		<table id="inputTable" class="inputTable">
 			<thead>
 				<tr>	
-					<th><input type="checkbox"></th>
+					<th style="display:none;"></th>
 					<th>기준년도</th>
 					<th>기준월</th>
 					<th>투입업무</th>
@@ -164,7 +164,7 @@ var full_count = 12 - 1;
 			</thead>
 			<tbody>
 				<tr>
-					<td>
+					<td style="display:none;">
 						<input type="checkbox" class="statusCheck" name="statusCheck" id="statusCheck" checked="checked">
 						<input type="hidden" id="m_id" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
 						<input type="hidden" id="m_gubun" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
@@ -223,7 +223,7 @@ var full_count = 12 - 1;
 
 		<table style="display:none;">
 			<tr id="hiddenTr">
-	   		  <td>
+	   		  <td style="display:none;">
       		    <input type="checkbox" class="statusCheck" id="statusCheck" checked="checked">
       		    <input type="hidden" id="m_id" name="m_gubun" value="${monthlyStatusInputForm.m_id}">
 				<input type="hidden" id="m_gubun" name="m_gubun" value="${monthlyStatusInputForm.m_gubun}">
