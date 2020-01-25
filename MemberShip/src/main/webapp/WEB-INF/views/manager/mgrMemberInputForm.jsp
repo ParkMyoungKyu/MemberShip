@@ -46,7 +46,7 @@
 	 	var m_joindate = $("#m_joindate").val(); 
 	 	var m_notice = $("#m_notice").val();
 	 	
-		alert(m_joindate+"     "+m_id +"   "+ m_name+"   "+d_code+"   "+m_position+"   "+m_gubun);
+		//alert(m_joindate+"     "+m_id +"   "+ m_name+"   "+d_code+"   "+m_position+"   "+m_gubun);
 		  
 		$.ajax({
 			url:'mgrMemberInput.do',

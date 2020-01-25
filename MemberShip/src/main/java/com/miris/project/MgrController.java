@@ -312,9 +312,7 @@ public class MgrController {
 	
 		return "manager/mgrWorkPlace";
 	}
-	
-	
-	
+
 	
 	
 	
@@ -372,8 +370,6 @@ public class MgrController {
 		
 		model.addAttribute("deptList",deptList);  
 		
-		
-		
 		return "redirect:mgrMember.do";
 	}
 	
@@ -418,11 +414,9 @@ public class MgrController {
 		System.out.println("삭제하고자 하는 이름 : " + mgrVO.getM_name());
 		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
 		System.out.println("삭제하고자 하는 직급 : " + mgrVO.getM_position());
-         // 일별 직원목록 삭제
-		// 월별 직원목록 삭제
 		
-		memberService.dailyDel(dailyWorkVO);      // 근무현황 삭제
-		monthlyService.monthlyDel(monthlyWorkVO);    // 월별현황 삭제
+		memberService.dailyDel(dailyWorkVO);      // 근무현황 직원목록 삭제
+		monthlyService.monthlyDel(monthlyWorkVO);    // 월별현황 직원목록 삭제
 		mgrService.mgrMemberDelete(mgrVO);  // 직원목록 삭제
 		
 		//mgrService.mgrMemberDeleteError(mgrVO);
