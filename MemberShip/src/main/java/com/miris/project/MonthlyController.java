@@ -140,6 +140,15 @@ public class MonthlyController {
 	// 월별 투입 현황 입력
 	@RequestMapping(value = "monthlyStatusInputGo")
 	private String monthlyStatusInputGo(MonthlyWorkVO monthlyWorkVO, Model model) {
+//		@RequestParam(value="m_gubun",required=true) List<String> m_gubun,
+//		@RequestParam(value="m_name",required=true) List<String> m_name,
+//		@RequestParam(value="m_position",required=true) List<String> m_position,
+//		@RequestParam(value="mw_year",required=true) List<String> mw_year,
+//		@RequestParam(value="mw_month",required=true) List<String> mw_month,
+//		@RequestParam(value="w_name",required=true) List<String> w_name,
+//		@RequestParam(value="l_code",required=true) List<String> l_code,
+//		@RequestParam(value="w_except",required=true) List<String> w_except,
+//		@RequestParam(value="mw_notice",required=true) List<String> mw_notice,
 		System.out.println("====================MonthlyContraller monthlyStatusInputGo=====================");
 
 		System.out.println("넣으려는 아이디: " + monthlyWorkVO.getM_id());

@@ -24,4 +24,6 @@ public interface MonthlyService {
 
 	int monthlyAdd(MonthlyWorkVO monthlyWorkVO);
 
+	int  monthlyDel(MonthlyWorkVO monthlyWorkVO);
+
 }

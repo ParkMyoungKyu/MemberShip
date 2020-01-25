@@ -207,4 +207,10 @@
   		INSERT INTO m_work(m_id,mw_year,mw_month,w_name,l_code,mw_status,w_except,mw_notice) 
   		VALUES (#{m_id},TO_DATE(TO_CHAR(SYSDATE,'YYYY'),'YYYY'),TO_DATE(TO_CHAR(SYSDATE,'MM'),'MM'),'SI 사업 발주 대기','L01','P','N','')
   	</insert>
+  	
+  	<delete id="monthlyDel">
+  		DELETE FROM M_WORK
+  		WHERE 1=1
+  		AND M_ID = #{m_id}
+  	</delete>
   </mapper>

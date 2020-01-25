@@ -182,6 +182,12 @@
 		INSERT into d_work(m_id,dw_status,dw_day,p_name,dw_notice)
         VALUES (#{m_id},'',TO_CHAR(SYSDATE,'YYYYMMDD'),'','')
 	</insert>
+	
+	<delete id="dailyDel">
+		DELETE FROM D_WORK
+		WHERE 1=1
+		AND M_ID = #{m_id}
+	</delete>
 	<!-- 
 	<select id="dailyMemberSearch" parameterType="DailyWork" resultType="DailyWork">
 		select rn, 
@@ -222,6 +228,6 @@
 	    <if test="d_code != 'D00'">AND a.d_code = #{d_code}</if>
 	    <if test='m_name != ""'>AND a.m_name = #{m_name}</if>
 	</select> -->
-	
+
 	
 </mapper>

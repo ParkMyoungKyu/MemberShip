@@ -365,11 +365,12 @@ public class MgrController {
 		System.out.println("추가할 비고 : " + mgrVO.getM_notice());
 		
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
-		mgrService.mgrMemberInput(mgrVO);
 		
-		memberService.dailyAdd(dailyWorkVO);
-		monthlyService.monthlyAdd(monthlyWorkVO);
-		model.addAttribute("deptList",deptList);
+		mgrService.mgrMemberInput(mgrVO);       // 직원목록 추가
+		memberService.dailyAdd(dailyWorkVO);      // 근무현황 추가
+		monthlyService.monthlyAdd(monthlyWorkVO);    // 월별현황 추가
+		
+		model.addAttribute("deptList",deptList);  
 		
 		
 		
@@ -391,7 +392,6 @@ public class MgrController {
 			List<MgrVO> memberUpdateForm = mgrService.memberUpdateForm(mgrVO);
 			List<MgrVO> deptList = mgrService.deptList(mgrVO);
 			
-			
 			model.addAttribute("memberUpdateForm",memberUpdateForm);
 			model.addAttribute("deptList",deptList);
 			
@@ -412,15 +412,19 @@ public class MgrController {
 	// 직원 삭제
 	@RequestMapping(value="mgrMemberDelete")
 	@ResponseBody
-	public String mgrMemberDelete(MgrVO mgrVO, Model model) {
+	public String mgrMemberDelete(MgrVO mgrVO,DailyWorkVO dailyWorkVO,MonthlyWorkVO monthlyWorkVO, Model model) {
 		System.out.println("=====================MgrController mgrMemberDelete=====================");
 		System.out.println("삭제하고자 하는 아이디 : " + mgrVO.getM_id());
 		System.out.println("삭제하고자 하는 이름 : " + mgrVO.getM_name());
 		System.out.println("삭제하고자 하는 부서명 : " + mgrVO.getD_name());
 		System.out.println("삭제하고자 하는 직급 : " + mgrVO.getM_position());
-
+         // 일별 직원목록 삭제
+		// 월별 직원목록 삭제
 		
-		mgrService.mgrMemberDelete(mgrVO);
+		memberService.dailyDel(dailyWorkVO);      // 근무현황 삭제
+		monthlyService.monthlyDel(monthlyWorkVO);    // 월별현황 삭제
+		mgrService.mgrMemberDelete(mgrVO);  // 직원목록 삭제
+		
 		//mgrService.mgrMemberDeleteError(mgrVO);
 		
 		return "manager/mgrMember";

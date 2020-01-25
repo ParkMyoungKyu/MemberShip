@@ -24,4 +24,6 @@ public interface MonthlyDao {
 
 	int monthlyAdd(MonthlyWorkVO monthlyWorkVO);
 
+	int monthlyDel(MonthlyWorkVO monthlyWorkVO);
+
 }

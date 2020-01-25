@@ -94,7 +94,7 @@ var full_count = 12 - 1;
 				console.log(arrData);
 				console.log(JSON.stringify(arrData));
 				
-				return;
+				//return;
 				
 				$.ajax({
 			        url : 'monthlyStatusInputGo.do',

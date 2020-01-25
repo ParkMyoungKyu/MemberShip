@@ -22,6 +22,8 @@ public interface MemberDao {
 
 	int dailyAdd(DailyWorkVO dailyWorkVO);
 
+	int dailyDel(DailyWorkVO dailyWorkVO);
+
 		
 
 }

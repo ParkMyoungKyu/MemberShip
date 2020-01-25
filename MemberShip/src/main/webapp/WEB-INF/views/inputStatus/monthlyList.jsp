@@ -58,13 +58,13 @@
 					var	mw_notice = $(this).parent().children("#mw_notice").val();
 					var	mw_year = $(this).parent().children("#mw_year").val();
 					var	mw_month = $(this).parent().children("#mw_month").val();
-					alert("현황입력 대상 : " + m_gubun 
-		 				 +"\n수정할 부서명 : " + w_name
-						 +"\n수정할 부서명 : " + m_name
-						 +"\n수정할 부서명 : " + m_position
-						 +"\n수정할 부서명 : " + mw_notice
-						 +"\n수정할 부서명 : " + mw_year
-						 +"\n수정할 부서명 : " + mw_month);
+					alert("현황등록할 대상의 구분 : " + m_gubun 
+		 				 +"\n현황등록할 대상의 업무 : " + w_name
+						 +"\n현황등록할 대상의 이름 : " + m_name
+						 +"\n현황등록할 대상의 직급 : " + m_position
+						 +"\n현황등록할 대상의 비고 : " + mw_notice
+						 +"\n현황등록할 대상의 년도 : " + mw_year
+						 +"\n현황등록할 대상의 월 : " + mw_month);
 					window.open('monthlyStatusInputForm.do?m_gubun='+m_gubun
 														+"&w_name="+w_name
 														+"&m_name="+m_name
@@ -251,7 +251,6 @@
 								<c:when test="${nowMonth < '02'}">
 									<c:choose>
 										<c:when test="${monthlyList.w_name == 'SI 사업 발주 대기'}">
-											<td>P</td>
 											<c:choose>
 												<c:when test="${monthlyList.FEB == null}"><td class="white">P</td></c:when>
 												<c:when test="${monthlyList.FEB != null}"><td class="white">${monthlyList.FEB}</td></c:when>

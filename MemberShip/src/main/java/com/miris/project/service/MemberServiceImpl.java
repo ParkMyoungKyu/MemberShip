@@ -63,6 +63,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.dailyAdd(dailyWorkVO);
 	}
 
+	@Override
+	public int dailyDel(DailyWorkVO dailyWorkVO) {
+		System.out.println("=====================MemberServiceImpl dailyDel=====================");
+		return memberDao.dailyDel(dailyWorkVO);
+	}
+
 	
 
 

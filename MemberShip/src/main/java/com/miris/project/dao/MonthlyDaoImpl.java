@@ -67,4 +67,10 @@ public class MonthlyDaoImpl implements MonthlyDao {
 		System.out.println("=====================MonthlyDaoImpl monthlyAdd=====================");
 		return session.insert("monthlyAdd",monthlyWorkVO);
 	}
+
+	@Override
+	public int monthlyDel(MonthlyWorkVO monthlyWorkVO) {
+		System.out.println("=====================MonthlyDaoImpl monthlyDel=====================");
+		return session.delete("monthlyDel",monthlyWorkVO);
+	}
 }

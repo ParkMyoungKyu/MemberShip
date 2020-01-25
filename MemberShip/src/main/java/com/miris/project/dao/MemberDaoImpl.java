@@ -62,6 +62,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.insert("dailyAdd",dailyWorkVO);
 	}
 
+	@Override
+	public int dailyDel(DailyWorkVO dailyWorkVO) {
+		System.out.println("=====================MemberDaoImpl dailyDel=====================");
+		return session.delete("dailyDel",dailyWorkVO);
+	}
+
 	
 
 	
