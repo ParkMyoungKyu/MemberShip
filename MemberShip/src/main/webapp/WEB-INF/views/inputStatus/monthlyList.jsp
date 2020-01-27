@@ -159,15 +159,10 @@
 		 			<option value="상무">상무</option>
 		 	   </select>
 		 현업무 : <select class="nowWork" name="w_name">
-		 	   		<option value="전체">전체</option>
-		 	   		<option value="경영지원,영업">경영지원,영업</option>
-		 	   		<option value="신사업발굴">신사업발굴</option>
-		 	   		<option value="SI 사업 발주 대기">SI 사업 발주 대기</option>
-		 	   		<option value="시스템운영">시스템운영</option>
-		 	   		<option value="서울시금고운영">서울시금고운영</option>
-		 	   		<option value="경남시금고운영">경남시금고운영</option>
-		 	   		<option value="광중시금고운영">광중시금고운영</option>
-		 	   		<option value="인천시금고운영">인천시금고운영</option>
+	 				<option value="전체">전체</option>
+		  			<c:forEach var="workList" items="${workList}">
+					 	<option value="${workList.w_name}">${workList.w_name}</option>
+					</c:forEach>
 		 	   </select>
 	  <input type="submit" class="formBtn" value="조회">
 	</form>
@@ -413,7 +408,6 @@
 						</c:when>
 						<c:when test="${monthlyList.DEC_EXCEPT == 'Y'}"><td class="green">${monthlyList.DEC}</td></c:when>					
 					</c:choose>
-					
 					<td>${monthlyList.mw_notice}</td>
 				</tr>	
 			</c:forEach>

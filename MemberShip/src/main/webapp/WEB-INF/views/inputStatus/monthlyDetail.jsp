@@ -18,8 +18,8 @@
 <body class="monthlyDetailBox">
 	<div class="infoTitle">
 		<div class="info">■ 기본정보</div>
-		<input type="button" class="updateBtn" value="인력수정">
-		<input type="button" class="inputBtn" value="현황등록">
+		<!-- <input type="button" class="updateBtn" value="인력수정">
+		<input type="button" class="inputBtn" value="현황등록"> -->
 	</div>
 	<table class="infoTable">
 		<tr>
@@ -36,7 +36,16 @@
 					<c:when test="${m_gubun == 'G2'}">외부</c:when>
 				</c:choose>
 			</td>
-			<td>${d_code}</td>
+			<td>
+				<c:choose>
+					<c:when test="${d_code == 'D01'}">경영지원실</c:when>
+					<c:when test="${d_code == 'D02'}">부설연구소</c:when>
+					<c:when test="${d_code == 'D03'}">핀테크서비스1부</c:when>
+					<c:when test="${d_code == 'D04'}">핀테크서비스2부</c:when>
+					<c:when test="${d_code == 'D05'}">핀테크서비스3부</c:when>
+					<c:when test="${d_code == 'D06'}">핀테크서비스4부</c:when>
+				</c:choose>
+			</td>
 			<td>${m_name}</td>
 			<td>${m_position}</td>
 			<td>${m_notice}</td>
@@ -53,7 +62,10 @@
 		</tr>
 		 <c:forEach var="monthlyDetail" items="${monthlyDetail}">
 			<tr>
-				<td>${monthlyDetail.mw_month}</td>
+				<td>
+					<fmt:parseDate value="${monthlyDetail.mw_month}" var="mw_month" pattern="yyyy-MM-dd" />
+					<fmt:formatDate value="${mw_month}" pattern="yyyy-MM-dd"/>
+				</td>
 				<td>${monthlyDetail.w_name}</td>
 				<td>${monthlyDetail.w_except}</td>
 				<td>${monthlyDetail.mw_notice}</td>

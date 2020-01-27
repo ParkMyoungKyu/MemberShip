@@ -51,7 +51,7 @@ $(function(){
 						 <option value="D00">전체</option>
 						 <c:forEach var="deptList" items="${deptList}">
 						 	<option value="${deptList.d_code}">${deptList.d_name}</option>
-							</c:forEach>
+						 </c:forEach>
 					     </select>
 					     
 				</div>

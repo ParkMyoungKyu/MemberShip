@@ -82,10 +82,14 @@ public class MonthlyController {
 		List<MonthlyWorkVO> monthlySum = monthlyService.monthlySum(monthlyWorkVO);		
 		List<MonthlyWorkVO> monthlyList = monthlyService.monthlyList(monthlyWorkVO); 
 		List<MgrVO> deptList = mgrService.deptList(mgrVO);
-		System.out.println("DMADMA" + monthlyWorkVO.getJAN());
+		List<MgrVO> workList = mgrService.workList(mgrVO);
+		
+		
+		
 		model.addAttribute("monthlySum",monthlySum);
 		model.addAttribute("monthlyList",monthlyList);
 		model.addAttribute("deptList",deptList);
+		model.addAttribute("workList",workList);
 		model.addAttribute("pg",pg);
 		
 		return "inputStatus/monthlyList";
@@ -120,7 +124,7 @@ public class MonthlyController {
 	
 	//현황등록
 	@RequestMapping(value = "monthlyStatusInputForm")
-	private String monthlyStatusInputForm(MonthlyWorkVO monthlyWorkVO, Model model){
+	private String monthlyStatusInputForm(MgrVO mgrVO,MonthlyWorkVO monthlyWorkVO, Model model){
 		System.out.println("====================MonthlyContraller monthlyStatusInputForm=====================");
 		System.out.println("선택한 구분 : " + monthlyWorkVO.getM_gubun());
 		System.out.println("선택한 현업무 : " + monthlyWorkVO.getW_name());
@@ -132,8 +136,10 @@ public class MonthlyController {
 		
 		
 		List<MonthlyWorkVO> monthlyStatusInputForm = monthlyService.monthlyStatusInput(monthlyWorkVO);
+		List<MgrVO> workList = mgrService.workList(mgrVO);
 		
 		model.addAttribute("monthlyStatusInputForm",monthlyStatusInputForm);
+		model.addAttribute("workList",workList);
 		
 		return "inputStatus/monthlyStatusInput";
 	}

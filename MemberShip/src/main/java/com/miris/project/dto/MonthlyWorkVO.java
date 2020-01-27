@@ -26,6 +26,7 @@ public class MonthlyWorkVO {
 	private String m_name;
 	private String m_gubun;
 	private String d_code;
+	private String d_name;
 	private String m_position;
 	private String m_notice;
 	
@@ -69,6 +70,13 @@ public class MonthlyWorkVO {
 	//페이징용
     private int start;
     private int end;
+    
+	public String getD_name() {
+		return d_name;
+	}
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
+	}
 	public String getMw_id() {
 		return mw_id;
 	}
